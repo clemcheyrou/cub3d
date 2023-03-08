@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME:= cub3d
+NAME:= cub3D
 
 SRCS:= parsing
 
@@ -44,35 +44,35 @@ OBJ:= $(addprefix $(CCH_PATH),$(addsuffix .o, $(SRCS)))
 
 all:		${NAME}
 
-${NAME}:	${OBJ} ${SRCS}
-	@echo ${CYAN} " - Compiling $@" ${EOC}
-	@${LIBFT}
-	@${MLX}
-	@${CC} ${CFLAGS} ${SRCS} ${LIBFT_A} -L ${MLXHDR} -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${NAME}
-	@echo ${GREEN} " - OK" ${EOC}
+${NAME}:	${OBJ} ${SRC}
+			@echo ${CYAN} " - Compiling $@" ${EOC}
+			@${LIBFT} >/dev/null
+			@${MLX} >/dev/null
+			@${CC} ${CFLAGS} ${SRC} ${LIBFT_A} -L ${MLX_HDR} -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${NAME}
+			@echo ${GREEN} " - OK" ${EOC}
 
 ${CCH_PATH}%.o: ${SRCS_PATH}%.c
-	@mkdir -p $(@D)
-	@echo ${PURPLE} " - Compiling $< into $@" ${EOC}
-	@${CC} ${CFLAGS} -I mlx_linux -O3 -c $< -o $@
+			@mkdir -p $(@D)
+			@echo ${PURPLE} " - Compiling $< into $@" ${EOC}
+			@${CC} ${CFLAGS} -I mlx_linux -O3 -c $< -o $@
 
 %.c:
-	@echo ${RED}"Missing file : $@" ${EOC}
+			@echo ${RED}"Missing file : $@" ${EOC}
 
 clean:
-	@${MLX} clean
-	@${LIBFT} clean
-	@rm -rf ${CCHPATH}
-	@rm -f ${CCHF}
+			@${MLX} clean >/dev/null
+			@${LIBFT} clean >/dev/null
+			@rm -rf ${CCHPATH}
+			@rm -f ${CCHF}
 
 fclean:		clean
-	@${MLX} clean
-	@${LIBFT} fclean
-	@rm -f ${NAME}
-	@rm -f ${NAME}.dSYM/
-	@echo ${GREEN} " - CLEAN" ${EOC}
+			@${MLX} clean >/dev/null
+			@${LIBFT} fclean >/dev/null
+			@rm -f ${NAME}
+			@rm -f ${NAME}.dSYM/
+			@echo ${GREEN} " - CLEAN" ${EOC}
 
 re:			fclean 
-	@${MAKE} all
+			@${MAKE} all
 
 .PHONY:		all clean fclean re

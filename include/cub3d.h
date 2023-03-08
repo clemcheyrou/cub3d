@@ -34,10 +34,12 @@
 # define A_K			97
 # define D_K			100
 # define ESC			65307
+# define ESC_K		65307
 
 # define ERR_EXT		"Error\nWrong file extension (must be .cub)\n"
 # define ERR_MAP		"Error\nThe map is incorrect\n"
 # define ERR_MALLOC		"Error\nMalloc error\n"
+# define ERR_ENV		"Error\nUninitialized environment\n"
 
 typedef enum s_direction
 {
