@@ -6,14 +6,18 @@
 #    By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/03/08 18:11:22 by ccheyrou         ###   ########.fr        #
+#    Updated: 2023/03/08 19:13:49 by ccheyrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME:= cub3D
 
-SRCS:= parsing
-
+SRCS:= 	main \
+		parsing \
+		element \
+		get_next_line/get_next_line \
+		get_next_line/get_next_line_utils
+		
 # --------------------
 CC:= gcc
 SRCS_PATH:= srcs/

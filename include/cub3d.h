@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/08 18:07:07 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:40:29 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <math.h>
 # include "../minilibx/mlx.h"
 # include "../Libft/libft.h"
+# include "../srcs/get_next_line/get_next_line.h"
 
 # define CHAR_TITLE		"Totally Spies!"
 # define FILE_EXT		".cub"
@@ -38,6 +39,7 @@
 
 # define ERR_EXT		"Error\nWrong file extension (must be .cub)\n"
 # define ERR_MAP		"Error\nThe map is incorrect\n"
+# define ERR_DEF		"Error\nThe map elements are missing or incorrect\n"
 # define ERR_MALLOC		"Error\nMalloc error\n"
 # define ERR_ENV		"Error\nUninitialized environment\n"
 
@@ -59,14 +61,15 @@ typedef struct s_texture
 
 typedef struct s_color
 {
-	int *floor;
-	int	*cell;
+	int floor[3];
+	int	cell[3];
 } t_color;
 
 typedef struct s_map
 {
 	char				**map;
 	int					player_nb;
+	int					elem_nb;
 	int					map_width;
 	int					map_height;
 	t_direction			direction;
@@ -91,5 +94,7 @@ typedef struct s_cub3d
 
 char	**get_map(char *av);
 int		check_cub(char *av);
+int		find_elem(char *line);
+
 
 #endif 

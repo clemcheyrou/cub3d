@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 18:43:55 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/08 18:05:10 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:23:28 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_line	*clean_stash(t_line **stash, t_line **last_link)
 	int		i;
 	int		j;
 
-	new_start = malloc(sizeof(t_list));
+	new_start = malloc(sizeof(t_line));
 	if (stash == NULL || new_start == NULL)
 		return (NULL);
 	new_start->next = NULL;
@@ -29,7 +29,7 @@ static t_line	*clean_stash(t_line **stash, t_line **last_link)
 		i++;
 	if (last->val && last->val[i] == '\n')
 		i++;
-	new_start->val = malloc(sizeof(char) * ((ft_strlen(last->val) - i) + 1));
+	new_start->val = malloc(sizeof(char) * ((ft_strlen2(last->val) - i) + 1));
 	if (new_start->val == NULL)
 		return (NULL);
 	j = 0;
@@ -74,7 +74,7 @@ static void	add_to_stash(t_line **stash, char *buf, t_line **last_link)
 	t_line	*new_element;
 	t_line	*tmp;
 
-	new_element = malloc(sizeof(t_list));
+	new_element = malloc(sizeof(t_line));
 	if (new_element == NULL)
 		return ;
 	new_element->val = buf;
@@ -90,7 +90,7 @@ static void	add_to_stash(t_line **stash, char *buf, t_line **last_link)
 	tmp->next = new_element;
 }
 
-static void	fd_into_buf(t_list **stash, int fd, t_list **last_link)
+static void	fd_into_buf(t_line **stash, int fd, t_line **last_link)
 {	
 	char	*buf;
 	int		ret;

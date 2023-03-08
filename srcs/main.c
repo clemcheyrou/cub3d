@@ -3,26 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 17:42:54 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/08 18:02:28 by adegain          ###   ########.fr       */
+/*   Created: 2023/03/08 17:37:25 by ccheyrou          #+#    #+#             */
+/*   Updated: 2023/03/08 19:41:19 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	hello(int i)
+int	main(int ac, char **av)
 {
-	return (i);
+	char		**map;
+	int 		i = 0;
+
+	if (ac == 2)
+	{
+		if (!check_cub(av[1]))
+			return (1);
+		map = get_map(av[1]);
+		if (!map)
+			return (ft_putstr_fd("Error\n", 2), 1);
+		while (map[i])
+		{
+			if (ft_isalpha(map[i][0]))
+				if (!find_elem(map[i]))
+					return (ft_putstr_fd(ERR_DEF, 2), 1); //free_struct
+			if (ft_strchr(map[i], '1') && !(ft_strchr(map[i], 'F') || ft_strchr(map[i], 'C'))
+					&& elem_nb != 6)
+				return (ft_putstr_fd(ERR_DEF, 2), 1);	
+			i++;
+		}
+	}
+	else
+		return (ft_putstr_fd("Error\n", 2), 1);
 }
 
-int	main(int argc, char **argv, char **envp)
-{
-	(void)argv;
-	if (!envp)
-		return (ft_putstr_fd(ERR_ENV, 2), 0);
-	hello(15);
-	if (argc == 1)
-		return (ft_putstr_fd("OK", 1), 1);
-}

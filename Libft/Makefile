@@ -6,7 +6,7 @@
 #    By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/15 02:57:34 by ccheyrou          #+#    #+#              #
-#    Updated: 2023/03/08 17:54:52 by ccheyrou         ###   ########.fr        #
+#    Updated: 2023/03/08 18:26:18 by ccheyrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,9 +55,7 @@ SRCS =	ft_isalpha.c		\
 		ft_lstadd_back.c	\
 		ft_lstsize.c		\
 		ft_lstiter.c		\
-		ft_lstlast.c \
-		/get_next_line/get_next_line.c \
-		src/get_next_line/get_next_line_utils.c
+		ft_lstlast.c 
 
 BONUS =
 
