@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:06:01 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/01/11 22:57:53 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:02:44 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
+# include "get_next_line/get_next_line.h"
 
 typedef struct s_list
 {
 	void			*content;
-	int				type;
 	struct s_list	*next;
 }	t_list;
 

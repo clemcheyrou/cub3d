@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
+#    By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/03/08 18:08:01 by adegain          ###   ########.fr        #
+#    Updated: 2023/03/08 18:11:22 by ccheyrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME:= cub3D
 
-SRCS:= main 
+SRCS:= parsing
 
 # --------------------
 CC:= gcc

@@ -6,16 +6,16 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 18:43:55 by ccheyrou          #+#    #+#             */
-/*   Updated: 2022/07/31 12:44:14 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:05:10 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static t_list	*clean_stash(t_list **stash, t_list **last_link)
+static t_line	*clean_stash(t_line **stash, t_line **last_link)
 {
-	t_list	*last;
-	t_list	*new_start;
+	t_line	*last;
+	t_line	*new_start;
 	int		i;
 	int		j;
 
@@ -41,7 +41,7 @@ static t_list	*clean_stash(t_list **stash, t_list **last_link)
 	return (*stash);
 }
 
-static char	*return_line(t_list *stash)
+static char	*return_line(t_line *stash)
 {
 	char	*line;
 	int		j;
@@ -69,10 +69,10 @@ static char	*return_line(t_list *stash)
 	return (line);
 }
 
-static void	add_to_stash(t_list **stash, char *buf, t_list **last_link)
+static void	add_to_stash(t_line **stash, char *buf, t_line **last_link)
 {
-	t_list	*new_element;
-	t_list	*tmp;
+	t_line	*new_element;
+	t_line	*tmp;
 
 	new_element = malloc(sizeof(t_list));
 	if (new_element == NULL)
@@ -114,8 +114,8 @@ static void	fd_into_buf(t_list **stash, int fd, t_list **last_link)
 
 char	*get_next_line(int fd)
 {
-	static t_list		*stash = NULL;
-	t_list				*last_link;
+	static t_line		*stash = NULL;
+	t_line				*last_link;
 	char				*line;
 
 	last_link = stash;
