@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/08 17:32:02 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:07:07 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 # define MAP_CHAR		"10NSEW"
 # define IMG_LENGTH		34
 # define IMG_WIDTH		34
-# define W				119
-# define S				115
-# define A				97
-# define D				100
+# define W_K			119
+# define S_K			115
+# define A_K			97
+# define D_K			100
 # define ESC			65307
 
 # define ERR_EXT		"Error\nWrong file extension (must be .cub)\n"
@@ -69,8 +69,7 @@ typedef struct s_map
 	int					map_height;
 	t_direction			direction;
 	t_texture			texture;
-	t
-	
+	t_color				color;
 }	t_map;
 
 // typedef struct s_game
@@ -85,7 +84,10 @@ typedef struct s_map
 typedef struct s_cub3d
 {
 	t_map	map;
-	t_game	game;
-} 
+	//t_game game;
+}	t_cub3d;
+
+char	**get_map(char *av);
+int		check_cub(char *av);
 
 #endif 

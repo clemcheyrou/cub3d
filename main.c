@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 17:34:55 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/08 17:35:52 by adegain          ###   ########.fr       */
+/*   Created: 2023/03/08 17:37:25 by ccheyrou          #+#    #+#             */
+/*   Updated: 2023/03/08 18:13:03 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv, char **envp)
+int	main(int ac, char **av)
 {
-	if (!envp)
-		return (0);
+	char		**map;
+
+	if (ac == 2)
+	{
+		if (!check_cub(av[1]))
+			return (1);
+		map = get_map(av[1]);
+		if (!map)
+			return (ft_putstr_fd("Error\n", 2), 1);
+	}
+	return (ft_putstr_fd("Error\n", 2), 1);
 }
+

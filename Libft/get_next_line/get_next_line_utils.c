@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 20:01:23 by ccheyrou          #+#    #+#             */
-/*   Updated: 2022/06/11 16:29:10 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:06:03 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen2(char *str)
 {
 	size_t	i;
 
@@ -24,10 +24,10 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-void	free_before(t_list *stash)
+void	free_before(t_line *stash)
 {
-	t_list	*tmp;
-	t_list	*next;
+	t_line	*tmp;
+	t_line	*next;
 
 	tmp = stash;
 	while (tmp)
@@ -39,9 +39,9 @@ void	free_before(t_list *stash)
 	}
 }
 
-char	*len_line(t_list *stash, char **line)
+char	*len_line(t_line *stash, char **line)
 {
-	t_list	*element;
+	t_line	*element;
 	int		i;
 	int		len;
 
@@ -68,10 +68,10 @@ char	*len_line(t_list *stash, char **line)
 	return (*line);
 }
 
-int	find_n(t_list *stash, t_list **last_link)
+int	find_n(t_line *stash, t_line **last_link)
 {
 	int		i;
-	t_list	*last;
+	t_line	*last;
 
 	i = 0;
 	if (!stash)
