@@ -6,19 +6,19 @@
 #    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/03/08 16:51:32 by adegain          ###   ########.fr        #
+#    Updated: 2023/03/08 18:08:01 by adegain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME:= cub3d
+NAME:= cub3D
 
-SRCS:= 
+SRCS:= main 
 
 # --------------------
 CC:= gcc
 SRCS_PATH:= srcs/
 HDR_PATH:= include/
-CCHPATH:= obj/
+CCH_PATH:= obj/
 LIBFT:= make -C ./Libft
 LIBFT_HDR:= Libft/
 LIBFT_A:= Libft/libft.a
@@ -37,46 +37,42 @@ EOC:= "\033[0;0m"
 
 # --- Compilation ----
 SRC:= $(addprefix $(SRCS_PATH),$(addsuffix .c, $(SRCS)))
-OBJ:= $(addprefix $(CCHPATH),$(addsuffix .o, $(SRCS)))
-CCHF:= .cache_exists
+OBJ:= $(addprefix $(CCH_PATH),$(addsuffix .o, $(SRCS)))
 # ====================
 
 # --------------------
 
 all:		${NAME}
 
-${NAME}:	${OBJ} ${SRCS}
-	@echo ${CYAN} " - Compiling $@" ${EOC}
-	@${LIBFT} >/dev/null
-	@${MLX} >/dev/null
-	@${CC} ${CFLAGS} ${SRCS} ${LIBFT_A} -L ${MLXHDR} -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${NAME}
-	@echo ${GREEN} " - OK" ${EOC}
+${NAME}:	${OBJ} ${SRC}
+			@echo ${CYAN} " - Compiling $@" ${EOC}
+			@${LIBFT} >/dev/null
+			@${MLX} >/dev/null
+			@${CC} ${CFLAGS} ${SRC} ${LIBFT_A} -L ${MLX_HDR} -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${NAME}
+			@echo ${GREEN} " - OK" ${EOC}
 
-${CCHPATH}%.o: ${SRCPATH}%.c | ${CCHF}
-	@echo ${PURPLE} " - Compiling $< into $@" ${EOC}
-	@${CC} ${CFLAGS} -I mlx_linux -O3 -c $< -o $@
+${CCH_PATH}%.o: ${SRCS_PATH}%.c
+			@mkdir -p $(@D)
+			@echo ${PURPLE} " - Compiling $< into $@" ${EOC}
+			@${CC} ${CFLAGS} -I mlx_linux -O3 -c $< -o $@
 
 %.c:
-	@echo ${RED}"Missing file : $@" ${EOC}
-
-$(CCHF):
-	@mkdir ${CCHPATH}
-	@touch ${CCHF}
+			@echo ${RED}"Missing file : $@" ${EOC}
 
 clean:
-	@${MLX} clean >/dev/null
-	@${LIBFT} clean >/dev/null
-	@rm -rf ${CCHPATH}
-	@rm -f ${CCHF}
+			@${MLX} clean >/dev/null
+			@${LIBFT} clean >/dev/null
+			@rm -rf ${CCHPATH}
+			@rm -f ${CCHF}
 
 fclean:		clean
-	${MLX} clean >/dev/null
-	${LIBFT} fclean >/dev/null
-	@rm -f ${NAME}
-	@rm -f ${NAME}.dSYM/
-	@echo ${GREEN} " - CLEAN" ${EOC}
+			@${MLX} clean >/dev/null
+			@${LIBFT} fclean >/dev/null
+			@rm -f ${NAME}
+			@rm -f ${NAME}.dSYM/
+			@echo ${GREEN} " - CLEAN" ${EOC}
 
 re:			fclean 
-	@${MAKE} all
+			@${MAKE} all
 
 .PHONY:		all clean fclean re

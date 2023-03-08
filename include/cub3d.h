@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/08 17:32:02 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/08 17:54:05 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,16 @@
 # define MAP_CHAR		"10NSEW"
 # define IMG_LENGTH		34
 # define IMG_WIDTH		34
-# define W				119
-# define S				115
-# define A				97
-# define D				100
-# define ESC			65307
+# define W_K			119
+# define S_K			115
+# define A_K			97
+# define D_K			100
+# define ESC_K			65307
 
 # define ERR_EXT		"Error\nWrong file extension (must be .cub)\n"
 # define ERR_MAP		"Error\nThe map is incorrect\n"
 # define ERR_MALLOC		"Error\nMalloc error\n"
+# define ERR_ENV		"Error\nUninitialized environment\n"
 
 typedef enum s_direction
 {
@@ -69,7 +70,6 @@ typedef struct s_map
 	int					map_height;
 	t_direction			direction;
 	t_texture			texture;
-	t
 	
 }	t_map;
 
@@ -85,7 +85,7 @@ typedef struct s_map
 typedef struct s_cub3d
 {
 	t_map	map;
-	t_game	game;
+	//t_game	game;
 } 
 
 #endif 
