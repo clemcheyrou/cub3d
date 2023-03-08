@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/08 16:45:45 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:32:02 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <math.h>
+# include "../minilibx/mlx.h"
 # include "../Libft/libft.h"
 
 # define CHAR_TITLE		"Totally Spies!"
@@ -28,16 +35,9 @@
 # define D				100
 # define ESC			65307
 
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include <fcntl.h>
-# include "../minilibx/mlx.h"
-# include "../Libft/libft.h"
-# include <stdio.h>
-# include <math.h>
-
+# define ERR_EXT		"Error\nWrong file extension (must be .cub)\n"
+# define ERR_MAP		"Error\nThe map is incorrect\n"
+# define ERR_MALLOC		"Error\nMalloc error\n"
 
 typedef enum s_direction
 {
