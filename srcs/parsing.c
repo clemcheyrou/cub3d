@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:34:55 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/08 18:32:45 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/09 16:02:36 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ size_t	ft_nb_line(char *av)
 
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (0);
-	}
+		return (ft_putstr_fd(ERR_RD, 2), 0);
 	str = get_next_line(fd);
 	nb_line = 0;
 	while (str)
@@ -55,30 +52,29 @@ size_t	ft_nb_line(char *av)
 	return (nb_line);
 }
 
-char	**remove_nl(char **map)
+char	**remove_nl(char **file)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	while (map[i])
+	while (file[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (file[i][j])
 		{
-			if (map[i][j] == '\n')
-				map[i][j] = '\0';
+			if (file[i][j] == '\n')
+				file[i][j] = '\0';
 			j++;
 		}
 		i++;
 	}
-	return (map);
+	return (file);
 }
 
-char	**get_map(char *av)
+char	**get_file(char *av, t_cub3d *cub3d)
 {
-	char	**map;
-	size_t	x;
+	size_t	y;
 	size_t	nb_line;
 	int		fd;
 
@@ -86,17 +82,17 @@ char	**get_map(char *av)
 	if (fd == -1)
 		return (NULL);
 	nb_line = ft_nb_line(av);
-	map = malloc(sizeof(char *) * (nb_line + 1));
-	if (!map)
+	cub3d->file = malloc(sizeof(char *) * (nb_line + 1));
+	if (!cub3d->file)
 		return (NULL);
-	x = 0;
-	while (x <= nb_line)
+	y = 0;
+	while (y <= nb_line)
 	{
-		map[x] = get_next_line(fd);
-		x++;
+		cub3d->file[y] = get_next_line(fd);
+		y++;
 	}
 	close(fd);
-	if (!map)
+	if (!cub3d->file)
 		return (NULL);
-	return (remove_nl(map));
+	return (remove_nl(cub3d->file)); // le faire plus tard ?
 }
