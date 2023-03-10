@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   element.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:49:22 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/10 17:58:20 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/10 19:33:01 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	colors_tab(char *line, t_elem *elem, int type)
 		return (0);
 	while (tab[i])
 	{
-		if (!ft_alldigit(tab[i]))
+		if (ft_alldigit(tab[i]))
 			return (ft_putstr_fd(ERR_CLR, 2), 0);
 		if (type == 5)
 		{
@@ -187,6 +187,67 @@ void	init_elem_struct(t_cub3d *cub3d)
 	cub3d->map.elem.flag_cell = 0;
 }
 
+int	char_is_space(char c)
+{
+	if (c >= 9 && c <= 11)
+		return (1);
+	else if (c == ' ')
+		return (1);
+	else
+		return (0);
+}
+
+int		height_map(char **file)
+{
+	int		i;
+
+	i = 0;
+	while (file[i])
+		i++;
+	return (i);
+}
+
+int	malloc_map(char **file, t_cub3d *cub3d)
+{
+	size_t	nb_line;
+	size_t	y;
+
+	nb_line = height_map(file);
+	cub3d->map.map = malloc(sizeof(char *) * (nb_line + 1));
+	if (!cub3d->map.map)
+		return (ft_putstr_fd(ERR_MALLOC, 2), 0);
+	y = 0;
+	while (y <= nb_line)
+	{
+		cub3d->map.map[y] = ft_strdup(file[y]);
+		printf("%s\n", cub3d->map.map[y]);
+		y++;
+	}
+	return (1); 
+}	
+
+int	generate_map(char **file, t_cub3d *cub3d)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (file[i])
+	{
+		j = 0;
+		while (file[i][j])
+		{
+			if (!char_is_space(file[i][j]) && file[i][j] != '1')
+			 	return (0);
+			if (file[i][j] == '1')
+				return (malloc_map(file + i, cub3d));
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int check_file(t_cub3d *cub3d)
 {
 	int i;
@@ -195,11 +256,11 @@ int check_file(t_cub3d *cub3d)
 	init_elem_struct(cub3d);
 	while (cub3d->file[i])
 	{
-		if (ft_isalpha(cub3d->file[i][0]))
+		if (ft_isalpha(cub3d->file[i][0]) && cub3d->map.elem_nb != 6)
 			if (!find_elem(cub3d->file[i], cub3d))
 				return (1);
-		// if (cub3d->file[i][0] == ' ' || cub3d->file[i][0] == '1')
-		// 	if () // regarder sila ligne a que des 1 ++ si on a tous les elem_nb
+		if (cub3d->map.elem_nb == 6)
+			return(i++, generate_map(cub3d->file + i, cub3d));
 		i++;
 	}
 	return (1);
