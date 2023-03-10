@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:37:25 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/10 13:29:43 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:44:09 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 		if (!get_file(av[1], &cub3d))
 			return (1);
 		check_file(&cub3d);
+		print_struct(&cub3d);
 		return (0);
 	}
 	else

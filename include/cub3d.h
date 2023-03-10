@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/10 16:05:18 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/10 17:38:17 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@
 # define S_K			115
 # define A_K			97
 # define D_K			100
-# define ESC			65307
-# define ESC_K		65307
+# define ESC_K			65307
 
 # define ERR_ENV		"Error\nUninitialized environment\n"
 # define ERR_ARG		"Error\nWrong number of arguments\n"
@@ -44,7 +43,8 @@
 # define ERR_MAP		"Error\nThe map is incorrect\n"
 # define ERR_DEF		"Error\nThe map elements are missing or incorrect\n"
 # define ERR_DBL		"Error\nThe map elements are mentionned twice\n"
-# define ERR_CLR		"Error\nWrong value in the color parameters\n"
+# define ERR_CLR		"Error\nWrong value in colors parameters\n"
+# define ERR_FIL		"Error\nWrong value in images parameters\n"
 # define ERR_MALLOC		"Error\nMalloc error\n"
 
 typedef enum s_direction
@@ -100,5 +100,6 @@ int 	check_file(t_cub3d *cub3d);
 
 void	free_array(char **var);
 void	free_struct(t_cub3d *cub3d);
+void	print_struct(t_cub3d *cub3d);
 
 #endif 

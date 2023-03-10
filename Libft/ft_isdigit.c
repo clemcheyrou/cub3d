@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 21:18:56 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/09 15:50:51 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/10 17:58:17 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	ft_alldigit(char *str)
 	while (str && *str)
 	{
 		if (!(*str >= '0' || *str <= '9'))
-			return (0);
+			return (1);
 		str++;
 	}
-	return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 18:00:39 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/09 16:12:24 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/10 17:14:43 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_strtrim(char *s1, char *set)
 	while (i < len_s1)
 		new_s[j++] = s1[i++];
 	new_s[j] = '\0';
-	free(s1);
+	//free(s1);
 	return (new_s);
 }
 /*

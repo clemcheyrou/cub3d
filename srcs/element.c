@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:49:22 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/10 16:09:59 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/10 17:58:20 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,50 +22,93 @@ typedef struct s_parse
 	t_fp_pointer	fp;
 }	t_parse;
 
+int	check_img_param(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	parse_imgs(char *line, t_cub3d *cub3d, int type)
 {
 	line = ft_strtrim(line, " ");
 	if (!line)
 		return (ft_putstr_fd(ERR_DEF, 2), 0);
+	if (!check_img_param(line))
+		return (ft_putstr_fd(ERR_FIL, 2), free_struct(cub3d), 0);
 	if (type == 1 && cub3d->map.elem.no_img == NULL)
-		return(cub3d->map.elem.no_img = ft_strdup(line), 1);
+		return(cub3d->map.elem_nb++, cub3d->map.elem.no_img = ft_strdup(line), 1);
 	if (type == 2 && cub3d->map.elem.so_img == NULL)
-		return(cub3d->map.elem.so_img = ft_strdup(line), 1);
+		return(cub3d->map.elem_nb++, cub3d->map.elem.so_img = ft_strdup(line), 1);
 	if (type == 3 && cub3d->map.elem.we_img == NULL)
-		return(cub3d->map.elem.we_img = ft_strdup(line), 1);
+		return(cub3d->map.elem_nb++, cub3d->map.elem.we_img = ft_strdup(line), 1);
 	if (type == 4 && cub3d->map.elem.ea_img == NULL)
-		return(cub3d->map.elem.ea_img = ft_strdup(line), 1);
+		return(cub3d->map.elem_nb++, cub3d->map.elem.ea_img = ft_strdup(line), 1);
 	return (ft_putstr_fd(ERR_DBL, 2), free_struct(cub3d), 0);
 }
 
-int	colors_tab(char *line, t_elem elem, int type)
+int	ft_atoi_cub(const char *nptr)
+{
+	int	i;
+	int	res;
+
+	res = 0;
+	i = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
+	if (nptr[i] == '+' || nptr[i] == '-')
+	{
+		res = -1;
+		return (res);
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		res = res * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (res);
+}
+
+int	colors_tab(char *line, t_elem *elem, int type)
 {
 	char	**tab;
 	int		i;
 
-	tab = ft_split(line, ',');
 	i = 0;
-
-	if (!tab || !tab[3])
+	tab = ft_split(line, ',');
+	if (!tab || tab[4] != NULL) // ou ft_strlen de tab ?
 		return (0);
 	while (tab[i])
 	{
+		if (!ft_alldigit(tab[i]))
+			return (ft_putstr_fd(ERR_CLR, 2), 0);
 		if (type == 5)
 		{
-			elem.floor[i] = ft_atoi(tab[i]);
-			elem.flag_floor++;
+			elem->floor[i] = ft_atoi_cub(tab[i]);
+			elem->flag_floor++;
+			if (elem->floor[i] < 0 || elem->floor[i] > 255)
+				return (ft_putstr_fd(ERR_CLR, 2), 0);
 		}
 		if (type == 6)
 		{
-			elem.cell[i] = ft_atoi(tab[i]);
-			elem.flag_cell++;
+			elem->cell[i] = ft_atoi_cub(tab[i]);
+			elem->flag_cell++;
+			if (elem->cell[i] < 0 || elem->cell[i] > 255)
+				return (ft_putstr_fd(ERR_CLR, 2), 0);
 		}
 		free(tab[i]);
 		i++;
 	}
 	free(tab);
-	if (elem.flag_cell > 3 || elem.flag_floor > 3)
-		return (0); 
+	if (elem->flag_cell > 3 || elem->flag_floor > 3)
+		return (ft_putstr_fd(ERR_DBL, 2), 0); 
 	return (1);
 }
 
@@ -82,7 +125,7 @@ int	check_color_param(char *line)
 			i++;
 		if (line[i] == ' ')
 			return (0);
-		if (line[i] == ',' && !ft_isdigit(line[i + 1]))
+		if (line[i] == ',' && !ft_isdigit(line[i + 1])) // à vérifier pour le chiffre apres la virgule
 			return (0);
 		if (line[i] == ',')
 			flag++;
@@ -100,20 +143,9 @@ int	parse_color(char *line, t_cub3d *cub3d, int type)
 		return (ft_putstr_fd(ERR_DEF, 2), 0);
 	if (!check_color_param(line))
 		return (ft_putstr_fd(ERR_CLR, 2), 0);
-	if (cub3d->map.elem.flag_cell > 3 || cub3d->map.elem.flag_floor > 3)
-	{
-		if (type == 5)
-		{
-			if (!colors_tab(line, cub3d->map.elem, type))
-				return (ft_putstr_fd(ERR_DBL, 2), free_struct(cub3d), 0);
-		}
-		if (type == 6)
-		{
-			if (!colors_tab(line, cub3d->map.elem, type))
-				return (ft_putstr_fd(ERR_DBL, 2), free_struct(cub3d), 0);
-		}
-	}
-	return (1); // je ne suis pas sure
+	if (!colors_tab(line, &cub3d->map.elem, type))
+		return (free_struct(cub3d), 0);
+	return (cub3d->map.elem_nb++, 1);
 }
 
 int	find_elem(char *line, t_cub3d *cub3d)
@@ -136,7 +168,23 @@ int	find_elem(char *line, t_cub3d *cub3d)
 			return (storage[i].fp(line + storage[i].len, cub3d, storage[i].type));
 		i++;
 	}
-	return (ft_putstr_fd(ERR_DEF, 2), free_struct(cub3d), 0);
+	return (1); // à changer plus tard 
+}
+
+void	init_elem_struct(t_cub3d *cub3d)
+{
+	cub3d->map.elem.no_img = NULL;
+	cub3d->map.elem.so_img = NULL;
+	cub3d->map.elem.we_img = NULL;
+	cub3d->map.elem.ea_img = NULL;
+	cub3d->map.elem.floor[0] = -1;
+	cub3d->map.elem.floor[1] = -1;
+	cub3d->map.elem.floor[2] = -1;
+	cub3d->map.elem.cell[0] = -1;
+	cub3d->map.elem.cell[1] = -1;
+	cub3d->map.elem.cell[2] = -1;
+	cub3d->map.elem.flag_floor = 0;
+	cub3d->map.elem.flag_cell = 0;
 }
 
 int check_file(t_cub3d *cub3d)
@@ -144,16 +192,15 @@ int check_file(t_cub3d *cub3d)
 	int i;
 
 	i = 0;
+	init_elem_struct(cub3d);
 	while (cub3d->file[i])
 	{
 		if (ft_isalpha(cub3d->file[i][0]))
 			if (!find_elem(cub3d->file[i], cub3d))
 				return (1);
+		// if (cub3d->file[i][0] == ' ' || cub3d->file[i][0] == '1')
+		// 	if () // regarder sila ligne a que des 1 ++ si on a tous les elem_nb
 		i++;
 	}
-	if (!cub3d->map.elem.no_img || !cub3d->map.elem.so_img
-		|| !cub3d->map.elem.we_img || !cub3d->map.elem.ea_img)
-		return (ft_putstr_fd(ERR_DEF, 2), free_struct(cub3d), 0);
-	// si on défini les valeurs de floor et de cell a -1 on peut les vérifier ici 
 	return (1);
 }
