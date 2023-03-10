@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/10 14:12:37 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:05:18 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define ERR_MAP		"Error\nThe map is incorrect\n"
 # define ERR_DEF		"Error\nThe map elements are missing or incorrect\n"
 # define ERR_DBL		"Error\nThe map elements are mentionned twice\n"
+# define ERR_CLR		"Error\nWrong value in the color parameters\n"
 # define ERR_MALLOC		"Error\nMalloc error\n"
 
 typedef enum s_direction
@@ -97,5 +98,7 @@ char	**get_file(char *av, t_cub3d *cub3d);
 int		check_cub(char *av);
 int 	check_file(t_cub3d *cub3d);
 
+void	free_array(char **var);
+void	free_struct(t_cub3d *cub3d);
 
 #endif 

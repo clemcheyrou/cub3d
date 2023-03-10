@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+         #
+#    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/03/08 19:13:49 by ccheyrou         ###   ########.fr        #
+#    Updated: 2023/03/10 16:07:51 by adegain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS:= 	main \
 		element \
 		get_next_line/get_next_line \
 		get_next_line/get_next_line_utils
-		
+		free
+
 # --------------------
 CC:= gcc
 SRCS_PATH:= srcs/
