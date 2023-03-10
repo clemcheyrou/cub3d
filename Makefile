@@ -6,7 +6,7 @@
 #    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/03/10 16:09:42 by adegain          ###   ########.fr        #
+#    Updated: 2023/03/10 18:05:11 by adegain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,13 +68,13 @@ clean:
 			@${MLX} clean >/dev/null
 			@${LIBFT} clean >/dev/null
 			@rm -rf ${CCHPATH}
-			@rm -f ${CCHF}
 
 fclean:		clean
 			@${MLX} clean >/dev/null
 			@${LIBFT} fclean >/dev/null
 			@rm -f ${NAME}
 			@rm -f ${NAME}.dSYM/
+			@rm -rf ${CCH_PATH}
 			@echo ${GREEN} " - CLEAN" ${EOC}
 
 re:			fclean 
