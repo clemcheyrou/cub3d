@@ -6,7 +6,7 @@
 #    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/03/10 16:07:51 by adegain          ###   ########.fr        #
+#    Updated: 2023/03/10 16:09:42 by adegain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS:= 	main \
 		parsing \
 		element \
 		get_next_line/get_next_line \
-		get_next_line/get_next_line_utils
+		get_next_line/get_next_line_utils \
 		free
 
 # --------------------

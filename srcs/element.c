@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:49:22 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/10 16:07:08 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/10 16:09:59 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	check_color_param(char *line)
 	}
 	if (flag > 2)
 		return (0);
+	return (1);
 }
 
 int	parse_color(char *line, t_cub3d *cub3d, int type)
