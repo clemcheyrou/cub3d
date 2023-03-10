@@ -6,7 +6,7 @@
 #    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/03/10 18:05:11 by adegain          ###   ########.fr        #
+#    Updated: 2023/03/10 18:06:46 by adegain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ ${CCH_PATH}%.o: ${SRCS_PATH}%.c
 clean:
 			@${MLX} clean >/dev/null
 			@${LIBFT} clean >/dev/null
-			@rm -rf ${CCHPATH}
+			@rm -rf ${CCH_PATH}
 
 fclean:		clean
 			@${MLX} clean >/dev/null
