@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/08 19:40:29 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:38:17 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,18 @@
 # define S_K			115
 # define A_K			97
 # define D_K			100
-# define ESC			65307
-# define ESC_K		65307
+# define ESC_K			65307
 
+# define ERR_ENV		"Error\nUninitialized environment\n"
+# define ERR_ARG		"Error\nWrong number of arguments\n"
+# define ERR_RD			"Error\nOpen fonction error\n"
 # define ERR_EXT		"Error\nWrong file extension (must be .cub)\n"
 # define ERR_MAP		"Error\nThe map is incorrect\n"
 # define ERR_DEF		"Error\nThe map elements are missing or incorrect\n"
+# define ERR_DBL		"Error\nThe map elements are mentionned twice\n"
+# define ERR_CLR		"Error\nWrong value in colors parameters\n"
+# define ERR_FIL		"Error\nWrong value in images parameters\n"
 # define ERR_MALLOC		"Error\nMalloc error\n"
-# define ERR_ENV		"Error\nUninitialized environment\n"
 
 typedef enum s_direction
 {
@@ -51,19 +55,17 @@ typedef enum s_direction
 	W
 }	t_direction;
 
-typedef struct s_texture
+typedef struct s_elem
 {
 	char *no_img;
 	char *so_img;
 	char *we_img;
 	char *ea_img;
-} t_texture;
-
-typedef struct s_color
-{
 	int floor[3];
 	int	cell[3];
-} t_color;
+	int	flag_floor;
+	int	flag_cell;
+} t_elem;
 
 typedef struct s_map
 {
@@ -73,8 +75,7 @@ typedef struct s_map
 	int					map_width;
 	int					map_height;
 	t_direction			direction;
-	t_texture			texture;
-	t_color				color;
+	t_elem				elem;
 }	t_map;
 
 // typedef struct s_game
@@ -90,11 +91,15 @@ typedef struct s_cub3d
 {
 	t_map	map;
 	//t_game game;
+	char	**file;
 }	t_cub3d;
 
-char	**get_map(char *av);
+char	**get_file(char *av, t_cub3d *cub3d);
 int		check_cub(char *av);
-int		find_elem(char *line);
+int 	check_file(t_cub3d *cub3d);
 
+void	free_array(char **var);
+void	free_struct(t_cub3d *cub3d);
+void	print_struct(t_cub3d *cub3d);
 
 #endif 
