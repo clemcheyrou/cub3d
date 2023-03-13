@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/13 16:21:37 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/13 17:30:00 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	colors_tab(char *line, t_elem *elem, int type)
 
 	i = 0;
 	tab = ft_split(line, ',');
-	if (!tab || tab[4] != NULL) // ou ft_strlen de tab ?
+	if (!tab || tab[3] != NULL) // ou ft_strlen de tab ?
 		return (0);
 	while (tab[i])
 	{
@@ -63,14 +63,14 @@ int	colors_tab(char *line, t_elem *elem, int type)
 			return (ft_putstr_fd(ERR_CLR, 2), 0);
 		if (type == 5)
 		{
-			elem->floor[i] = ft_atoi_cub(tab[i]);
+			elem->floor[i] = ft_atoi(tab[i]);
 			elem->flag_floor++;
 			if (elem->floor[i] < 0 || elem->floor[i] > 255)
 				return (ft_putstr_fd(ERR_CLR, 2), 0);
 		}
 		if (type == 6)
 		{
-			elem->cell[i] = ft_atoi_cub(tab[i]);
+			elem->cell[i] = ft_atoi(tab[i]);
 			elem->flag_cell++;
 			if (elem->cell[i] < 0 || elem->cell[i] > 255)
 				return (ft_putstr_fd(ERR_CLR, 2), 0);

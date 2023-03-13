@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:29:40 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/13 16:05:07 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/13 16:42:32 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_struct(t_cub3d *cub3d)
 void	print_struct(t_cub3d *cub3d)
 {
 	int	i;
-	
+
 	i = 0;
 	if (cub3d->map.elem.no_img)
 		printf("no_img : [%s]\n", cub3d->map.elem.no_img);

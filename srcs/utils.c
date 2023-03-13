@@ -6,32 +6,29 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:02:52 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/13 16:23:53 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/13 18:17:11 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_atoi_cub(const char *nptr)
+int	valid_char(char c, int flag)
 {
-	int	i;
-	int	res;
+	int		i;
+	char	*s;
 
-	res = 0;
 	i = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	if (flag == 1)
+		s = MAP_CHAR;
+	else
+		s = MAP_PLYR;
+	while (s[i])
 	{
-		res = -1;
-		return (res);
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		res = res * 10 + (nptr[i] - '0');
+		if (c == s[i])
+			return (1);
 		i++;
 	}
-	return (res);
+	return (0);
 }
 
 int	char_is_space(char c)
@@ -51,7 +48,7 @@ int	height_map(char **file)
 	i = 0;
 	while (file[i])
 		i++;
-	return (i);
+	return (i + 2);
 }
 
 int	check_length_map(t_cub3d *cub3d)
@@ -70,28 +67,29 @@ int	check_length_map(t_cub3d *cub3d)
 			cub3d->map.map_length = x;
 		y++;
 	}
-	return (cub3d->map.map_length + 2);
+	return (cub3d->map.map_length);
 }
 
 char	*ft_strdupdup(t_cub3d *cub3d, char *s)
 {
 	char	*new_s;
-	size_t	len;
-	size_t	i;
+	int		i;
+	int		j;
 
 	i = 0;
-	len = check_length_map(cub3d);
-	new_s = (char *)malloc(sizeof(char) * (len + 1));
+	j = 0;
+	new_s = (char *)malloc(sizeof(char) * (cub3d->map.map_length + 3));
 	if (!new_s)
 		return (NULL);
-	while (i < len)
+	new_s[0] = 'X';
+	while (i <= cub3d->map.map_length)
 	{
-		if (i == 0 || i == len || s[i] == ' ' || s[i] == '\0')
-			new_s[i] = 'X';
-		else
-			new_s[i] = s[i];
+		while (s[i] && s[i] != ' ')
+			new_s[j++] = s[i++];
+		new_s[j++] = 'X';
 		i++;
 	}
-	new_s[i] = '\0';
+	printf("%s\n", new_s);
+	new_s[j] = '\0';
 	return (new_s);
 }

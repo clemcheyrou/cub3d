@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:49:22 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/13 16:24:21 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/13 17:06:38 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	find_elem(char *line, t_cub3d *cub3d)
 			return (storage[i].fp(line + storage[i].len, cub3d, storage[i].type));
 		i++;
 	}
-	return (1); // à changer plus tard
+	return (1);
 }
 
 int	check_file(t_cub3d *cub3d)
@@ -55,10 +55,10 @@ int	check_file(t_cub3d *cub3d)
 	{
 		if (ft_isalpha(cub3d->file[i][0]) && cub3d->map.elem_nb != 6)
 			if (!find_elem(cub3d->file[i], cub3d))
-				return (1);
+				return (ft_putstr_fd(ERR_DEF, 2), free_struct(cub3d), 0);
 		if (cub3d->map.elem_nb == 6)
 			return (i++, generate_map(cub3d->file + i, cub3d));
 		i++;
 	}
-	return (1);
+	return (ft_putstr_fd(ERR_DEF, 2), free_struct(cub3d), 0);
 }
