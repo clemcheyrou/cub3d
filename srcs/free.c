@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:29:40 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/10 17:39:44 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/13 16:05:07 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,8 @@ void	print_struct(t_cub3d *cub3d)
 		printf("cell[%d] : [%d]\n", i, cub3d->map.elem.cell[i]);
 		i++;
 	}
+	if (cub3d->map.map_height)
+		printf("map_height : [%d]\n", cub3d->map.map_height);
+	if (cub3d->map.map_length)
+		printf("map_length : [%d]\n", cub3d->map.map_length);
 }

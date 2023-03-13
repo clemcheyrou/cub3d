@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 12:19:06 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/09 14:09:10 by adegain          ###   ########.fr       */
+/*   Created: 2023/03/13 16:08:25 by adegain           #+#    #+#             */
+/*   Updated: 2023/03/13 16:20:07 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,45 @@ int	check_map(t_map *map)
 	if (map->player_nb != 1)
 		return (ft_putstr_fd(ERR_MAP, 2), 0); // + freestruct
 	return (1);
+}
+
+int	malloc_map(char **file, t_cub3d *cub3d)
+{
+	int	y;
+
+	cub3d->map.map_height = height_map(file);
+	cub3d->map.map = malloc(sizeof(char *) * (cub3d->map.map_height + 1));
+	if (!cub3d->map.map)
+		return (ft_putstr_fd(ERR_MALLOC, 2), 0);
+	y = 0;
+	while (y < cub3d->map.map_height)
+	{
+		cub3d->map.map[y] = ft_strdupdup(cub3d, file[y]);
+		printf("[%s]\n", cub3d->map.map[y]);
+		y++;
+	}
+	cub3d->map.map[y] = '\0';
+	return (1);
+}
+
+int	generate_map(char **file, t_cub3d *cub3d)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (file[i])
+	{
+		j = 0;
+		while (file[i][j])
+		{
+			if (!char_is_space(file[i][j]) && file[i][j] != '1')
+				return (0);
+			if (file[i][j] == '1')
+				return (malloc_map(file + i, cub3d));
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

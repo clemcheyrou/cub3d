@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:06:01 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/09 15:51:10 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/13 16:26:09 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int				ft_isascii(int c);
 int				ft_isprint(int c);
 int				maj_exist(int c);
 int				ft_alldigit(char *str);
-
 
 int				ft_toupper(int c);
 int				ft_tolower(int c);
