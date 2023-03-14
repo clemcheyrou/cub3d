@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:02:52 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/13 18:17:11 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:25:51 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,21 @@ char	*ft_strdupdup(t_cub3d *cub3d, char *s)
 
 	i = 0;
 	j = 0;
+	if (s[0] == '\0')
+		return (NULL);
 	new_s = (char *)malloc(sizeof(char) * (cub3d->map.map_length + 3));
 	if (!new_s)
 		return (NULL);
-	new_s[0] = 'X';
-	while (i <= cub3d->map.map_length)
+	while (j <= cub3d->map.map_length)
 	{
-		while (s[i] && s[i] != ' ')
+		if (i >= ft_strlen(s) || s[i] == ' ')
+		{
+			new_s[j++] = 'X';
+			i++;
+		}
+		else
 			new_s[j++] = s[i++];
-		new_s[j++] = 'X';
-		i++;
 	}
-	printf("%s\n", new_s);
 	new_s[j] = '\0';
 	return (new_s);
 }

@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/13 17:30:00 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:50:16 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,23 @@ int	check_img_param(char *line)
 
 int	parse_imgs(char *line, t_cub3d *cub3d, int type)
 {
-	line = ft_strtrim(line, " ");
-	if (!line)
+	cub3d->map.line = ft_strtrim(line, " ");
+	if (!cub3d->map.line)
 		return (ft_putstr_fd(ERR_DEF, 2), 0);
-	if (!check_img_param(line))
+	if (!check_img_param(cub3d->map.line))
 		return (ft_putstr_fd(ERR_FIL, 2), free_struct(cub3d), 0);
 	if (type == 1 && cub3d->map.elem.no_img == NULL)
 		return (cub3d->map.elem_nb++, \
-			cub3d->map.elem.no_img = ft_strdup(line), 1);
+			cub3d->map.elem.no_img = ft_strdup(cub3d->map.line), 1);
 	if (type == 2 && cub3d->map.elem.so_img == NULL)
 		return (cub3d->map.elem_nb++, \
-			cub3d->map.elem.so_img = ft_strdup(line), 1);
+			cub3d->map.elem.so_img = ft_strdup(cub3d->map.line), 1);
 	if (type == 3 && cub3d->map.elem.we_img == NULL)
 		return (cub3d->map.elem_nb++, \
-			cub3d->map.elem.we_img = ft_strdup(line), 1);
+			cub3d->map.elem.we_img = ft_strdup(cub3d->map.line), 1);
 	if (type == 4 && cub3d->map.elem.ea_img == NULL)
 		return (cub3d->map.elem_nb++, \
-			cub3d->map.elem.ea_img = ft_strdup(line), 1);
+			cub3d->map.elem.ea_img = ft_strdup(cub3d->map.line), 1);
 	return (ft_putstr_fd(ERR_DBL, 2), free_struct(cub3d), 0);
 }
 

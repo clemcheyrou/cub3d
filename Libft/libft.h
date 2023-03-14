@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:06:01 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/13 17:56:29 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/14 13:33:29 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char			*ft_strrchr(const char *s, int c);
 int				ft_strlen(const char *s);
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
-char			*ft_strnstr(const char *big, const char *little, size_t len);
+char			*ft_strnstr(const char *big, const char *little, int len);
 
 long long		ft_atoi(const char *nptr);
 char			*ft_itoa(int n);
@@ -62,7 +62,7 @@ char			*ft_itoa(int n);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*ft_strdup(const char *s);
 
-char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			*ft_substr(char const *s, int start, int len);
 char			*ft_strjoin(char *s1, char letter, int flag);
 char			*ft_strjoin_str(char *s1, char *s2, int flag);
 char			*ft_strtrim(char *s1, char *set);

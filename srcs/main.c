@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:37:25 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/13 17:25:27 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:26:43 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int ac, char **av)
 		//print_struct(&cub3d);
 		if (!check_map(&cub3d))
 			return (1);
-		return (0);
+		return (free_struct(&cub3d), 1);
 	}
 	else
 		return (ft_putstr_fd(ERR_ARG, 2), 0);

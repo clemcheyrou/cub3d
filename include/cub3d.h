@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/13 17:52:39 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:49:44 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_elem
 typedef struct s_map
 {
 	char				**map;
+	char				*line;
 	int					player_nb;
 	int					elem_nb;
 	int					map_height;
