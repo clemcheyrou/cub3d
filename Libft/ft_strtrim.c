@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 18:00:39 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/10 17:14:43 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:37:06 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	is_set(char s, char const *set)
 char	*ft_strtrim(char *s1, char *set)
 {
 	char	*new_s;
-	size_t	len_s1;
-	size_t	i;
-	size_t	j;
+	int		len_s1;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -50,7 +50,6 @@ char	*ft_strtrim(char *s1, char *set)
 	while (i < len_s1)
 		new_s[j++] = s1[i++];
 	new_s[j] = '\0';
-	//free(s1);
 	return (new_s);
 }
 /*

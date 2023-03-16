@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:29:40 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/10 17:39:44 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:49:32 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,18 @@ void	free_array(char **var)
 
 void	free_struct(t_cub3d *cub3d)
 {
+	if (cub3d->map.line)
+		free(cub3d->map.line);
 	if (cub3d->file)
+	{
 		free_array(cub3d->file);
+		free(cub3d->file);
+	}
 	if (cub3d->map.map)
-		free_array(cub3d->file);
+	{
+		free_array(cub3d->map.map);
+		free(cub3d->map.map);
+	}
 	if (cub3d->map.elem.no_img)
 		free(cub3d->map.elem.no_img);
 	if (cub3d->map.elem.so_img)
@@ -44,7 +52,7 @@ void	free_struct(t_cub3d *cub3d)
 void	print_struct(t_cub3d *cub3d)
 {
 	int	i;
-	
+
 	i = 0;
 	if (cub3d->map.elem.no_img)
 		printf("no_img : [%s]\n", cub3d->map.elem.no_img);
@@ -60,4 +68,8 @@ void	print_struct(t_cub3d *cub3d)
 		printf("cell[%d] : [%d]\n", i, cub3d->map.elem.cell[i]);
 		i++;
 	}
+	if (cub3d->map.map_height)
+		printf("map_height : [%d]\n", cub3d->map.map_height);
+	if (cub3d->map.map_length)
+		printf("map_length : [%d]\n", cub3d->map.map_length);
 }

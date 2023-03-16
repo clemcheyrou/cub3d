@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 17:37:25 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/14 16:26:43 by adegain          ###   ########.fr       */
+/*   Created: 2023/03/13 16:02:12 by adegain           #+#    #+#             */
+/*   Updated: 2023/03/13 16:02:36 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char **av)
+void	init_elem_struct(t_cub3d *cub3d)
 {
-	t_cub3d		cub3d;
-
-	if (ac == 2)
-	{
-		ft_memset(&cub3d, 0, sizeof(cub3d));
-		if (!check_cub(av[1]))
-			return (1);
-		if (!get_file(av[1], &cub3d))
-			return (1);
-		if (!check_file(&cub3d))
-			return (1);
-		//print_struct(&cub3d);
-		if (!check_map(&cub3d))
-			return (1);
-		return (free_struct(&cub3d), 1);
-	}
-	else
-		return (ft_putstr_fd(ERR_ARG, 2), 0);
+	cub3d->map.elem.no_img = NULL;
+	cub3d->map.elem.so_img = NULL;
+	cub3d->map.elem.we_img = NULL;
+	cub3d->map.elem.ea_img = NULL;
+	cub3d->map.elem.floor[0] = -1;
+	cub3d->map.elem.floor[1] = -1;
+	cub3d->map.elem.floor[2] = -1;
+	cub3d->map.elem.cell[0] = -1;
+	cub3d->map.elem.cell[1] = -1;
+	cub3d->map.elem.cell[2] = -1;
+	cub3d->map.elem.flag_floor = 0;
+	cub3d->map.elem.flag_cell = 0;
 }

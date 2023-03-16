@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 17:34:55 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/09 16:02:36 by adegain          ###   ########.fr       */
+/*   Created: 2023/03/13 16:04:44 by adegain           #+#    #+#             */
+/*   Updated: 2023/03/13 16:05:33 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,5 @@ char	**get_file(char *av, t_cub3d *cub3d)
 	close(fd);
 	if (!cub3d->file)
 		return (NULL);
-	return (remove_nl(cub3d->file)); // le faire plus tard ?
+	return (remove_nl(cub3d->file));
 }
