@@ -6,12 +6,12 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/16 12:34:32 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/16 17:26:19 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+/*
 void	init_image(t_cub3d *cub3d)
 {
 	
@@ -62,7 +62,8 @@ void	print_map(t_cub3d *cub3d)
 		}
 		x++;
 	}
-}
+}*/
+
 
 int	game(t_cub3d *cub3d)
 {
@@ -71,9 +72,15 @@ int	game(t_cub3d *cub3d)
 		return (0); //free
 	cub3d->game.win = mlx_new_window(cub3d->game.mlx, cub3d->map.map_length * 60, \
 		cub3d->map.map_height * 60, CHAR_TITLE);
-	init_image(cub3d);
-	if (miss_img(cub3d))
-		return (0); //free
-	print_map(cub3d);
+	if (!cub3d->game.win)
+	{
+		free(cub3d->game.win);
+		return (0);
+	}
+	//mlx_loop_hook(cub3d->game.mlx, &render, &cub3d);
+	//init_image(cub3d);
+	//if (miss_img(cub3d))
+	//	return (0); //free
+	//print_map(cub3d);
 	return (1);
 }

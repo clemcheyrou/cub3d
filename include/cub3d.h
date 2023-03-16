@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/16 12:33:45 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/16 14:19:36 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include "../minilibx/mlx.h"
 # include "../Libft/libft.h"
 # include "../srcs/get_next_line/get_next_line.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 
 # define CHAR_TITLE		"Totally Spies!"
 # define FILE_EXT		".cub"
@@ -90,11 +92,26 @@ typedef struct s_game
 	void *ea_img;
 }	t_game;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+
 typedef struct s_cub3d
 {
 	t_map	map;
-	t_game game;
+	t_game 	game;
+	t_img	img;
 	char	**file;
+	int		rx;
+	int		ry;
+	int		sizex;
+	int		sizey;
 }	t_cub3d;
 
 /******** MAIN ********/
