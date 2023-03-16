@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/15 21:27:09 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/16 12:34:32 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_image(t_cub3d *cub3d)
 {
+	
 	vars->wall = mlx_xpm_file_to_image(vars->mlx, "src/img/collect.xpm", \
 		&vars->img_width, &vars->img_height);
 	vars->floor = mlx_xpm_file_to_image(vars->mlx, "src/img/floor.xpm", \
@@ -69,7 +70,7 @@ int	game(t_cub3d *cub3d)
 	if (!cub3d->game.mlx)
 		return (0); //free
 	cub3d->game.win = mlx_new_window(cub3d->game.mlx, cub3d->map.map_length * 60, \
-		cub3d->map.map_height * 60, "cub3d");
+		cub3d->map.map_height * 60, CHAR_TITLE);
 	init_image(cub3d);
 	if (miss_img(cub3d))
 		return (0); //free

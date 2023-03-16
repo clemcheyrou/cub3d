@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/14 16:49:44 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/16 12:33:45 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,20 @@ typedef struct s_map
 	t_elem				elem;
 }	t_map;
 
-// typedef struct s_game
-// {
-// 	void	*mlx;
-// 	void *no_img;
-// 	void *so_img;
-// 	void *we_img;
-// 	void *ea_img;
-// }	t_game;
+typedef struct s_game
+{
+	void	*mlx;
+	void	*win;
+	void *no_img;
+	void *so_img;
+	void *we_img;
+	void *ea_img;
+}	t_game;
 
 typedef struct s_cub3d
 {
 	t_map	map;
-	//t_game game;
+	t_game game;
 	char	**file;
 }	t_cub3d;
 
@@ -117,15 +118,19 @@ int		parse_color(char *line, t_cub3d *cub3d, int type);
 int		generate_map(char **file, t_cub3d *cub3d);
 int		check_map(t_cub3d *cub3d);
 
-/******** UTILS *******/
+// ---- utils
 int		valid_char(char c, int flag);
 int		char_is_space(char c);
 int		height_map(char **file);
 int		check_length_map(t_cub3d *cub3d);
 char	*ft_strdupdup(t_cub3d *cub3d, char *s);
 
-/******** FREE ********/
+// ---- free
 void	free_struct(t_cub3d *cub3d);
 void	print_struct(t_cub3d *cub3d);
+
+/******** GAME ********/
+// ---- init_game
+int		game(t_cub3d *cub3d);
 
 #endif 

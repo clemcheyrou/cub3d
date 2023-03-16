@@ -6,7 +6,7 @@
 #    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/03/13 16:18:55 by adegain          ###   ########.fr        #
+#    Updated: 2023/03/16 12:25:14 by adegain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,14 @@ NAME:= cub3D
 SRCS:= 	main \
 		get_next_line/get_next_line \
 		get_next_line/get_next_line_utils \
-		free \
-		get_file \
-		init_struct \
-		parsing_args \
-		parsing_elements \
-		parsing_map \
-		utils
+		/parsing/free \
+		/parsing/get_file \
+		/parsing/init_struct \
+		/parsing/parsing_args \
+		/parsing/parsing_elements \
+		/parsing/parsing_map \
+		/parsing/utils \
+		/game/init_game
 
 # --------------------
 CC:= gcc
