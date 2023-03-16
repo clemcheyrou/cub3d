@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:02:52 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/14 16:25:51 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/15 20:52:29 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ char	*ft_strdupdup(t_cub3d *cub3d, char *s)
 	new_s = (char *)malloc(sizeof(char) * (cub3d->map.map_length + 3));
 	if (!new_s)
 		return (NULL);
+	new_s[j++] = 'X';
 	while (j <= cub3d->map.map_length)
 	{
 		if (i >= ft_strlen(s) || s[i] == ' ')
