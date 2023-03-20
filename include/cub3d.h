@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/16 19:24:07 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:40:39 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	void *no_img;
-	void *so_img;
-	void *we_img;
-	void *ea_img;
+	void	*no_img;
+	void	*so_img;
+	void	*we_img;
+	void	*ea_img;
 }	t_game;
 
 typedef struct s_img
@@ -101,11 +101,10 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-
 typedef struct s_cub3d
 {
 	t_map	map;
-	t_game 	game;
+	t_game	game;
 	t_img	img;
 	char	**file;
 	float	rx;
@@ -134,6 +133,7 @@ int		parse_color(char *line, t_cub3d *cub3d, int type);
 // ---- parsing_map
 int		generate_map(char **file, t_cub3d *cub3d);
 int		check_map(t_cub3d *cub3d);
+int		valid_file(char **file);
 
 // ---- utils
 int		valid_char(char c, int flag);
@@ -149,5 +149,8 @@ void	print_struct(t_cub3d *cub3d);
 /******** GAME ********/
 // ---- init_game
 int		game(t_cub3d *cub3d);
+void	print_map(t_cub3d *cub3d);
+int		close_btn(t_cub3d *cub3d);
+void	free_before_exit(t_cub3d *cub3d);
 
 #endif 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/14 16:50:16 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/20 12:36:10 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	check_color_param(char *line)
 			i++;
 		if (line[i] == ' ')
 			return (0);
-		if (line[i] == ',' && !ft_isdigit(line[i + 1])) // à vérifier pour le chiffre apres la virgule
+		if (line[i] == ',' && !ft_isdigit(line[i + 1]))
 			return (0);
 		if (line[i] == ',')
 			flag++;

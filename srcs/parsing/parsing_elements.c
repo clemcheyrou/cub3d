@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_elements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:49:22 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/14 14:01:14 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/20 12:35:46 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_parse
 
 int	find_elem(char *line, t_cub3d *cub3d)
 {
-	int		i;
-	t_parse	storage [7] = {
+	int				i;
+	const t_parse	storage [7] = {
 	{"NO ", 3, 1, parse_imgs},
 	{"SO ", 3, 2, parse_imgs},
 	{"WE ", 3, 3, parse_imgs},
@@ -39,7 +39,8 @@ int	find_elem(char *line, t_cub3d *cub3d)
 	while (storage[i].str)
 	{
 		if (!ft_strncmp(line, storage[i].str, storage[i].len))
-			return (storage[i].fp(line + storage[i].len, cub3d, storage[i].type));
+			return (storage[i].fp(line + storage[i].len, \
+			cub3d, storage[i].type));
 		i++;
 	}
 	return (1);
