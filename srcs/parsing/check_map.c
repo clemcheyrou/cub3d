@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:38:33 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/20 12:40:09 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:40:35 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ int	check_around_plyr(char **map, int y, int x)
 	return (1);
 }
 
+void	save_plyr(t_cub3d *cub3d, int y, int x)
+{
+	cub3d->map.player_nb++;
+	cub3d->map.direction = cub3d->map.map[y][x];
+	cub3d->ray.pos_x = y;
+	cub3d->ray.pos_y = x;
+}
+
 int	check_map(t_cub3d *cub3d)
 {
 	int	y;
@@ -56,10 +64,7 @@ int	check_map(t_cub3d *cub3d)
 				if (!check_around(cub3d->map.map, y, x))
 					return (ft_putstr_fd(ERR_MAP, 2), free_struct(cub3d), 0);
 			if (valid_char(cub3d->map.map[y][x], 2))
-			{
-				cub3d->map.player_nb++;
-				cub3d->map.direction = cub3d->map.map[y][x];
-			}
+				save_plyr(cub3d, y, x);
 			x++;
 		}
 		y++;

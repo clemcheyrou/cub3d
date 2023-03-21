@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/20 12:40:39 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:34:22 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define A_K			97
 # define D_K			100
 # define ESC_K			65307
+# define LEFT_A			65361
+# define RIGHT_A		65363
 
 # define ERR_ENV		"Error\nUninitialized environment\n"
 # define ERR_ARG		"Error\nWrong number of arguments\n"
@@ -101,16 +103,48 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_ray
+{
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plan_x;
+	double		plan_y;
+	double		raydir_x;
+	double		raydir_y;	
+	double		cam_x;
+	int 		map_x;
+	int			map_y;
+	double		sidedist_y;
+	double		sidedist_x;
+	double		deltadist_x;
+	double		deltadist_y;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	double		paperwalldist;
+	int			lineheight;
+	int			drawstart;
+	int			drawend;
+	int 		x;
+}	t_ray;
+
 typedef struct s_cub3d
 {
 	t_map	map;
 	t_game	game;
 	t_img	img;
+	t_ray	ray;
 	char	**file;
-	float	rx;
-	float	ry;
+	float	screen_width;
+	float	screen_height;
 	int		sizex;
 	int		sizey;
+	int		left_key;
+	int		right_key;
+	int		move;
 }	t_cub3d;
 
 /******** MAIN ********/
@@ -149,7 +183,7 @@ void	print_struct(t_cub3d *cub3d);
 /******** GAME ********/
 // ---- init_game
 int		game(t_cub3d *cub3d);
-void	print_map(t_cub3d *cub3d);
+int		print_map(t_cub3d *cub3d);
 int		close_btn(t_cub3d *cub3d);
 void	free_before_exit(t_cub3d *cub3d);
 
