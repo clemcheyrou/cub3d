@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/22 15:36:23 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:56:42 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,11 +189,6 @@ void	def_ray(t_cub3d *cub3d)
 	cub3d->left_key = 0;
 	cub3d->right_key = 0;
 	cub3d->move = 0;
-
-	cub3d->ray.map_x = cub3d->ray.pos_x;
-	printf ("x en largeur %d\n", cub3d->ray.map_x);
-	cub3d->ray.map_y = cub3d->ray.pos_y;	
-	printf ("x en hauteur %d\n", cub3d->ray.map_y);
 	
 	if (cub3d->map.direction == 0)
 	{
@@ -232,19 +227,17 @@ void	ray_pos(t_cub3d *cub3d)
 	
 	x = 0;
 	ft_memset(&cub3d->ray, 0, sizeof(cub3d));
-	cub3d->ray.map_x = cub3d->ray.pos_x;
-	cub3d->ray.map_y = cub3d->ray.pos_y;
 	cub3d->ray.hit = 0;
 	cub3d->ray.paperwalldist = 0;
 	while (x < cub3d->screen_width)
 	{
-		cub3d->ray.map_x = cub3d->ray.pos_x;
-		cub3d->ray.map_y = cub3d->ray.pos_y;
+		cub3d->ray.map_x = cub3d->x;
+		cub3d->ray.map_y = cub3d->y;
 		cub3d->ray.cam_x = (2 * x) / ((double)cub3d->screen_width - 1);
 		cub3d->ray.raydir_x = cub3d->ray.dir_x + cub3d->ray.plan_x * cub3d->ray.cam_x;
 		cub3d->ray.raydir_y = cub3d->ray.dir_y + cub3d->ray.plan_y * cub3d->ray.cam_x;
-		printf("cub3d->ray.raydir_x  %f \n", cub3d->ray.raydir_x);
-		printf("cub3d->ray.raydir_y  %f \n", cub3d->ray.raydir_y);
+		printf("cub3d->ray.map_x  %d \n", cub3d->ray.map_x);
+		printf("cub3d->ray.map_y  %d \n", cub3d->ray.map_y);
 		
 		//longueur du rayon de la position actuelle au côté x ou y suivant
 		if (cub3d->ray.raydir_x == 0)
@@ -282,17 +275,19 @@ void	ray_pos(t_cub3d *cub3d)
 		//exécute DDA
 		while (cub3d->ray.hit == 0) 
 		{
-			if (cub3d->ray.sidedist_x < cub3d->ray.sidedist_y) 
+			if (cub3d->ray.sidedist_y > cub3d->ray.sidedist_x) 
 			{ 
-				cub3d->ray.sidedist_x += cub3d->ray.deltadist_x ; 
-				cub3d->ray.map_x += cub3d->ray.step_x ; 
+				cub3d->ray.sidedist_y += cub3d->ray.deltadist_y ; 
+				cub3d->ray.map_y += cub3d->ray.step_y; 
 				cub3d->ray.side = 0 ;
+				printf("1 cub3d->map.map[%d][%d]  %c \n", cub3d->ray.map_x, cub3d->ray.map_y, cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y]);
 			} 
 			else 
 			{ 
-				cub3d->ray.sidedist_y += cub3d->ray.deltadist_y ; 
-				cub3d->ray.map_y += cub3d->ray.step_y ; 
+				cub3d->ray.sidedist_x += cub3d->ray.deltadist_x ; 
+				cub3d->ray.map_x += cub3d->ray.step_x; 
 				cub3d->ray.side = 1 ; 
+				printf("2 cub3d->map.map[%d][%d]  %c \n", cub3d->ray.map_x, cub3d->ray.map_y, cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y]);
 			}
 			if (cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == '1' 
 				|| cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == 'X')
