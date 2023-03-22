@@ -3,75 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:38:33 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/22 15:35:10 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:44:43 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_around(char **map, int y, int x)
+int	check_around(char **map, int x, int y)
 {
-	if (!valid_char(map[y][x - 1], 1))
+	if (!valid_char(map[x][y - 1], 1))
 		return (0);
-	if (!valid_char(map[y][x + 1], 1))
+	if (!valid_char(map[x][y + 1], 1))
 		return (0);
-	if (!valid_char(map[y - 1][x], 1))
+	if (!valid_char(map[x - 1][y], 1))
 		return (0);
-	if (!valid_char(map[y + 1][x], 1))
+	if (!valid_char(map[x + 1][y], 1))
 		return (0);
 	return (1);
 }
 
-int	check_around_plyr(char **map, int y, int x)
+int	check_around_plyr(char **map, int x, int y)
 {
 	int	zero;
 
 	zero = 0;
-	if (map[y][x - 1] == '0' || map[y][x + 1] == '0'
-		|| map[y - 1][x] == '0' || map[y + 1][x] == '0')
+	if (map[x][y - 1] == '0' || map[x][y + 1] == '0'
+		|| map[x - 1][y] == '0' || map[x + 1][y] == '0')
 		zero++;
-	if (map[y][x - 1] == 'X' || map[y][x + 1] == 'X'
-		|| map[y - 1][x] == 'X' || map[y + 1][x] == 'X')
+	if (map[x][y - 1] == 'X' || map[x][y + 1] == 'X'
+		|| map[x - 1][y] == 'X' || map[x + 1][y] == 'X')
 		return (0);
 	if (zero < 1)
 		return (0);
 	return (1);
 }
 
-void	save_plyr(t_cub3d *cub3d, int y, int x)
+void	save_plyr(t_cub3d *cub3d, int x, int y)
 {
 	cub3d->map.player_nb++;
-	if (cub3d->map.map[y][x] == 'N')
+	if (cub3d->map.map[x][y] == 'N')
 		cub3d->map.direction = 0;
-	if (cub3d->map.map[y][x] == 'S')
+	if (cub3d->map.map[x][y] == 'S')
 		cub3d->map.direction = 1;
-	if (cub3d->map.map[y][x] == 'E')
+	if (cub3d->map.map[x][y] == 'E')
 		cub3d->map.direction = 2;
-	if (cub3d->map.map[y][x] == 'W')
+	if (cub3d->map.map[x][y] == 'W')
 		cub3d->map.direction = 3;
-	cub3d->ray.pos_x = y;
-	cub3d->ray.pos_y = x;
+	cub3d->ray.pos_x = x;
+	cub3d->ray.pos_y = y;
 }
 
 int	check_map(t_cub3d *cub3d)
 {
-	int	y;
 	int	x;
+	int	y;
 
-	y = 0;
-	while (cub3d->map.map[y])
+	x = 0;
+	while (cub3d->map.map[x])
 	{
-		x = 0;
-		while (cub3d->map.map[y][x])
+		y = 0;
+		while (cub3d->map.map[x][y])
 		{
-			if (cub3d->map.map[y][x] == '0')
-				if (!check_around(cub3d->map.map, y, x))
+			if (cub3d->map.map[x][y] == '0')
+				if (!check_around(cub3d->map.map, x, y))
 					return (ft_putstr_fd(ERR_MAP, 2), free_struct(cub3d), 0);
-			if (valid_char(cub3d->map.map[y][x], 2))
-				save_plyr(cub3d, y, x);
+			if (valid_char(cub3d->map.map[x][y], 2))
+				save_plyr(cub3d, x, y);
 			x++;
 		}
 		y++;
