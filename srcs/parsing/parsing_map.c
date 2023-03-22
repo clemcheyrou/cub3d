@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:08:25 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/20 12:39:57 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:45:51 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strdup_x(t_cub3d *cub3d)
 
 int	malloc_map(char **file, t_cub3d *cub3d)
 {
-	int	y;
+	int	x;
 	int	i;
 
 	cub3d->map.map_height = height_map(file);
@@ -43,22 +43,22 @@ int	malloc_map(char **file, t_cub3d *cub3d)
 	cub3d->map.map = malloc(sizeof(char *) * (cub3d->map.map_height + 1));
 	if (!cub3d->map.map)
 		return (ft_putstr_fd(ERR_MALLOC, 2), 0);
-	y = 0;
+	x = 0;
 	i = 0;
-	while (y < cub3d->map.map_height)
+	while (x < cub3d->map.map_height)
 	{
-		if (y == 0 || y == (cub3d->map.map_height - 1))
-			cub3d->map.map[y] = ft_strdup_x(cub3d);
+		if (x == 0 || x == (cub3d->map.map_height - 1))
+			cub3d->map.map[x] = ft_strdup_x(cub3d);
 		else
 		{
-			cub3d->map.map[y] = ft_strdupdup(cub3d, file[i]);
-			if (!cub3d->map.map[y])
-				cub3d->map.map[y] = ft_strdup_x(cub3d);
+			cub3d->map.map[x] = ft_strdupdup(cub3d, file[i]);
+			if (!cub3d->map.map[x])
+				cub3d->map.map[x] = ft_strdup_x(cub3d);
 			i++;
 		}
-		y++;
+		x++;
 	}
-	cub3d->map.map[y] = NULL;
+	cub3d->map.map[x] = NULL;
 	return (1);
 }
 
