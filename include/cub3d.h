@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/21 17:34:22 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:51:49 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,8 @@ typedef struct s_cub3d
 	int		left_key;
 	int		right_key;
 	int		move;
+	int		x;
+	int		y;
 }	t_cub3d;
 
 /******** MAIN ********/

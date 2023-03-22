@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:38:33 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/22 15:35:10 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:50:32 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	save_plyr(t_cub3d *cub3d, int y, int x)
 		cub3d->map.direction = 2;
 	if (cub3d->map.map[y][x] == 'W')
 		cub3d->map.direction = 3;
-	cub3d->ray.pos_x = y;
-	cub3d->ray.pos_y = x;
+	cub3d->x = y;
+	cub3d->y = x;
 }
 
 int	check_map(t_cub3d *cub3d)
