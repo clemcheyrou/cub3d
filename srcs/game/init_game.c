@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/21 18:47:33 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:36:23 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ void	def_ray(t_cub3d *cub3d)
 	cub3d->ray.map_y = cub3d->ray.pos_y;	
 	printf ("x en hauteur %d\n", cub3d->ray.map_y);
 	
-	if (cub3d->map.direction == N)
+	if (cub3d->map.direction == 0)
 	{
 		cub3d->ray.dir_x = -1;
 		cub3d->ray.dir_y = 0;
@@ -231,16 +231,21 @@ void	ray_pos(t_cub3d *cub3d)
 	int	x;
 	
 	x = 0;
+	ft_memset(&cub3d->ray, 0, sizeof(cub3d));
 	cub3d->ray.map_x = cub3d->ray.pos_x;
 	cub3d->ray.map_y = cub3d->ray.pos_y;
 	cub3d->ray.hit = 0;
+	cub3d->ray.paperwalldist = 0;
 	while (x < cub3d->screen_width)
 	{
-		cub3d->ray.cam_x = 2 * x / cub3d->screen_width - 1;
-		
+		cub3d->ray.map_x = cub3d->ray.pos_x;
+		cub3d->ray.map_y = cub3d->ray.pos_y;
+		cub3d->ray.cam_x = (2 * x) / ((double)cub3d->screen_width - 1);
 		cub3d->ray.raydir_x = cub3d->ray.dir_x + cub3d->ray.plan_x * cub3d->ray.cam_x;
 		cub3d->ray.raydir_y = cub3d->ray.dir_y + cub3d->ray.plan_y * cub3d->ray.cam_x;
-
+		printf("cub3d->ray.raydir_x  %f \n", cub3d->ray.raydir_x);
+		printf("cub3d->ray.raydir_y  %f \n", cub3d->ray.raydir_y);
+		
 		//longueur du rayon de la position actuelle au côté x ou y suivant
 		if (cub3d->ray.raydir_x == 0)
 			cub3d->ray.deltadist_x = fabs(cub3d->ray.raydir_x);
@@ -293,25 +298,35 @@ void	ray_pos(t_cub3d *cub3d)
 				|| cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == 'X')
 				cub3d->ray.hit = 1;
 		}
-
+		printf("cub3d->map.map[%d][%d]  %c \n", cub3d->ray.map_x, cub3d->ray.map_y, cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y]);
+		printf("cub3d->ray.side %d \n", cub3d->ray.side);
+		printf("cub3d->ray.sidedist_y  %f \n", cub3d->ray.sidedist_y);
+		printf("cub3d->ray.sidedist_x  %f \n", cub3d->ray.sidedist_x);
 		if (cub3d->ray.side == 0)
 			cub3d->ray.paperwalldist = (cub3d->ray.sidedist_x - cub3d->ray.deltadist_x);
 		else
 			cub3d->ray.paperwalldist = (cub3d->ray.sidedist_y - cub3d->ray.deltadist_y); 
+		printf("cub3d->ray.paperwalldist %f \n", cub3d->ray.paperwalldist);
 		
 		cub3d->ray.lineheight = (int)(cub3d->screen_height / cub3d->ray.paperwalldist);	
+		
+		printf("cub3d->screen_height %f \n", cub3d->screen_height);
+		printf("cub3d->ray.lineheight %d \n", cub3d->ray.lineheight);
 		cub3d->ray.drawstart = -cub3d->ray.lineheight / (2 + cub3d->screen_height) / 2; 
 		if (cub3d->ray.drawstart < 0)
 			cub3d->ray.drawstart = 0 ; 
 		cub3d->ray.drawend = cub3d->ray.lineheight / (2 + cub3d->screen_height) / 2; 
+		printf("cub3d->ray.drawend %d \n", cub3d->ray.drawend);
 		if(cub3d->ray.drawend >= cub3d->screen_height)
 			cub3d->ray.drawend = cub3d->screen_height - 1;
 		
 		cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
 		cub3d->img.addr = mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, \
 		&cub3d->img.line_len, &cub3d->img.endian);
-
-		mlx_draw_line(cub3d, cub3d->ray.paperwalldist, cub3d->ray.map_y, cub3d->ray.drawstart, cub3d->ray.drawend, 0xFFFFFF);
+		
+		printf("x %d \n", x);
+		printf("cub3d->ray.paperwalldist %f \n", cub3d->ray.paperwalldist);
+		mlx_draw_line(cub3d, x, cub3d->ray.drawstart, x, cub3d->ray.drawend, 0xFFFFFF);
 		x++;
 	}
 	

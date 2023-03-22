@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:38:33 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/21 13:40:35 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:35:10 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,14 @@ int	check_around_plyr(char **map, int y, int x)
 void	save_plyr(t_cub3d *cub3d, int y, int x)
 {
 	cub3d->map.player_nb++;
-	cub3d->map.direction = cub3d->map.map[y][x];
+	if (cub3d->map.map[y][x] == 'N')
+		cub3d->map.direction = 0;
+	if (cub3d->map.map[y][x] == 'S')
+		cub3d->map.direction = 1;
+	if (cub3d->map.map[y][x] == 'E')
+		cub3d->map.direction = 2;
+	if (cub3d->map.map[y][x] == 'W')
+		cub3d->map.direction = 3;
 	cub3d->ray.pos_x = y;
 	cub3d->ray.pos_y = x;
 }
