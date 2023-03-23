@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/23 14:43:10 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:06:15 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	move_player(int keycode, t_cub3d *cub3d)
 	else if (keycode == RIGHT_A)
 		cub3d->ray.cam_x -= 0.1;
 	else if (keycode == ESC_K)
-		free_before_exit(cub3d);
+		free_before_exit(cub3d, 1);
 	return (1);
 }
 
@@ -203,10 +203,11 @@ int	game(t_cub3d *cub3d)
 	cub3d->game.mlx = mlx_init();
 	if (!cub3d->game.mlx)
 		return (0);
+	if (!init_imgs(cub3d, &cub3d->map.elem))
+		return (free_before_exit(cub3d, 0), 0);
 	if (!create_window(cub3d))
 		return (0);
 	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
-	//init image
 	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
 	cub3d->img.addr = mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, \
 	&cub3d->img.line_len, &cub3d->img.endian);

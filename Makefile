@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+         #
+#    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/03/20 12:38:26 by ccheyrou         ###   ########.fr        #
+#    Updated: 2023/03/23 16:04:58 by adegain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS:= 	main \
 		/parsing/utils \
 		/game/init_game \
 		/game/print_game \
+		/game/init_imgs \
 		/game/free_game 
 
 # --------------------
