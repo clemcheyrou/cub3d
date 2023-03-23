@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:23:11 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/22 15:29:32 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:36:32 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 			return (1);
 		if (!check_file(&cub3d))
 			return (1);
-		print_struct(&cub3d);
+		//print_struct(&cub3d);
 		if (!check_map(&cub3d))
 			return (1);
 		game(&cub3d);

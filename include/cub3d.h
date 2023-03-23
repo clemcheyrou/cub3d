@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/22 15:51:49 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:56:42 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
+	void	*mlx_img2;
+	char	*addr2;
 	int		bpp;
 	int		line_len;
 	int		endian;
@@ -145,8 +147,8 @@ typedef struct s_cub3d
 	int		left_key;
 	int		right_key;
 	int		move;
-	int		x;
-	int		y;
+	int	swap_img;
+	
 }	t_cub3d;
 
 /******** MAIN ********/
@@ -188,5 +190,7 @@ int		game(t_cub3d *cub3d);
 int		print_map(t_cub3d *cub3d);
 int		close_btn(t_cub3d *cub3d);
 void	free_before_exit(t_cub3d *cub3d);
+void	ray_pos(t_cub3d *cub3d);
+void	def_ray(t_cub3d *cub3d);
 
 #endif 

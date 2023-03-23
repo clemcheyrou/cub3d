@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/21 16:01:33 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:03:51 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	swap(t_cub3d *cub3d)
 		cub3d->map.map[cub3d->ray.map_x ][cub3d->ray.map_y] = cub3d->map.map[cub3d->ray.map_x - 1][cub3d->ray.map_y];
 		cub3d->map.map[cub3d->ray.map_x - 1][cub3d->ray.map_y] = tmp; 
 		cub3d->ray.map_x -= 1;
+		cub3d->ray.pos_x -= 1;
 	}
 	if (cub3d->move == 2 && cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y - 1] != '1')
 	{
@@ -98,6 +99,7 @@ void	swap(t_cub3d *cub3d)
 		cub3d->map.map[cub3d->ray.map_x ][cub3d->ray.map_y] = cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y - 1];
 		cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y - 1] = tmp; 
 		cub3d->ray.map_y -= 1;
+		cub3d->ray.pos_y -= 1;
 	}
 	if (cub3d->move == 3 && cub3d->map.map[cub3d->ray.map_x + 1][cub3d->ray.map_y] != '1')
 	{
@@ -105,6 +107,7 @@ void	swap(t_cub3d *cub3d)
 		cub3d->map.map[cub3d->ray.map_x ][cub3d->ray.map_y] = cub3d->map.map[cub3d->ray.map_x + 1][cub3d->ray.map_y];
 		cub3d->map.map[cub3d->ray.map_x + 1][cub3d->ray.map_y] = tmp; 
 		cub3d->ray.map_x += 1;
+		cub3d->ray.pos_x += 1;
 	}
 	if (cub3d->move == 4 && cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y + 1] != '1')
 	{
@@ -112,17 +115,18 @@ void	swap(t_cub3d *cub3d)
 		cub3d->map.map[cub3d->ray.map_x ][cub3d->ray.map_y] = cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y + 1];
 		cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y + 1] = tmp; 
 		cub3d->ray.map_y += 1;
+		cub3d->ray.pos_y += 1;
 	}
 }
 
 int	print_map(t_cub3d *cub3d)
 {
-	int	x;
-	int	y;
+	/*int	x;
+	int	y;*/
 
-	x = 0;
+	//x = 0;
 	swap(cub3d);
-	while (cub3d->map.map[x])
+	/*while (cub3d->map.map[x])
 	{
 		y = 0;
 		while (cub3d->map.map[x][y])
@@ -131,6 +135,20 @@ int	print_map(t_cub3d *cub3d)
 			y++;
 		}
 		x++;
+	}*/
+	/*if (cub3d->swap_img == 1)
+	{
+			cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
+			cub3d->img.addr = mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, \
+			&cub3d->img.line_len, &cub3d->img.endian);
 	}
+	if (cub3d->swap_img == -1)
+	{
+		cub3d->img.mlx_img2 = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
+		cub3d->img.addr2 = mlx_get_data_addr(cub3d->img.mlx_img2, &cub3d->img.bpp, \
+		&cub3d->img.line_len, &cub3d->img.endian);
+	}*/
+	def_ray(cub3d);
+	ray_pos(cub3d);
 	return (0);
 }

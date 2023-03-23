@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:38:33 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/22 15:44:43 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/22 18:44:45 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	save_plyr(t_cub3d *cub3d, int x, int y)
 		cub3d->map.direction = 2;
 	if (cub3d->map.map[x][y] == 'W')
 		cub3d->map.direction = 3;
+	cub3d->ray.map_x = x;
+	cub3d->ray.map_y = y;
 	cub3d->ray.pos_x = x;
 	cub3d->ray.pos_y = y;
 }
@@ -72,9 +74,9 @@ int	check_map(t_cub3d *cub3d)
 					return (ft_putstr_fd(ERR_MAP, 2), free_struct(cub3d), 0);
 			if (valid_char(cub3d->map.map[x][y], 2))
 				save_plyr(cub3d, x, y);
-			x++;
+			y++;
 		}
-		y++;
+		x++;
 	}
 	if (cub3d->map.player_nb != 1)
 		return (ft_putstr_fd(ERR_MAP, 2), free_struct(cub3d), 0);
