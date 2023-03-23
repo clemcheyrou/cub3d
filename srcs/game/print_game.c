@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/22 19:03:51 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:41:58 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,18 +135,6 @@ int	print_map(t_cub3d *cub3d)
 			y++;
 		}
 		x++;
-	}*/
-	/*if (cub3d->swap_img == 1)
-	{
-			cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
-			cub3d->img.addr = mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, \
-			&cub3d->img.line_len, &cub3d->img.endian);
-	}
-	if (cub3d->swap_img == -1)
-	{
-		cub3d->img.mlx_img2 = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
-		cub3d->img.addr2 = mlx_get_data_addr(cub3d->img.mlx_img2, &cub3d->img.bpp, \
-		&cub3d->img.line_len, &cub3d->img.endian);
 	}*/
 	def_ray(cub3d);
 	ray_pos(cub3d);
