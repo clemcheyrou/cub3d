@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:29:40 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/23 17:00:57 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/27 16:17:56 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	free_array(char **var)
 
 void	free_struct(t_cub3d *cub3d)
 {
-	// if (cub3d->map.line)
-	// 	free(cub3d->map.line);
 	if (cub3d->file)
 	{
 		free_array(cub3d->file);

@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/23 17:05:47 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/28 16:38:12 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@
 # define MAP_PLYR		"NSEW"
 # define IMG_LENGTH		100
 # define IMG_WIDTH		100
-# define W_K			119
-# define S_K			115
-# define A_K			97
-# define D_K			100
+# define W_K			119		// forward
+# define S_K			115		// back
+# define A_K			97		// left
+# define D_K			100		// right
 # define ESC_K			65307
-# define LEFT_A			65361
-# define RIGHT_A		65363
+# define LEFT_A			65361	// rotate_left
+# define RIGHT_A		65363	// rotate_right
 
 # define ERR_ENV		"Error\nUninitialized environment\n"
 # define ERR_ARG		"Error\nWrong number of arguments\n"
@@ -72,6 +72,8 @@ typedef struct s_elem
 	char	*ea_img;
 	int		floor[3];
 	int		cell[3];
+	char	floor_hex[3];
+	char	cell_hex[3];
 	int		flag_floor;
 	int		flag_cell;
 	int		w;
@@ -199,6 +201,7 @@ void	def_ray(t_cub3d *cub3d);
 
 // ---- init_imgs
 int		init_imgs(t_cub3d *cub3d, t_elem *elem);
+int		init_colors(t_elem *elem);
 
 // ---- free_game
 void	free_before_exit(t_cub3d *cub3d, int flag);

@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/23 17:06:15 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/28 16:39:12 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ int	game(t_cub3d *cub3d)
 		return (free_before_exit(cub3d, 0), 0);
 	if (!create_window(cub3d))
 		return (0);
+	init_colors(&cub3d->map.elem);
 	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
 	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
 	cub3d->img.addr = mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, \
