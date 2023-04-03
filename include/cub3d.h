@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 14:57:36 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:15:39 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@
 # define FILE_EXT		".cub"
 # define MAP_CHAR		"10NSEW"
 # define MAP_PLYR		"NSEW"
-# define IMG_LENGTH		34
-# define IMG_WIDTH		34
-# define W_K			119
-# define S_K			115
-# define A_K			97
-# define D_K			100
+# define IMG_LENGTH		100
+# define IMG_WIDTH		100
+# define W_K			119		// forward
+# define S_K			115		// back
+# define A_K			97		// left
+# define D_K			100		// right
 # define ESC_K			65307
-# define LEFT_A			65361
-# define RIGHT_A		65363
+# define LEFT_A			65361	// rotate_left
+# define RIGHT_A		65363	// rotate_right
 
 # define ERR_ENV		"Error\nUninitialized environment\n"
 # define ERR_ARG		"Error\nWrong number of arguments\n"
@@ -51,6 +51,10 @@
 # define ERR_CLR		"Error\nWrong value in colors parameters\n"
 # define ERR_FIL		"Error\nWrong value in images parameters\n"
 # define ERR_MALLOC		"Error\nMalloc error\n"
+# define ERR_NO_IMG		"Error\nInvalid north image path\n"
+# define ERR_SO_IMG		"Error\nInvalid south image path\n"
+# define ERR_WE_IMG		"Error\nInvalid west image path\n"
+# define ERR_EA_IMG		"Error\nInvalid east image path\n"
 
 typedef enum s_direction
 {
@@ -68,8 +72,12 @@ typedef struct s_elem
 	char	*ea_img;
 	int		floor[3];
 	int		cell[3];
+	char	floor_hex[3];
+	char	cell_hex[3];
 	int		flag_floor;
 	int		flag_cell;
+	int		w;
+	int		h;
 }	t_elem;
 
 typedef struct s_map
@@ -190,8 +198,6 @@ void	print_struct(t_cub3d *cub3d);
 // ---- init_game
 int		game(t_cub3d *cub3d);
 int		print_map(t_cub3d *cub3d);
-int		close_btn(t_cub3d *cub3d);
-void	free_before_exit(t_cub3d *cub3d);
 void	ray_pos(t_cub3d *cub3d);
 void	def_ray(t_cub3d *cub3d);
 int		move_player(int keycode, t_cub3d *cub3d);
@@ -199,4 +205,11 @@ int		release_player(int keycode, t_cub3d *cub3d);
 void 	draw_wall(t_cub3d *cub3d, int x0, int start_wall, int end_wall); 
 
 
+// ---- init_imgs
+int		init_imgs(t_cub3d *cub3d, t_elem *elem);
+
+// ---- free_game
+void	free_before_exit(t_cub3d *cub3d, int flag);
+int		close_btn(t_cub3d *cub3d);
+void	free_imgs(t_game *game);
 #endif 

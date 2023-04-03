@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:29:40 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/22 15:30:10 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:17:56 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	free_array(char **var)
 
 void	free_struct(t_cub3d *cub3d)
 {
-	if (cub3d->map.line)
-		free(cub3d->map.line);
 	if (cub3d->file)
 	{
 		free_array(cub3d->file);
@@ -53,7 +51,7 @@ void	print_struct(t_cub3d *cub3d)
 {
 	int	i;
 
-	/*i = 0;
+	i = 0;
 	if (cub3d->map.elem.no_img)
 		printf("no_img : [%s]\n", cub3d->map.elem.no_img);
 	if (cub3d->map.elem.so_img)
@@ -67,7 +65,7 @@ void	print_struct(t_cub3d *cub3d)
 		printf("floor[%d] : [%d]\n", i, cub3d->map.elem.floor[i]);
 		printf("cell[%d] : [%d]\n", i, cub3d->map.elem.cell[i]);
 		i++;
-	}*/
+	}
 	i = 0;
 	while (cub3d->map.map[i])
 	{

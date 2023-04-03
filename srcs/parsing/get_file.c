@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:04:44 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/13 16:05:33 by adegain          ###   ########.fr       */
+/*   Updated: 2023/03/27 16:16:51 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_cub(char *av)
 
 	len_max = ft_strlen(av);
 	len_min = len_max - 4;
-	str = ".cub";
+	str = FILE_EXT;
 	while (len_min < len_max)
 	{
 		if (av[len_min] != *str)

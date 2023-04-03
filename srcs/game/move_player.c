@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:37:04 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 13:37:31 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:17:16 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	move_player(int keycode, t_cub3d *cub3d)
 	else if (keycode == RIGHT_A)
 		cub3d->ray.cam_x -= 0.1;
 	else if (keycode == ESC_K)
-		free_before_exit(cub3d);
+		free_before_exit(cub3d, 1);
 	return (1);
 }
 

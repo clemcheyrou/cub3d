@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 13:40:45 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:15:10 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ int	game(t_cub3d *cub3d)
 	init_colors(cub3d, &cub3d->map.elem);
 	if (!cub3d->game.mlx)
 		return (0);
+	if (!init_imgs(cub3d, &cub3d->map.elem))
+		return (free_before_exit(cub3d, 0), 0);
 	if (!create_window(cub3d))
 		return (0);
+	init_colors(cub3d, &cub3d->map.elem);
 	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
 	cub3d->img.addr = (int *)mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, &cub3d->img.line_len, &cub3d->img.endian);
 	mlx_hook(cub3d->game.win, 33, 1L << 2, close_btn, cub3d);
