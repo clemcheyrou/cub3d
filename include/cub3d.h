@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 15:15:39 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:05:26 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,23 +96,21 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	void	*no_img;
-	void	*so_img;
-	void	*we_img;
-	void	*ea_img;
 }	t_game;
 
 typedef struct s_img
 {
 	void	*mlx_img;
 	int		*addr;
-	void	*mlx_img2;
-	char	*addr2;
 	int		bpp;
 	int		line_len;
 	int		endian;
 	int		floor;
 	int		cell;
+	void	*no_img;
+	void	*so_img;
+	void	*we_img;
+	void	*ea_img;
 }	t_img;
 
 typedef struct s_ray
@@ -143,12 +141,24 @@ typedef struct s_ray
 	int 		x;
 }	t_ray;
 
+typedef struct s_text
+{
+	int			texdir; 
+	double		wallx;
+	int			texx;
+	int			texy;
+	double		step;
+	double		texpos;
+} t_text;
+
 typedef struct s_cub3d
 {
 	t_map	map;
 	t_game	game;
 	t_img	img;
 	t_ray	ray;
+	t_img	texture[5];
+	t_text	text;
 	char	**file;
 	float	screen_width;
 	float	screen_height;
@@ -202,7 +212,7 @@ void	ray_pos(t_cub3d *cub3d);
 void	def_ray(t_cub3d *cub3d);
 int		move_player(int keycode, t_cub3d *cub3d);
 int		release_player(int keycode, t_cub3d *cub3d);
-void 	draw_wall(t_cub3d *cub3d, int x0, int start_wall, int end_wall); 
+void 	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall); 
 
 
 // ---- init_imgs
@@ -211,5 +221,5 @@ int		init_imgs(t_cub3d *cub3d, t_elem *elem);
 // ---- free_game
 void	free_before_exit(t_cub3d *cub3d, int flag);
 int		close_btn(t_cub3d *cub3d);
-void	free_imgs(t_game *game);
+void	free_imgs(t_cub3d *cub3d);
 #endif 

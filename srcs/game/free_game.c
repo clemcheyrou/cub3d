@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:00:28 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/23 17:06:42 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/03 16:59:04 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_before_exit(t_cub3d *cub3d, int flag)
 	free_struct(cub3d);
 	if (flag != 0)
 		mlx_destroy_window(cub3d->game.mlx, cub3d->game.win);
-	free_imgs(&cub3d->game);
+	free_imgs(cub3d);
 	mlx_destroy_display(cub3d->game.mlx);
 	free(cub3d->game.mlx);
 	exit(0);
@@ -29,14 +29,14 @@ int	close_btn(t_cub3d *cub3d)
 	exit(0);
 }
 
-void	free_imgs(t_game *game)
+void	free_imgs(t_cub3d *cub3d)
 {
-	if (game->no_img)
-		mlx_destroy_image(game->mlx, game->no_img);
-	if (game->so_img)
-		mlx_destroy_image(game->mlx, game->so_img);
-	if (game->we_img)
-		mlx_destroy_image(game->mlx, game->we_img);
-	if (game->ea_img)
-		mlx_destroy_image(game->mlx, game->ea_img);
+	if (cub3d->img.no_img)
+		mlx_destroy_image(cub3d->game.mlx, cub3d->img.no_img);
+	if (cub3d->img.so_img)
+		mlx_destroy_image(cub3d->game.mlx, cub3d->img.so_img);
+	if (cub3d->img.we_img)
+		mlx_destroy_image(cub3d->game.mlx, cub3d->img.we_img);
+	if (cub3d->img.ea_img)
+		mlx_destroy_image(cub3d->game.mlx, cub3d->img.ea_img);
 }
