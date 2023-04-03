@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/22 18:56:42 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:57:36 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,14 @@ typedef struct s_game
 typedef struct s_img
 {
 	void	*mlx_img;
-	char	*addr;
+	int		*addr;
 	void	*mlx_img2;
 	char	*addr2;
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		floor;
+	int		cell;
 }	t_img;
 
 typedef struct s_ray
@@ -192,5 +194,9 @@ int		close_btn(t_cub3d *cub3d);
 void	free_before_exit(t_cub3d *cub3d);
 void	ray_pos(t_cub3d *cub3d);
 void	def_ray(t_cub3d *cub3d);
+int		move_player(int keycode, t_cub3d *cub3d);
+int		release_player(int keycode, t_cub3d *cub3d);
+void 	draw_wall(t_cub3d *cub3d, int x0, int start_wall, int end_wall); 
+
 
 #endif 

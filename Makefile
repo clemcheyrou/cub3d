@@ -6,7 +6,7 @@
 #    By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/03/20 12:38:26 by ccheyrou         ###   ########.fr        #
+#    Updated: 2023/04/03 14:58:02 by ccheyrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,11 @@ SRCS:= 	main \
 		/parsing/utils \
 		/game/init_game \
 		/game/print_game \
-		/game/free_game 
+		/game/free_game \
+		/game/init_raycasting \
+		/game/move_player \
+		/game/raycasting \
+		/game/draw_game
 
 # --------------------
 CC:= gcc

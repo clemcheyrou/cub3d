@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/23 14:43:10 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:40:45 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,192 +28,28 @@ int	create_window(t_cub3d *cub3d)
 	return (1);
 }
 
-int	move_player(int keycode, t_cub3d *cub3d)
+int	encode_rgb(int red, int green, int blue)
 {
-	if (keycode == W_K)
-	{
-		cub3d->move = 1;
-		cub3d->swap_img *= -1;
-	}
-	else if (keycode == A_K)
-	{
-		cub3d->move = 2;
-		cub3d->swap_img *= -1;
-	}
-	else if (keycode == S_K)
-	{
-		cub3d->move = 3;
-		cub3d->swap_img *= -1;
-	}
-	else if (keycode == D_K)
-	{
-		cub3d->move = 4;
-		cub3d->swap_img *= -1;
-	}
-	if (keycode == LEFT_A)
-		cub3d->ray.cam_x += 0.1;
-	else if (keycode == RIGHT_A)
-		cub3d->ray.cam_x -= 0.1;
-	else if (keycode == ESC_K)
-		free_before_exit(cub3d);
-	return (1);
+	return (red << 16 | green << 8 | blue);
 }
 
-int	release_player(int keycode, t_cub3d *cub3d)
+void	init_colors(t_cub3d *cub3d, t_elem *elem)
 {
-	if (keycode == W_K)
-		cub3d->move = 0;
-	else if (keycode == A_K)
-		cub3d->move = 0;
-	else if (keycode == S_K)
-		cub3d->move = 0;
-	else if (keycode == D_K)
-		cub3d->move = 0;
-	return (1);
-}
-
-void	def_ray(t_cub3d *cub3d)
-{
-	cub3d->screen_width = 800;
-	cub3d->screen_height = 600;
-	cub3d->left_key = 0;
-	cub3d->right_key = 0;
-	cub3d->move = 0;
-	if (cub3d->map.direction == 0)
-	{
-		cub3d->ray.dir_x = -1;
-		cub3d->ray.dir_y = 0;
-		cub3d->ray.plan_x = 0;
-		cub3d->ray.plan_y = 0.66;
-	}
-}
-
-void mlx_draw_line(t_cub3d *cub3d, int x0, int y0, int x1, int y1, int color) 
-{
-    int dx = abs(x1 - x0);
-    int dy = abs(y1 - y0);
-    int sx = (x0 < x1) ? 1 : -1;
-    int sy = (y0 < y1) ? 1 : -1;
-    int err = dx - dy;
-
-    while (x0 != x1 || y0 != y1) {
-        mlx_pixel_put(cub3d->game.mlx, cub3d->game.win, x0, y0, color);
-        int e2 = 2 * err;
-        if (e2 > -dy) {
-            err -= dy;
-            x0 += sx;
-        }
-        if (e2 < dx) {
-            err += dx;
-            y0 += sy;
-        }
-    }
-}
-
-void	ray_pos(t_cub3d *cub3d)
-{
-	int	x;
-	
-	x = 0;
-	cub3d->ray.hit = 0;
-	cub3d->ray.paperwalldist = 0;
-	
-	while (x < cub3d->screen_width)
-	{
-		cub3d->ray.cam_x = 2 * x / cub3d->screen_width - 1;
-		cub3d->ray.raydir_x = cub3d->ray.dir_x + cub3d->ray.plan_x * cub3d->ray.cam_x;
-		cub3d->ray.raydir_y = cub3d->ray.dir_y + cub3d->ray.plan_y * cub3d->ray.cam_x;
-
-		cub3d->ray.map_x = (int)cub3d->ray.pos_x;
-		cub3d->ray.map_y = (int)cub3d->ray.pos_y;
-		//longueur du rayon de la position actuelle au côté x ou y suivant
-		if (cub3d->ray.raydir_x == 0)
-			cub3d->ray.deltadist_x = 1e30;
-		else
-			cub3d->ray.deltadist_x = fabs(1 / cub3d->ray.raydir_x);
-		if (cub3d->ray.raydir_y == 0)
-			cub3d->ray.deltadist_y = 1e30;
-		else
-			cub3d->ray.deltadist_y = fabs(1 / cub3d->ray.raydir_y);
-		cub3d->ray.hit = 0;
-	
-		//calculer le pas et la sideDist initiale
-		if (cub3d->ray.dir_x < 0)
-		{
-			cub3d->ray.step_x = -1;
-			cub3d->ray.sidedist_x = 0;
-		}
-		else 
-		{
-			cub3d->ray.step_x = 1;
-			cub3d->ray.sidedist_x = cub3d->ray.deltadist_x;
-		}
-		if (cub3d->ray.raydir_y < 0)
-		{
-			cub3d->ray.step_y = -1;
-			cub3d->ray.sidedist_y = cub3d->ray.deltadist_y;
-		}
-		else 
-		{
-			cub3d->ray.step_y = 1;
-			cub3d->ray.sidedist_y = cub3d->ray.deltadist_y;
-		}
-		//exécute DDA
-		while (cub3d->ray.hit == 0) 
-		{
-			if (cub3d->ray.sidedist_x < cub3d->ray.sidedist_y) 
-			{ 
-				cub3d->ray.sidedist_x += cub3d->ray.deltadist_x ; 
-				cub3d->ray.map_x += cub3d->ray.step_x; 
-				cub3d->ray.side = 0 ;
-			} 
-			else 
-			{ 
-				cub3d->ray.sidedist_y += cub3d->ray.deltadist_y ; 
-				cub3d->ray.map_y += cub3d->ray.step_y; 
-				cub3d->ray.side = 1 ; 
-			}
-			if (cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == '1' ||
-			cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == 'X')
-				cub3d->ray.hit = 1;
-		}
-		//draw wall
-		if (cub3d->ray.side == 0)
-			cub3d->ray.paperwalldist = (cub3d->ray.sidedist_x - cub3d->ray.deltadist_x);
-		else
-			cub3d->ray.paperwalldist = (cub3d->ray.sidedist_y - cub3d->ray.deltadist_y); 
-		cub3d->ray.lineheight = (int)(cub3d->screen_height / cub3d->ray.paperwalldist);	
-		
-		cub3d->ray.drawstart = -cub3d->ray.lineheight / 2 + cub3d->screen_height / 2; 
-		if (cub3d->ray.drawstart < 0)
-			cub3d->ray.drawstart = 0 ;
-
-		cub3d->ray.drawend = cub3d->ray.lineheight / 2 + cub3d->screen_height / 2; 
-		if(cub3d->ray.drawend >= cub3d->screen_height)
-			cub3d->ray.drawend = cub3d->screen_height - 1;
-
-		mlx_draw_line(cub3d, x, cub3d->ray.drawstart , x, cub3d->ray.drawend, 0xFFFFFF);
-		x++;
-	}
+	cub3d->img.floor = encode_rgb(elem->floor[0], elem->floor[1], elem->floor[2]);
+	cub3d->img.cell = encode_rgb(elem->cell[0], elem->cell[1], elem->cell[2]);
 }
 
 int	game(t_cub3d *cub3d)
 {
 	cub3d->swap_img = 1;
 	cub3d->game.mlx = mlx_init();
+	init_colors(cub3d, &cub3d->map.elem);
 	if (!cub3d->game.mlx)
 		return (0);
 	if (!create_window(cub3d))
 		return (0);
 	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
-	//init image
-	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
-	cub3d->img.addr = mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, \
-	&cub3d->img.line_len, &cub3d->img.endian);
-	cub3d->img.mlx_img2 = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
-	cub3d->img.addr2 = mlx_get_data_addr(cub3d->img.mlx_img2, &cub3d->img.bpp, \
-	&cub3d->img.line_len, &cub3d->img.endian);
-	//init loop
+	cub3d->img.addr = (int *)mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, &cub3d->img.line_len, &cub3d->img.endian);
 	mlx_hook(cub3d->game.win, 33, 1L << 2, close_btn, cub3d);
 	mlx_hook(cub3d->game.win, 2, 1L << 0, move_player, cub3d);
 	mlx_loop_hook(cub3d->game.mlx, print_map, cub3d);

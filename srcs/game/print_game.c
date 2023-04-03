@@ -6,12 +6,12 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/23 14:41:58 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:01:01 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+/*
 void	init_image(t_cub3d *cub3d, int *tab, int j, int i)
 {
 	int		pixel_index;
@@ -79,7 +79,7 @@ void	letter_to_image(t_cub3d *cub3d, int x, int y)
 		init_image(cub3d, cub3d->map.elem.floor, x, y);
 	else if (cub3d->map.map[x][y] == 'N')
 		init_player(cub3d, player, x, y);
-}
+}*/
 
 void	swap(t_cub3d *cub3d)
 {
