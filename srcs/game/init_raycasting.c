@@ -3,14 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   init_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:41:00 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 13:41:13 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:07:46 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	strcmp_int(int nb1, int nb2)
+{
+	if (nb1 == nb2)
+		return (1);
+	return (0);
+}
+
+typedef struct s_dir
+{
+	int		idx;
+	double	dir_x;
+	double	dir_y;
+	double	plan_x;
+	double	plan_y;
+}	t_dir;
+
+void	def_direction(t_cub3d *cub3d)
+{
+	int			i;
+	const t_dir	storage [4] = {
+	{0, -1, 0, 0, 0.66},
+	{1, 1, 0, 0, -0.66},
+	{2, 0, 1, 0.66, 0},
+	{3, 0, -1, -0.66, 0}
+	};
+
+	i = 0;
+	while (i < 4)
+	{
+		if (strcmp_int(cub3d->map.direction, storage[i].idx))
+		{
+			cub3d->ray.dir_x = storage[i].dir_x;
+			cub3d->ray.dir_y = storage[i].dir_y;
+			cub3d->ray.plan_x = storage[i].plan_x;
+			cub3d->ray.plan_y = storage[i].plan_y;
+			return ;
+		}
+		i++;
+	}
+}
 
 void	def_ray(t_cub3d *cub3d)
 {
@@ -19,11 +60,5 @@ void	def_ray(t_cub3d *cub3d)
 	cub3d->left_key = 0;
 	cub3d->right_key = 0;
 	cub3d->move = 0;
-	if (cub3d->map.direction == 0)
-	{
-		cub3d->ray.dir_x = -1;
-		cub3d->ray.dir_y = 0;
-		cub3d->ray.plan_x = 0;
-		cub3d->ray.plan_y = 0.66;
-	}
+	def_direction(cub3d);
 }

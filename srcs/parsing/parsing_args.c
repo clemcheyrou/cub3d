@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/23 17:50:48 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/03 15:42:42 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	colors_tab(char *line, t_elem *elem, int type)
 
 	i = 0;
 	tab = ft_split(line, ',');
-	if (!tab || tab[3] != NULL) // ou ft_strlen de tab ?
+	if (!tab || tab[3] != NULL)
 		return (0);
 	while (tab[i])
 	{
