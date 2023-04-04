@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/04 16:04:14 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:43:33 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	print_map(t_cub3d *cub3d)
 
 	x = 0;*/
 	swap(cub3d);
-	def_ray(cub3d);
 	ray_pos(cub3d);
 	/*while (cub3d->map.map[x])
 	{
