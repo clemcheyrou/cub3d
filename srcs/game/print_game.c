@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/04 16:59:16 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/04 17:26:52 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,16 @@ void	swap(t_cub3d *cub3d)
 {
 	char	tmp;
 	
+	// faire le plus petit entier de pos_x et savoir dans quelle case il se trouve 
+	// au lieu d'utiliser map_x
+	
 	if (cub3d->move == 1 && cub3d->map.map[cub3d->ray.map_x - 1][cub3d->ray.map_y] != '1')
 	{
 		tmp = cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y];
 		cub3d->map.map[cub3d->ray.map_x ][cub3d->ray.map_y] = cub3d->map.map[cub3d->ray.map_x - 1][cub3d->ray.map_y];
 		cub3d->map.map[cub3d->ray.map_x - 1][cub3d->ray.map_y] = tmp; 
 		cub3d->ray.map_x -= 1;
-		cub3d->ray.pos_x -= 1;
+		// cub3d->ray.pos_x -= 1;
 	}
 	if (cub3d->move == 2 && cub3d->map.map[cub3d->ray.map_x + 1][cub3d->ray.map_y] != '1')
 	{
@@ -56,7 +59,7 @@ void	swap(t_cub3d *cub3d)
 		cub3d->map.map[cub3d->ray.map_x ][cub3d->ray.map_y] = cub3d->map.map[cub3d->ray.map_x + 1][cub3d->ray.map_y];
 		cub3d->map.map[cub3d->ray.map_x + 1][cub3d->ray.map_y] = tmp; 
 		cub3d->ray.map_x += 1;
-		cub3d->ray.pos_x += 1;
+		// cub3d->ray.pos_x += 1;
 	}
 	if (cub3d->move == 3 && cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y - 1] != '1')
 	{
@@ -64,7 +67,7 @@ void	swap(t_cub3d *cub3d)
 		cub3d->map.map[cub3d->ray.map_x ][cub3d->ray.map_y] = cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y - 1];
 		cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y - 1] = tmp; 
 		cub3d->ray.map_y -= 1;
-		cub3d->ray.pos_y -= 1;
+		// cub3d->ray.pos_y -= 1;
 	}
 	if (cub3d->move == 4 && cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y + 1] != '1')
 	{
@@ -72,7 +75,7 @@ void	swap(t_cub3d *cub3d)
 		cub3d->map.map[cub3d->ray.map_x ][cub3d->ray.map_y] = cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y + 1];
 		cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y + 1] = tmp; 
 		cub3d->ray.map_y += 1;
-		cub3d->ray.pos_y += 1;
+		// cub3d->ray.pos_y += 1;
 	}
 }
 
