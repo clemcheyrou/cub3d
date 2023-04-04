@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/04 14:40:37 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:32:02 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,9 @@ typedef struct s_ray
 	int			drawstart;
 	int			drawend;
 	int 		x;
+	double		time;
+	double		movespeed;
+	double		rotspeed;
 }	t_ray;
 
 typedef struct s_text
@@ -212,13 +215,17 @@ int		game(t_cub3d *cub3d);
 int		print_map(t_cub3d *cub3d);
 void	ray_pos(t_cub3d *cub3d);
 void	def_ray(t_cub3d *cub3d);
-int		move_player(int keycode, t_cub3d *cub3d);
-int		release_player(int keycode, t_cub3d *cub3d);
 void 	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall); 
-
 
 // ---- init_imgs
 int		init_imgs(t_cub3d *cub3d, t_elem *elem);
+
+// ---- move_player
+void	move_forward_backward(t_map *map, t_ray *ray, t_cub3d *cub3d);
+void	move_left_right(t_map *map, t_ray *ray, t_cub3d *cub3d);
+void	rot_left_right(t_ray *ray, t_cub3d *cub3d);
+int		move_player(int keycode, t_cub3d *cub3d);
+int		release_player(int keycode, t_cub3d *cub3d);
 
 // ---- free_game
 void	free_before_exit(t_cub3d *cub3d, int flag);

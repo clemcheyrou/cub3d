@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:41:00 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 16:07:46 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/04 13:00:47 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ void	def_ray(t_cub3d *cub3d)
 	cub3d->left_key = 0;
 	cub3d->right_key = 0;
 	cub3d->move = 0;
+	cub3d->ray.movespeed = 0.1;
+	cub3d->ray.rotspeed = 0.033 * 1.8;
 	def_direction(cub3d);
 }
