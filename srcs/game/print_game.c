@@ -6,79 +6,36 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 15:01:01 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:04:14 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 /*
-void	init_image(t_cub3d *cub3d, int *tab, int j, int i)
-{
-	int		pixel_index;
-	int		x;
-	int		y;
-
-	y = 0;
-	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, 10, 10);
-	cub3d->img.addr = mlx_get_data_addr(cub3d->img.mlx_img, \
-		&cub3d->img.bpp, &cub3d->img.line_len, &cub3d->img.endian);
-	while (y < 30)
-	{
-		x = 0;
-		while (x < 30)
-		{
-			pixel_index = (y * cub3d->img.line_len) + \
-			( x * (cub3d->img.bpp / 8));
-			cub3d->img.addr[pixel_index] = tab[0];
-			cub3d->img.addr[pixel_index + 1] = tab[1];
-			cub3d->img.addr[pixel_index + 2] = tab[2];
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(cub3d->game.mlx, cub3d->game.win, \
-		cub3d->img.mlx_img, i * 10, j * 10);
-}
-
-void	init_player(t_cub3d *cub3d, int *tab, int j, int i)
-{
-	int		pixel_index;
-	int		x;
-	int		y;
-
-	y = 0;
-	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, 4, 4);
-	cub3d->img.addr = mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, \
-		&cub3d->img.line_len, &cub3d->img.endian);
-	while (y < 4)
-	{
-		x = 0;
-		while (x < 4)
-		{
-			pixel_index = (y * cub3d->img.line_len) + \
-			(x * (cub3d->img.bpp / 8));
-			cub3d->img.addr[pixel_index] = tab[0];
-			cub3d->img.addr[pixel_index + 1] = tab[1];
-			cub3d->img.addr[pixel_index + 2] = tab[2];
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(cub3d->game.mlx, cub3d->game.win, \
-	cub3d->img.mlx_img, i * 10, j * 10);
-}
-
 void	letter_to_image(t_cub3d *cub3d, int x, int y)
 {
-	int		wall[3] = {255, 255, 255};
-	int		player[3] = {0, 255, 255};
+	int	j;
+	int	i;
 
-	if (cub3d->map.map[x][y] == '1')
-		init_image(cub3d, wall, x, y);
-	else if (cub3d->map.map[x][y] == '0')
-		init_image(cub3d, cub3d->map.elem.floor, x, y);
-	else if (cub3d->map.map[x][y] == 'N')
-		init_player(cub3d, player, x, y);
+	j = 0;
+	i = 0;
+	if (cub3d->map.map[x][y] == '1') 
+	{
+		while(i <= 10)
+		{
+			j = 0;
+			while(j <= 10)
+			{
+    			mlx_pixel_put(cub3d->game.mlx, cub3d->game.win, x, y, 0x000000);
+				j++;
+			}
+			i++;
+		}
+    }
+    else
+	{
+        mlx_pixel_put(cub3d->game.mlx, cub3d->game.win, i, j, 0xCCCCCC); // Gris pour les espaces vides
+    }
 }*/
 
 void	swap(t_cub3d *cub3d)
@@ -122,10 +79,12 @@ void	swap(t_cub3d *cub3d)
 int	print_map(t_cub3d *cub3d)
 {
 	/*int	x;
-	int	y;*/
+	int	y;
 
-	//x = 0;
+	x = 0;*/
 	swap(cub3d);
+	def_ray(cub3d);
+	ray_pos(cub3d);
 	/*while (cub3d->map.map[x])
 	{
 		y = 0;
@@ -136,7 +95,5 @@ int	print_map(t_cub3d *cub3d)
 		}
 		x++;
 	}*/
-	def_ray(cub3d);
-	ray_pos(cub3d);
 	return (0);
 }
