@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 15:01:01 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:59:02 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,10 @@ int	print_map(t_cub3d *cub3d)
 		}
 		x++;
 	}*/
-	def_ray(cub3d);
+	
 	ray_pos(cub3d);
+	move_forward_backward(&cub3d->map, &cub3d->ray, cub3d);
+	move_left_right(&cub3d->map, &cub3d->ray, cub3d);
+	rot_left_right(&cub3d->ray, cub3d);
 	return (0);
 }
