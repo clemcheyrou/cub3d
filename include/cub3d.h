@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 18:05:26 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/04 13:24:37 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define FILE_EXT		".cub"
 # define MAP_CHAR		"10NSEW"
 # define MAP_PLYR		"NSEW"
-# define IMG_LENGTH		100
-# define IMG_WIDTH		100
+# define IMG_LENGTH		64
+# define IMG_WIDTH		64
 # define W_K			119		// forward
 # define S_K			115		// back
 # define A_K			97		// left

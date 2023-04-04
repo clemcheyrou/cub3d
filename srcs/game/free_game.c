@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:00:28 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 16:59:04 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/04 13:40:10 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	close_btn(t_cub3d *cub3d)
 
 void	free_imgs(t_cub3d *cub3d)
 {
-	if (cub3d->img.no_img)
-		mlx_destroy_image(cub3d->game.mlx, cub3d->img.no_img);
-	if (cub3d->img.so_img)
-		mlx_destroy_image(cub3d->game.mlx, cub3d->img.so_img);
-	if (cub3d->img.we_img)
-		mlx_destroy_image(cub3d->game.mlx, cub3d->img.we_img);
-	if (cub3d->img.ea_img)
-		mlx_destroy_image(cub3d->game.mlx, cub3d->img.ea_img);
+	if (cub3d->texture[0].addr)
+		mlx_destroy_image(cub3d->game.mlx, cub3d->texture[0].addr);
+	if (cub3d->texture[1].addr)
+		mlx_destroy_image(cub3d->game.mlx, cub3d->texture[1].addr);
+	if (cub3d->texture[2].addr)
+		mlx_destroy_image(cub3d->game.mlx, cub3d->texture[2].addr);
+	if (cub3d->texture[3].addr)
+		mlx_destroy_image(cub3d->game.mlx, cub3d->texture[3].addr);
 }
