@@ -31,8 +31,8 @@
 # define FILE_EXT		".cub"
 # define MAP_CHAR		"10NSEW"
 # define MAP_PLYR		"NSEW"
-# define IMG_LENGTH		100
-# define IMG_WIDTH		100
+# define IMG_LENGTH		417
+# define IMG_WIDTH		417
 # define W_K			119		// forward
 # define S_K			115		// back
 # define A_K			97		// left
@@ -96,23 +96,23 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	void	*no_img;
-	void	*so_img;
-	void	*we_img;
-	void	*ea_img;
 }	t_game;
 
 typedef struct s_img
 {
 	void	*mlx_img;
-	int		*addr;
 	void	*mlx_img2;
-	char	*addr2;
+	int		*addr;
+	int		*addr2;
 	int		bpp;
 	int		line_len;
 	int		endian;
 	int		floor;
 	int		cell;
+	void	*no_img;
+	void	*so_img;
+	void	*we_img;
+	void	*ea_img;
 }	t_img;
 
 typedef struct s_ray
@@ -146,12 +146,24 @@ typedef struct s_ray
 	double		rotspeed;
 }	t_ray;
 
+typedef struct s_text
+{
+	int			texdir; 
+	double		wallx;
+	int			texx;
+	int			texy;
+	double		step;
+	double		texpos;
+} t_text;
+
 typedef struct s_cub3d
 {
 	t_map	map;
 	t_game	game;
 	t_img	img;
 	t_ray	ray;
+	t_img	texture[5];
+	t_text	text;
 	char	**file;
 	float	screen_width;
 	float	screen_height;
@@ -203,7 +215,7 @@ int		game(t_cub3d *cub3d);
 int		print_map(t_cub3d *cub3d);
 void	ray_pos(t_cub3d *cub3d);
 void	def_ray(t_cub3d *cub3d);
-void 	draw_wall(t_cub3d *cub3d, int x0, int start_wall, int end_wall); 
+void 	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall); 
 
 // ---- init_imgs
 int		init_imgs(t_cub3d *cub3d, t_elem *elem);
@@ -218,5 +230,5 @@ int		release_player(int keycode, t_cub3d *cub3d);
 // ---- free_game
 void	free_before_exit(t_cub3d *cub3d, int flag);
 int		close_btn(t_cub3d *cub3d);
-void	free_imgs(t_game *game);
+void	free_imgs(t_cub3d *cub3d);
 #endif 
