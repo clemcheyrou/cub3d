@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:39:37 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/05 17:31:30 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:46:22 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ void	dda_algo(t_cub3d *cub3d)
 			cub3d->ray.map_y += cub3d->ray.step_y; 
 			cub3d->ray.side = 1 ; 
 		}
-		if (cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == '1' ||
-		cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == 'X')
+		if (cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == '1')
 			cub3d->ray.hit = 1;
 	}
 }
@@ -96,7 +95,7 @@ void	calculate_wall(t_cub3d *cub3d)
 		cub3d->ray.drawstart = 0 ;
 
 	cub3d->ray.drawend = cub3d->ray.lineheight / 2 + cub3d->screen_height / 2; 
-	if(cub3d->ray.drawend >= cub3d->screen_height)
+	if (cub3d->ray.drawend >= cub3d->screen_height || cub3d->ray.drawend < 0)
 		cub3d->ray.drawend = cub3d->screen_height - 1;
 }
 

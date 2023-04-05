@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/05 16:46:19 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:48:33 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_colors(t_cub3d *cub3d, t_elem *elem)
 
 int	game(t_cub3d *cub3d)
 {
-	cub3d->swap_img = 1;
+	cub3d->move = 0;
 	cub3d->game.mlx = mlx_init();
 	init_colors(cub3d, &cub3d->map.elem);
 	if (!cub3d->game.mlx)
