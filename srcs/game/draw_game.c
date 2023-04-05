@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:36:44 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/05 17:36:50 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:45:54 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,14 @@ void	init_walls(t_cub3d *cub3d)
 		cub3d->text.texdir = 2;
 	if (cub3d->ray.side == 1 && cub3d->ray.raydir_x >= 0)
 		cub3d->text.texdir = 3;
+}
 
-void	draw_wall(t_cub3d *cub3d, int x0, int *j, int start_wall, int end_wall) 
+void	draw_wall(t_cub3d *cub3d, int x0, int start_wall, int end_wall) 
 {
+	int	j;
+
 	init_walls(cub3d);
+	j = start_wall;
 	cub3d->text.texx =(int)(cub3d->text.wallx * (double)IMG_WIDTH);
 	if (cub3d->ray.side == 0 && cub3d->ray.raydir_x > 0)
 		cub3d->text.texx = IMG_WIDTH - cub3d->text.texx - 1;
