@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:39:37 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/03 17:38:14 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:31:30 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	cam_pos(t_cub3d *cub3d, int x)
 
 	cub3d->ray.map_x = (int)cub3d->ray.pos_x;
 	cub3d->ray.map_y = (int)cub3d->ray.pos_y;
+	cub3d->ray.movespeed = 0.1;
+	cub3d->ray.rotspeed = 0.033 * 1.8;
 }
 
 void	ray_lenght(t_cub3d *cub3d)
