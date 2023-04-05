@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:36:44 by ccheyrou          #+#    #+#             */
 /*   Updated: 2023/04/05 17:36:50 by ccheyrou         ###   ########.fr       */
@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void init_texture(t_cub3d *cub3d)
+void	init_texture(t_cub3d *cub3d)
 {
 	cub3d->texture[0].addr = (int *)mlx_get_data_addr(cub3d->texture[0].mlx_img, &cub3d->texture[0].bpp, &cub3d->texture[0].line_len, &cub3d->texture[0].endian);
 	cub3d->texture[1].addr = (int *)mlx_get_data_addr(cub3d->texture[1].mlx_img, &cub3d->texture[1].bpp, &cub3d->texture[1].line_len, &cub3d->texture[1].endian);
@@ -20,18 +20,20 @@ void init_texture(t_cub3d *cub3d)
 	cub3d->texture[3].addr = (int *)mlx_get_data_addr(cub3d->texture[3].mlx_img, &cub3d->texture[3].bpp, &cub3d->texture[3].line_len, &cub3d->texture[3].endian);
 }
 
-void draw_wall(t_cub3d *cub3d, int x0, int start_wall, int end_wall) 
+void	init_walls(t_cub3d *cub3d)
 {
-	int	j;
-	
-	j = start_wall;
-	cub3d->text.texdir = cub3d->map.direction;
-	if (cub3d->ray.side == 0)
-		cub3d->text.wallx = cub3d->ray.pos_y + cub3d->ray.paperwalldist * cub3d->ray.raydir_y;
-	else
-		cub3d->text.wallx = cub3d->ray.pos_x + cub3d->ray.paperwalldist * cub3d->ray.raydir_x;
-	cub3d->text.wallx -= floor(cub3d->text.wallx);
+	if (cub3d->ray.side == 0 && cub3d->ray.raydir_x < 0)
+		cub3d->text.texdir = 0;
+	if (cub3d->ray.side == 0 && cub3d->ray.raydir_x >= 0)
+		cub3d->text.texdir = 1;
+	if (cub3d->ray.side == 1 && cub3d->ray.raydir_x < 0)
+		cub3d->text.texdir = 2;
+	if (cub3d->ray.side == 1 && cub3d->ray.raydir_x >= 0)
+		cub3d->text.texdir = 3;
 
+void	draw_wall(t_cub3d *cub3d, int x0, int *j, int start_wall, int end_wall) 
+{
+	init_walls(cub3d);
 	cub3d->text.texx =(int)(cub3d->text.wallx * (double)IMG_WIDTH);
 	if (cub3d->ray.side == 0 && cub3d->ray.raydir_x > 0)
 		cub3d->text.texx = IMG_WIDTH - cub3d->text.texx - 1;
@@ -51,7 +53,7 @@ void draw_wall(t_cub3d *cub3d, int x0, int start_wall, int end_wall)
 	}
 }
 
-void draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall) 
+void	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall) 
 {
 	int	j;
 
