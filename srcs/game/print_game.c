@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/04 17:26:52 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:26:36 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	letter_to_image(t_cub3d *cub3d, int x, int y)
     }
 }*/
 
-void	swap(t_cub3d *cub3d)
+/*void	move(t_cub3d *cub3d)
 {
 	char	tmp;
 	
@@ -77,6 +77,18 @@ void	swap(t_cub3d *cub3d)
 		cub3d->ray.map_y += 1;
 		// cub3d->ray.pos_y += 1;
 	}
+}*/
+
+void swap_img(t_cub3d *cub3d)
+{
+	void *tmp;
+
+	tmp = cub3d->img.mlx_img;
+	cub3d->img.mlx_img = cub3d->img.mlx_img2;
+	cub3d->img.mlx_img2 = tmp;
+	tmp = cub3d->img.addr;
+	cub3d->img.addr = cub3d->img.addr2;
+	cub3d->img.addr2 = tmp;
 }
 
 int	print_map(t_cub3d *cub3d)
@@ -85,7 +97,7 @@ int	print_map(t_cub3d *cub3d)
 	int	y;
 
 	x = 0;*/
-	swap(cub3d);
+	//move(cub3d);
 	ray_pos(cub3d);
 	/*while (cub3d->map.map[x])
 	{
@@ -100,5 +112,6 @@ int	print_map(t_cub3d *cub3d)
 	move_forward_backward(&cub3d->map, &cub3d->ray, cub3d);
 	move_left_right(&cub3d->map, &cub3d->ray, cub3d);
 	rot_left_right(&cub3d->ray, cub3d);
+	swap_img(cub3d);
 	return (0);
 }
