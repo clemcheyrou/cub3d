@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/06 12:44:09 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/06 18:56:56 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct s_map
 	int					elem_nb;
 	int					map_height;
 	int					map_length;
+	int					x;
+	int					y;
 	t_direction			direction;
 	t_elem				elem;
 }	t_map;
@@ -117,33 +119,33 @@ typedef struct s_img
 
 typedef struct s_ray
 {
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plan_x;
-	double		plan_y;
-	double		raydir_x;
-	double		raydir_y;	
-	double		cam_x;
+	float		pos_x;
+	float		pos_y;
+	float		dir_x;
+	float		dir_y;
+	float		plan_x;
+	float		plan_y;
+	float		raydir_x;
+	float		raydir_y;	
+	float		cam_x;
 	int 		map_x;
 	int			map_y;
-	double		sidedist_y;
-	double		sidedist_x;
-	double		deltadist_x;
-	double		deltadist_y;
+	float		sidedist_y;
+	float		sidedist_x;
+	float		deltadist_x;
+	float		deltadist_y;
 	int			step_x;
 	int			step_y;
 	int			hit;
 	int			side;
-	double		paperwalldist;
-	int			lineheight;
-	int			drawstart;
-	int			drawend;
+	float		paperwalldist;
+	float		lineheight;
+	float		drawstart;
+	float		drawend;
 	int 		x;
-	double		time;
-	double		movespeed;
-	double		rotspeed;
+	float		time;
+	float		movespeed;
+	float		rotspeed;
 }	t_ray;
 
 typedef struct s_text
@@ -165,8 +167,8 @@ typedef struct s_cub3d
 	t_img	texture[5];
 	t_text	text;
 	char	**file;
-	float	screen_width;
-	float	screen_height;
+	float		screen_width;
+	float		screen_height;
 	int		sizex;
 	int		sizey;
 	int		left_key;
@@ -237,4 +239,6 @@ int		release_player(int keycode, t_cub3d *cub3d);
 void	free_before_exit(t_cub3d *cub3d, int flag);
 int		close_btn(t_cub3d *cub3d);
 void	free_imgs(t_cub3d *cub3d);
+void	init_texture(t_cub3d *cub3d);
+
 #endif 

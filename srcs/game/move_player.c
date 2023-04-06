@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:37:04 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/06 12:13:46 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:51:16 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	move_left_right(t_map *map, t_ray *ray, t_cub3d *cub3d)
 	{
 		if (map->map[(int)(ray->pos_x - ray->dir_y * (ray->movespeed * 2))][(int)ray->pos_y] == '0')
 			ray->pos_x -= ray->dir_y * ray->movespeed;
-		if (map->map[(int)ray->pos_x][(int)(ray->pos_y - ray->dir_x * (ray->movespeed * 2))] == '0')
+		if (map->map[(int)ray->pos_x][(int)(ray->pos_y + ray->dir_x * (ray->movespeed * 2))] == '0')
 			ray->pos_y += ray->dir_x * ray->movespeed;
 	}
 	if (cub3d->move == 4)
 	{
 		if (map->map[(int)(ray->pos_x + ray->dir_y * (ray->movespeed * 2))][(int)ray->pos_y] == '0')
 			ray->pos_x += ray->dir_y * ray->movespeed;
-		if (map->map[(int)ray->pos_x][(int)(ray->pos_y + ray->dir_x * (ray->movespeed * 2))] == '0')
+		if (map->map[(int)ray->pos_x][(int)(ray->pos_y - ray->dir_x * (ray->movespeed * 2))] == '0')
 			ray->pos_y -= ray->dir_x * ray->movespeed;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:38:33 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/05 18:49:11 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:30:16 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ void	save_plyr(t_cub3d *cub3d, int x, int y)
 		cub3d->map.direction = 2;
 	if (cub3d->map.map[x][y] == 'W')
 		cub3d->map.direction = 3;
-	cub3d->ray.map_x = x;
-	cub3d->ray.map_y = y;
-	cub3d->ray.pos_x = x;
-	cub3d->ray.pos_y = y;
+	cub3d->map.x = x;
+	cub3d->map.y = y;
+
 }
 
 int	check_map(t_cub3d *cub3d)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/05 18:48:33 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:39:25 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	game(t_cub3d *cub3d)
 		return (free_before_exit(cub3d, 0), 0);
 	if (!create_window(cub3d))
 		return (0);
+	init_texture(cub3d);
 	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
 	cub3d->img.addr = (int *)mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, &cub3d->img.line_len, &cub3d->img.endian);
 	cub3d->img.mlx_img2 = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
