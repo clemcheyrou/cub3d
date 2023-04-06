@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/05 17:37:35 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/06 12:44:09 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@
 # define MAP_PLYR		"NSEW"
 # define IMG_LENGTH		64
 # define IMG_WIDTH		64
-# define W_K			119		// forward
-# define S_K			115		// back
-# define A_K			97		// left
-# define D_K			100		// right
+# define W_K			119
+# define S_K			115
+# define A_K			97
+# define D_K			100
 # define ESC_K			65307
-# define LEFT_A			65361	// rotate_left
-# define RIGHT_A		65363	// rotate_right
+# define LEFT_A			65361
+# define RIGHT_A		65363
 
 # define ERR_ENV		"Error\nUninitialized environment\n"
 # define ERR_ARG		"Error\nWrong number of arguments\n"
@@ -194,6 +194,7 @@ int		parse_imgs(char *line, t_cub3d *cub3d, int type);
 int		parse_color(char *line, t_cub3d *cub3d, int type);
 
 // ---- parsing_map
+char	*ft_strdup_x(t_cub3d *cub3d);
 int		generate_map(char **file, t_cub3d *cub3d);
 int		check_map(t_cub3d *cub3d);
 int		valid_file(char **file);
@@ -204,6 +205,11 @@ int		char_is_space(char c);
 int		height_map(char **file);
 int		check_length_map(t_cub3d *cub3d);
 char	*ft_strdupdup(t_cub3d *cub3d, char *s);
+
+// ---- cuts
+int		color_tab5(t_elem *elem, char **tab, int i);
+int		color_tab6(t_elem *elem, char **tab, int i);
+void	cut_malloc_map(char **file, t_cub3d *cub3d);
 
 // ---- free
 void	free_struct(t_cub3d *cub3d);

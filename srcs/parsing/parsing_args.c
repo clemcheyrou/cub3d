@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/03 15:42:42 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/06 12:33:05 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	parse_imgs(char *line, t_cub3d *cub3d, int type)
 	if (!cub3d->map.line)
 		return (ft_putstr_fd(ERR_DEF, 2), 0);
 	if (!check_img_param(cub3d->map.line))
-		return (ft_putstr_fd(ERR_FIL, 2), free_struct(cub3d), 0);
+		return (ft_putstr_fd(ERR_FIL, 2), 0);
 	if (type == 1 && cub3d->map.elem.no_img == NULL)
 		return (cub3d->map.elem_nb++, \
 			cub3d->map.elem.no_img = ft_strdup(cub3d->map.line), 1);
@@ -45,7 +45,7 @@ int	parse_imgs(char *line, t_cub3d *cub3d, int type)
 	if (type == 4 && cub3d->map.elem.ea_img == NULL)
 		return (cub3d->map.elem_nb++, \
 			cub3d->map.elem.ea_img = ft_strdup(cub3d->map.line), 1);
-	return (ft_putstr_fd(ERR_DBL, 2), free_struct(cub3d), 0);
+	return (ft_putstr_fd(ERR_DBL, 2), 0);
 }
 
 int	colors_tab(char *line, t_elem *elem, int type)
@@ -62,19 +62,11 @@ int	colors_tab(char *line, t_elem *elem, int type)
 		if (ft_alldigit(tab[i]))
 			return (ft_putstr_fd(ERR_CLR, 2), 0);
 		if (type == 5)
-		{
-			elem->floor[i] = ft_atoi(tab[i]);
-			elem->flag_floor++;
-			if (elem->floor[i] < 0 || elem->floor[i] > 255)
+			if (!color_tab5(elem, tab, i))
 				return (ft_putstr_fd(ERR_CLR, 2), 0);
-		}
 		if (type == 6)
-		{
-			elem->cell[i] = ft_atoi(tab[i]);
-			elem->flag_cell++;
-			if (elem->cell[i] < 0 || elem->cell[i] > 255)
+			if (!color_tab6(elem, tab, i))
 				return (ft_putstr_fd(ERR_CLR, 2), 0);
-		}
 		free(tab[i]);
 		i++;
 	}
@@ -116,6 +108,6 @@ int	parse_color(char *line, t_cub3d *cub3d, int type)
 	if (!check_color_param(line))
 		return (ft_putstr_fd(ERR_CLR, 2), 0);
 	if (!colors_tab(line, &cub3d->map.elem, type))
-		return (free_struct(cub3d), 0);
+		return (0);
 	return (cub3d->map.elem_nb++, 1);
 }

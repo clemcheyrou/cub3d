@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+         #
+#    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/04/03 15:18:14 by ccheyrou         ###   ########.fr        #
+#    Updated: 2023/04/06 12:21:42 by adegain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS:= 	main \
 		/parsing/parsing_map \
 		/parsing/check_map \
 		/parsing/utils \
+		/parsing/cuts \
 		/game/init_game \
 		/game/print_game \
 		/game/free_game \

@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:08:25 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/22 15:45:51 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/06 12:20:33 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ char	*ft_strdup_x(t_cub3d *cub3d)
 
 int	malloc_map(char **file, t_cub3d *cub3d)
 {
-	int	x;
-	int	i;
-
 	cub3d->map.map_height = height_map(file);
 	cub3d->map.map_length = check_length_map(cub3d);
 	if (!valid_file(file))
@@ -43,22 +40,7 @@ int	malloc_map(char **file, t_cub3d *cub3d)
 	cub3d->map.map = malloc(sizeof(char *) * (cub3d->map.map_height + 1));
 	if (!cub3d->map.map)
 		return (ft_putstr_fd(ERR_MALLOC, 2), 0);
-	x = 0;
-	i = 0;
-	while (x < cub3d->map.map_height)
-	{
-		if (x == 0 || x == (cub3d->map.map_height - 1))
-			cub3d->map.map[x] = ft_strdup_x(cub3d);
-		else
-		{
-			cub3d->map.map[x] = ft_strdupdup(cub3d, file[i]);
-			if (!cub3d->map.map[x])
-				cub3d->map.map[x] = ft_strdup_x(cub3d);
-			i++;
-		}
-		x++;
-	}
-	cub3d->map.map[x] = NULL;
+	cut_malloc_map(file, cub3d);
 	return (1);
 }
 
