@@ -1,7 +1,7 @@
-NO ./imgs/colorstone.xpm
-SO ./imgs/greystone.xpm
-WE ./imgs/purplestone.xpm
-EA ./imgs/redbrick.xpm
+NO ./imgs/wall64-no.xpm
+SO ./imgs/wall64-so.xpm
+WE ./imgs/wall64-we.xpm
+EA ./imgs/wall64-ea.xpm
 
 F 253,159,39
 C 153,101,224
