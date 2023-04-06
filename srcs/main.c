@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:23:11 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/23 16:52:12 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/06 15:23:41 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int ac, char **av)
 			return (1);
 		if (!check_file(&cub3d))
 			return (1);
-		//print_struct(&cub3d);
 		if (!check_map(&cub3d))
 			return (1);
 		game(&cub3d);

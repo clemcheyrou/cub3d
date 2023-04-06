@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 20:01:23 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/08 18:06:03 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:26:28 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*len_line(t_line *stash, char **line)
 		}
 		element = element->next;
 	}
-	*line = malloc(sizeof(char) * len + 1);
+	*line = malloc(sizeof(char) * (len + 1));
 	return (*line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/06 12:33:05 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/06 15:48:46 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	check_color_param(char *line)
 
 	i = 0;
 	flag = 0;
-	while (line[i])
+	while (i < ft_strlen(line))
 	{
 		while (ft_isdigit(line[i]))
 			i++;

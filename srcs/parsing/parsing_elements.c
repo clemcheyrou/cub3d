@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_elements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:49:22 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/20 12:35:46 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:48:28 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,12 @@ int	check_file(t_cub3d *cub3d)
 			if (!find_elem(cub3d->file[i], cub3d))
 				return (ft_putstr_fd(ERR_DEF, 2), free_struct(cub3d), 0);
 		if (cub3d->map.elem_nb == 6)
-			return (i++, generate_map(cub3d->file + i, cub3d));
+		{
+			i++;
+			if (!generate_map(cub3d->file + i, cub3d))
+				return (ft_putstr_fd(ERR_DEF, 2), free_struct(cub3d), 0);
+			return (1);
+		}
 		i++;
 	}
 	return (ft_putstr_fd(ERR_DEF, 2), free_struct(cub3d), 0);
