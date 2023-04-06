@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:39:37 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/05 18:46:22 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:37:57 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cam_pos(t_cub3d *cub3d, int x)
 {
-	cub3d->ray.cam_x = 2 * x / cub3d->screen_width - 1;
+	cub3d->ray.cam_x = 2 * x / (double)cub3d->screen_width - 1;
 	cub3d->ray.raydir_x = cub3d->ray.dir_x + cub3d->ray.plan_x * cub3d->ray.cam_x;
 	cub3d->ray.raydir_y = cub3d->ray.dir_y + cub3d->ray.plan_y * cub3d->ray.cam_x;
 
@@ -42,22 +42,22 @@ void	ray_dist(t_cub3d *cub3d)
 	if (cub3d->ray.dir_x < 0)
 	{
 		cub3d->ray.step_x = -1;
-		cub3d->ray.sidedist_x = 0;
+		cub3d->ray.sidedist_x = (cub3d->ray.pos_x - cub3d->ray.map_x) * cub3d->ray.deltadist_x;
 	}
 	else 
 	{
 		cub3d->ray.step_x = 1;
-		cub3d->ray.sidedist_x = cub3d->ray.deltadist_x;
+		cub3d->ray.sidedist_x = (cub3d->ray.map_x - cub3d->ray.pos_x + 1.0) * cub3d->ray.deltadist_x;
 	}
 	if (cub3d->ray.raydir_y < 0)
 	{
 		cub3d->ray.step_y = -1;
-		cub3d->ray.sidedist_y = cub3d->ray.deltadist_y;
+		cub3d->ray.sidedist_y = (cub3d->ray.pos_y - cub3d->ray.map_y) * cub3d->ray.deltadist_y;
 	}
 	else 
 	{
 		cub3d->ray.step_y = 1;
-		cub3d->ray.sidedist_y = cub3d->ray.deltadist_y;
+		cub3d->ray.sidedist_y = (cub3d->ray.map_y - cub3d->ray.pos_y + 1.0) * cub3d->ray.deltadist_y;
 	}	
 }
 
@@ -77,7 +77,8 @@ void	dda_algo(t_cub3d *cub3d)
 			cub3d->ray.map_y += cub3d->ray.step_y; 
 			cub3d->ray.side = 1 ; 
 		}
-		if (cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == '1')
+		if (cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == '1' 
+		|| cub3d->map.map[cub3d->ray.map_x][cub3d->ray.map_y] == 'X')
 			cub3d->ray.hit = 1;
 	}
 }

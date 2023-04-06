@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:36:44 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/05 18:37:05 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:35:16 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	draw_wall(t_cub3d *cub3d, int x0, int start_wall, int end_wall)
 	cub3d->text.step = 1.0 * IMG_LENGTH / cub3d->ray.lineheight;
 
 	cub3d->text.texpos = (start_wall - cub3d->screen_height / 2 + cub3d->ray.lineheight / 2) * cub3d->text.step;
-	while (j <= end_wall)
+	while ((j - 1) <= end_wall)
 	{
 		cub3d->text.texy = (int)cub3d->text.texpos & (IMG_LENGTH - 1);
 		cub3d->text.texpos += cub3d->text.step;
@@ -67,8 +67,6 @@ void	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall)
 	int	j;
 
 	j = 0;
-	if (start_wall > (int)cub3d->screen_height)
-		return ;
 	while (j < start_wall)
 	{
 		cub3d->img.addr[j * cub3d->img.line_len / 4 + x0] = cub3d->img.floor;
