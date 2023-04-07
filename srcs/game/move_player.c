@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:37:04 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/06 18:51:16 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/07 18:48:27 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@ void	move_forward_backward(t_map *map, t_ray *ray, t_cub3d *cub3d)
 {
 	if (cub3d->move == 1)
 	{
-		if (map->map[(int)(ray->pos_x + (ray->dir_x * ray->movespeed * 2))][(int)ray->pos_y] == '0')
-			ray->pos_x += ray->dir_x * ray->movespeed;
-		if (map->map[(int)(ray->pos_x)][(int)(ray->pos_y + (ray->dir_y * ray->movespeed * 2))] == '0')
-			ray->pos_y += ray->dir_y * ray->movespeed;
+		if (map->map[(int)(ray->pos_y + ray->dir_y / 4)][(int)ray->pos_x] != '1' ||
+		map->map[(int)(ray->pos_y + ray->dir_y / 4)][(int)ray->pos_x] == '0')
+			ray->pos_y += ray->dir_y / 4;
+		if (map->map[(int)(ray->pos_y)][(int)(ray->pos_x + ray->dir_x / 4)] != '1' ||
+		map->map[(int)(ray->pos_y)][(int)(ray->pos_x + ray->dir_x / 4)] == '0')
+			ray->pos_x += ray->dir_x / 4;
 	}
 	if (cub3d->move == 2)
 	{
-		if (map->map[(int)(ray->pos_x - (ray->dir_x * ray->movespeed * 2))][(int)ray->pos_y] == '0')
-			ray->pos_x -= ray->dir_x * ray->movespeed;
-		if (map->map[(int)(ray->pos_x)][(int)(ray->pos_y - (ray->dir_y * ray->movespeed * 2))] == '0')
-			ray->pos_y -= ray->dir_y * ray->movespeed;
+		if (map->map[(int)(ray->pos_y - ray->dir_y / 4)][(int)ray->pos_x] != '1')
+			ray->pos_y -= ray->dir_y / 4;
+		if (map->map[(int)(ray->pos_y)][(int)(ray->pos_x - ray->dir_x / 4)] != '1')
+			ray->pos_x -= ray->dir_x / 4;
 	}
 }
 
@@ -34,17 +36,17 @@ void	move_left_right(t_map *map, t_ray *ray, t_cub3d *cub3d)
 {
 	if (cub3d->move == 3)
 	{
-		if (map->map[(int)(ray->pos_x - ray->dir_y * (ray->movespeed * 2))][(int)ray->pos_y] == '0')
-			ray->pos_x -= ray->dir_y * ray->movespeed;
-		if (map->map[(int)ray->pos_x][(int)(ray->pos_y + ray->dir_x * (ray->movespeed * 2))] == '0')
-			ray->pos_y += ray->dir_x * ray->movespeed;
+		if (map->map[(int)ray->pos_y][(int)(ray->pos_x + ray->dir_y / 4)] != '1')
+			ray->pos_x += ray->dir_y / 4;
+		if (map->map[(int)(ray->pos_y - ray->dir_x / 4)][(int)ray->pos_x] != '1')
+			ray->pos_y -= ray->dir_x / 4;
 	}
 	if (cub3d->move == 4)
 	{
-		if (map->map[(int)(ray->pos_x + ray->dir_y * (ray->movespeed * 2))][(int)ray->pos_y] == '0')
-			ray->pos_x += ray->dir_y * ray->movespeed;
-		if (map->map[(int)ray->pos_x][(int)(ray->pos_y - ray->dir_x * (ray->movespeed * 2))] == '0')
-			ray->pos_y -= ray->dir_x * ray->movespeed;
+		if (map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y / 4)] != '1')
+			ray->pos_x -= ray->dir_y / 4;
+		if (map->map[(int)(ray->pos_y + ray->dir_x / 4)][(int)ray->pos_x] != '1')
+			ray->pos_y += ray->dir_x / 4;
 	}
 }
 
@@ -53,21 +55,23 @@ void	rot_left_right(t_ray *ray, t_cub3d *cub3d)
 	double	olddir_x;
 	double	oldplan_x;
 
-	olddir_x = ray->dir_x;
-	oldplan_x = ray->plan_x;
 	if (cub3d->move == 5)
 	{
-		ray->dir_x = ray->dir_x * cos(ray->rotspeed / 2) - ray->dir_y * sin(ray->rotspeed / 2);
-		ray->dir_y = olddir_x * sin(ray->rotspeed / 2) + ray->dir_y * cos(ray->rotspeed / 2);
-		ray->plan_x = ray->plan_x * cos(ray->rotspeed / 2) - ray->plan_y * sin(ray->rotspeed / 2);
-		ray->plan_y = oldplan_x * sin(ray->rotspeed / 2) + ray->plan_y * cos(ray->rotspeed / 2);
+		olddir_x = ray->dir_x;
+		ray->dir_x = ray->dir_x * cos(0.08) - ray->dir_y * sin(0.08);
+		ray->dir_y = olddir_x * sin(0.08) + ray->dir_y * cos(0.08);
+		oldplan_x = ray->plan_x;
+		ray->plan_x = ray->plan_x * cos(0.08) - ray->plan_y * sin(0.08);
+		ray->plan_y = oldplan_x * sin(0.08) + ray->plan_y * cos(0.08);
 	}
 	if (cub3d->move == 6)
 	{
-		ray->dir_x = ray->dir_x * cos(-ray->rotspeed / 2) - ray->dir_y * sin(-ray->rotspeed / 2);
-		ray->dir_y = olddir_x * sin(-ray->rotspeed / 2) + ray->dir_y * cos (-ray->rotspeed / 2);
-		ray->plan_x = ray->plan_x * cos(-ray->rotspeed / 2) - ray->plan_y * sin(-ray->rotspeed / 2);
-		ray->plan_y = oldplan_x * sin(-ray->rotspeed / 2) + ray->plan_y * cos(-ray->rotspeed / 2);
+		olddir_x = ray->dir_x;
+		ray->dir_x = ray->dir_x * cos(-0.08) - ray->dir_y * sin(-0.08);
+		ray->dir_y = olddir_x * sin(-0.08) + ray->dir_y * cos (-0.08);
+		oldplan_x = ray->plan_x;
+		ray->plan_x = ray->plan_x * cos(-0.08) - ray->plan_y * sin(-0.08);
+		ray->plan_y = oldplan_x * sin(-0.08) + ray->plan_y * cos(-0.08);
 	}
 }
 

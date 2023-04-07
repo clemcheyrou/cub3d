@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:41:00 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/06 19:04:37 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/07 17:54:31 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	def_ray(t_cub3d *cub3d)
 	cub3d->left_key = 0;
 	cub3d->right_key = 0;
 	cub3d->move = 0;
-	cub3d->ray.pos_x = (double)cub3d->map.x;
-	cub3d->ray.pos_y = (double)cub3d->map.y;
+	cub3d->ray.pos_x = (double)cub3d->map.x + 0.5;
+	cub3d->ray.pos_y = (double)cub3d->map.y + 0.5;
 	def_direction(cub3d);
 }

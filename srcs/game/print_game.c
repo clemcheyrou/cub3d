@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/05 16:26:36 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/07 18:05:51 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	print_map(t_cub3d *cub3d)
 
 	x = 0;*/
 	//move(cub3d);
-	ray_pos(cub3d);
 	/*while (cub3d->map.map[x])
 	{
 		y = 0;
@@ -109,9 +108,28 @@ int	print_map(t_cub3d *cub3d)
 		}
 		x++;
 	}*/
+	int	j;
+	int	i;
+
+	j = 0;
 	move_forward_backward(&cub3d->map, &cub3d->ray, cub3d);
 	move_left_right(&cub3d->map, &cub3d->ray, cub3d);
 	rot_left_right(&cub3d->ray, cub3d);
-	swap_img(cub3d);
+	while (j < cub3d->screen_height / 2)
+	{
+		i = -1;
+		while (++i < cub3d->screen_width)
+			cub3d->img.addr[j * cub3d->img.line_len / 4 + i] = cub3d->img.floor;
+		j++;
+	}
+	while (j < cub3d->screen_height)
+	{
+		i = -1;
+		while (++i < cub3d->screen_width)
+			cub3d->img.addr[j * cub3d->img.line_len / 4 + i] = cub3d->img.cell;
+		j++;
+	}
+	ray_pos(cub3d);
+	//swap_img(cub3d);
 	return (0);
 }
