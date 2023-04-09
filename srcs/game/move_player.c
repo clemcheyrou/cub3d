@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:37:04 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/09 19:48:35 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/09 20:04:45 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@ void	move_forward_backward(t_map *map, t_ray *ray, t_cub3d *cub3d)
 {
 	if (cub3d->move == 1)
 	{
-		if (map->map[(int)(ray->pos_y + ray->dir_y)][(int)ray->pos_x] == '0')
-			ray->pos_y += ray->dir_y * 0.05;
-		if (map->map[(int)(ray->pos_y)][(int)(ray->pos_x + ray->dir_x )] == '0')
-			ray->pos_x += ray->dir_x * 0.05;
+		if (map->map[(int)(ray->pos_y + ray->dir_y)][(int)ray->pos_x] == '0' ||
+		map->map[(int)(ray->pos_y + ray->dir_y * 0.1)][(int)ray->pos_x] != '1')
+			ray->pos_y += ray->dir_y * 0.03;
+		if (map->map[(int)(ray->pos_y)][(int)(ray->pos_x + ray->dir_x )] == '0' ||
+		map->map[(int)(ray->pos_y)][(int)(ray->pos_x + ray->dir_x * 0.1)] != '1')
+			ray->pos_x += ray->dir_x * 0.03;
 	}
 	if (cub3d->move == 2)
 	{
-		if (map->map[(int)(ray->pos_y - ray->dir_y )][(int)ray->pos_x] == '0')
-			ray->pos_y -= ray->dir_y * 0.05;
-		if (map->map[(int)(ray->pos_y)][(int)(ray->pos_x - ray->dir_x )] == '0')
-			ray->pos_x -= ray->dir_x * 0.05;
+		if (map->map[(int)(ray->pos_y - ray->dir_y )][(int)ray->pos_x] == '0' ||
+		map->map[(int)(ray->pos_y - ray->dir_y * 0.1)][(int)ray->pos_x] != '1')
+			ray->pos_y -= ray->dir_y * 0.1;
+		if (map->map[(int)(ray->pos_y)][(int)(ray->pos_x - ray->dir_x )] == '0' ||
+		map->map[(int)(ray->pos_y)][(int)(ray->pos_x - ray->dir_x * 0.1)] != '1')
+			ray->pos_x -= ray->dir_x * 0.1;
 	}
 }
 
@@ -34,17 +38,21 @@ void	move_left_right(t_map *map, t_ray *ray, t_cub3d *cub3d)
 {
 	if (cub3d->move == 3)
 	{
-		if (map->map[(int)ray->pos_y][(int)(ray->pos_x + ray->dir_y )] == '0')
-			ray->pos_x += ray->dir_y * 0.04;
-		if (map->map[(int)(ray->pos_y - ray->dir_x )][(int)ray->pos_x]== '0')
-			ray->pos_y -= ray->dir_x * 0.04;
+		if (map->map[(int)ray->pos_y][(int)(ray->pos_x + ray->dir_y )] == '0' ||
+		map->map[(int)ray->pos_y][(int)(ray->pos_x + ray->dir_y * 0.1)] != '1')
+			ray->pos_x += ray->dir_y * 0.03;
+		if (map->map[(int)(ray->pos_y - ray->dir_x )][(int)ray->pos_x] == '0' ||
+		map->map[(int)(ray->pos_y - ray->dir_x * 0.1)][(int)ray->pos_x] != '1')
+			ray->pos_y -= ray->dir_x * 0.03;
 	}
 	if (cub3d->move == 4)
 	{
-		if (map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y )] == '0')
-			ray->pos_x -= ray->dir_y * 0.04;
-		if (map->map[(int)(ray->pos_y + ray->dir_x )][(int)ray->pos_x] == '0')
-			ray->pos_y += ray->dir_x * 0.04;
+		if (map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y )] == '0' ||
+		map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y * 0.1)] != '1')
+			ray->pos_x -= ray->dir_y * 0.1;
+		if (map->map[(int)(ray->pos_y + ray->dir_x )][(int)ray->pos_x] == '0' ||
+		map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y * 0.1)] != '1')
+			ray->pos_y += ray->dir_x * 0.03;
 	}
 }
 
@@ -56,20 +64,20 @@ void	rot_left_right(t_ray *ray, t_cub3d *cub3d)
 	if (cub3d->move == 5)
 	{
 		olddir_x = ray->dir_x;
-		ray->dir_x = ray->dir_x * cos(0.08) - ray->dir_y * sin(0.08);
-		ray->dir_y = olddir_x * sin(0.08) + ray->dir_y * cos(0.08);
+		ray->dir_x = ray->dir_x * cos(0.02) - ray->dir_y * sin(0.02);
+		ray->dir_y = olddir_x * sin(0.02) + ray->dir_y * cos(0.02);
 		oldplan_x = ray->plan_x;
-		ray->plan_x = ray->plan_x * cos(0.08) - ray->plan_y * sin(0.08);
-		ray->plan_y = oldplan_x * sin(0.08) + ray->plan_y * cos(0.08);
+		ray->plan_x = ray->plan_x * cos(0.02) - ray->plan_y * sin(0.02);
+		ray->plan_y = oldplan_x * sin(0.02) + ray->plan_y * cos(0.02);
 	}
 	if (cub3d->move == 6)
 	{
 		olddir_x = ray->dir_x;
-		ray->dir_x = ray->dir_x * cos(-0.08) - ray->dir_y * sin(-0.08);
-		ray->dir_y = olddir_x * sin(-0.08) + ray->dir_y * cos (-0.08);
+		ray->dir_x = ray->dir_x * cos(-0.02) - ray->dir_y * sin(-0.02);
+		ray->dir_y = olddir_x * sin(-0.02) + ray->dir_y * cos (-0.02);
 		oldplan_x = ray->plan_x;
-		ray->plan_x = ray->plan_x * cos(-0.08) - ray->plan_y * sin(-0.08);
-		ray->plan_y = oldplan_x * sin(-0.08) + ray->plan_y * cos(-0.08);
+		ray->plan_x = ray->plan_x * cos(-0.02) - ray->plan_y * sin(-0.02);
+		ray->plan_y = oldplan_x * sin(-0.02) + ray->plan_y * cos(-0.02);
 	}
 }
 
