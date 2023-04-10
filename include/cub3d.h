@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 16:43:30 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:38:45 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,5 +245,8 @@ int		release_player(int keycode, t_cub3d *cub3d);
 void	free_before_exit(t_cub3d *cub3d, int flag);
 int		close_btn(t_cub3d *cub3d);
 void	free_imgs(t_cub3d *cub3d);
+
+// ---- bonus_minimap
+void	letter_to_image(t_cub3d *cub3d, int y, int x);
 
 #endif 
