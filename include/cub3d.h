@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/07 14:59:20 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:08:29 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ typedef struct s_ray
 	float		raydir_x;
 	float		raydir_y;	
 	float		cam_x;
-	int 		map_x;
+	int			map_x;
 	int			map_y;
 	float		sidedist_y;
 	float		sidedist_x;
@@ -144,7 +144,7 @@ typedef struct s_ray
 	float		lineheight;
 	float		drawstart;
 	float		drawend;
-	int 		x;
+	int			x;
 	float		time;
 	float		movespeed;
 	float		rotspeed;
@@ -152,13 +152,13 @@ typedef struct s_ray
 
 typedef struct s_text
 {
-	int			texdir; 
+	int			texdir;
 	double		wallx;
 	int			texx;
 	int			texy;
 	double		step;
 	double		texpos;
-} t_text;
+}	t_text;
 
 typedef struct s_cub3d
 {
@@ -169,15 +169,14 @@ typedef struct s_cub3d
 	t_img	texture[5];
 	t_text	text;
 	char	**file;
-	float		screen_width;
-	float		screen_height;
+	float	screen_width;
+	float	screen_height;
 	int		sizex;
 	int		sizey;
 	int		left_key;
 	int		right_key;
 	int		move;
-	int	swap_img;
-	
+	int		swap_img;
 }	t_cub3d;
 
 /******** MAIN ********/
@@ -225,10 +224,12 @@ int		game(t_cub3d *cub3d);
 int		print_map(t_cub3d *cub3d);
 void	ray_pos(t_cub3d *cub3d);
 void	def_ray(t_cub3d *cub3d);
-void 	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall); 
+void	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall);
 
 // ---- init_imgs
 int		init_imgs(t_cub3d *cub3d, t_elem *elem);
+int		encode_rgb(int red, int green, int blue);
+void	init_colors(t_cub3d *cub3d, t_elem *elem);
 
 // ---- move_player
 void	move_forward_backward(t_map *map, t_ray *ray, t_cub3d *cub3d);

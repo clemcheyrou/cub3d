@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 17:30:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/03/14 13:33:21 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/10 13:55:11 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_substr(char const *s, int start, int len)
 {
 	char	*new_s;
-	int	i;
+	int		i;
 
 	i = 0;
 	if (!s)
