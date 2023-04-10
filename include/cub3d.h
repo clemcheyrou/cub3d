@@ -210,11 +210,13 @@ int		check_length_map(t_cub3d *cub3d);
 char	*ft_strdupdup(t_cub3d *cub3d, char *s);
 
 // ---- cuts
+int		check_len_tab(char **tab);
 int		color_tab5(t_elem *elem, char **tab, int i);
 int		color_tab6(t_elem *elem, char **tab, int i);
 void	cut_malloc_map(char **file, t_cub3d *cub3d);
 
 // ---- free
+void	free_array(char **var);
 void	free_struct(t_cub3d *cub3d);
 void	print_struct(t_cub3d *cub3d);
 

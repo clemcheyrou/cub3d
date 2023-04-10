@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:23:11 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/06 15:23:41 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/10 17:40:06 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	main(int ac, char **av)
 	{
 		ft_memset(&cub3d, 0, sizeof(cub3d));
 		if (!check_cub(av[1]))
-			return (1);
+			return (ft_putstr_fd(ERR_EXT, 2), 1);
 		if (!get_file(av[1], &cub3d))
-			return (1);
+			return (ft_putstr_fd(ERR_EXT, 2), 1);
 		if (!check_file(&cub3d))
 			return (1);
 		if (!check_map(&cub3d))
