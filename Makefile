@@ -6,7 +6,7 @@
 #    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/04/06 12:21:42 by adegain          ###   ########.fr        #
+#    Updated: 2023/04/10 14:17:57 by adegain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS:= 	main \
 		/parsing/check_map \
 		/parsing/utils \
 		/parsing/cuts \
-		/game/init_game \
+		/game/game \
 		/game/print_game \
 		/game/free_game \
 		/game/init_raycasting \

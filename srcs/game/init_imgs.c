@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:53:18 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/10 14:03:57 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/10 14:27:23 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,20 @@ void	init_colors(t_cub3d *cub3d, t_elem *elem)
 	cub3d->img.floor = encode_rgb(elem->floor[0], elem->floor[1], \
 	elem->floor[2]);
 	cub3d->img.cell = encode_rgb(elem->cell[0], elem->cell[1], elem->cell[2]);
+}
+
+void	init_texture(t_cub3d *cub3d)
+{
+	cub3d->texture[0].addr = (int *)mlx_get_data_addr(cub3d->texture[0].\
+	mlx_img, &cub3d->texture[0].bpp, &cub3d->texture[0].line_len, \
+	&cub3d->texture[0].endian);
+	cub3d->texture[1].addr = (int *)mlx_get_data_addr(cub3d->texture[1].\
+	mlx_img, &cub3d->texture[1].bpp, &cub3d->texture[1].line_len, \
+	&cub3d->texture[1].endian);
+	cub3d->texture[2].addr = (int *)mlx_get_data_addr(cub3d->texture[2].\
+	mlx_img, &cub3d->texture[2].bpp, &cub3d->texture[2].line_len, \
+	&cub3d->texture[2].endian);
+	cub3d->texture[3].addr = (int *)mlx_get_data_addr(cub3d->texture[3].\
+	mlx_img, &cub3d->texture[3].bpp, &cub3d->texture[3].line_len, \
+	&cub3d->texture[3].endian);
 }

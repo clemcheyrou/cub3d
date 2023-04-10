@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 14:14:19 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/10 14:16:35 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,12 @@ void	swap_img(t_cub3d *cub3d)
 	cub3d->img.addr2 = tmp;
 }
 
-int	print_map(t_cub3d *cub3d)
+void	print_background(t_cub3d *cub3d)
 {
 	int	j;
 	int	i;
 
 	j = 0;
-	move_forward_backward(&cub3d->map, &cub3d->ray, cub3d);
-	move_left_right(&cub3d->map, &cub3d->ray, cub3d);
-	rot_left_right(&cub3d->ray, cub3d);
 	while (j < cub3d->screen_height / 2)
 	{
 		i = -1;
@@ -48,6 +45,14 @@ int	print_map(t_cub3d *cub3d)
 			cub3d->img.floor;
 		j++;
 	}
+}
+
+int	print_map(t_cub3d *cub3d)
+{
+	move_forward_backward(&cub3d->map, &cub3d->ray, cub3d);
+	move_left_right(&cub3d->map, &cub3d->ray, cub3d);
+	rot_left_right(&cub3d->ray, cub3d);
+	print_background(cub3d);
 	ray_pos(cub3d);
 	swap_img(cub3d);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 14:08:29 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/10 14:27:34 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,7 @@ void	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall);
 int		init_imgs(t_cub3d *cub3d, t_elem *elem);
 int		encode_rgb(int red, int green, int blue);
 void	init_colors(t_cub3d *cub3d, t_elem *elem);
+void	init_texture(t_cub3d *cub3d);
 
 // ---- move_player
 void	move_forward_backward(t_map *map, t_ray *ray, t_cub3d *cub3d);
@@ -242,6 +243,5 @@ int		release_player(int keycode, t_cub3d *cub3d);
 void	free_before_exit(t_cub3d *cub3d, int flag);
 int		close_btn(t_cub3d *cub3d);
 void	free_imgs(t_cub3d *cub3d);
-void	init_texture(t_cub3d *cub3d);
 
 #endif 
