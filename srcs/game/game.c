@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 21:09:18 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/06 18:39:25 by adegain          ###   ########.fr       */
+/*   Created: 2023/04/10 14:17:47 by adegain           #+#    #+#             */
+/*   Updated: 2023/04/10 14:27:43 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,16 @@ int	create_window(t_cub3d *cub3d)
 	return (1);
 }
 
-int	encode_rgb(int red, int green, int blue)
+void	init_adress_window(t_cub3d *cub3d)
 {
-	return (red << 16 | green << 8 | blue);
-}
-
-void	init_colors(t_cub3d *cub3d, t_elem *elem)
-{
-	cub3d->img.floor = encode_rgb(elem->floor[0], elem->floor[1], elem->floor[2]);
-	cub3d->img.cell = encode_rgb(elem->cell[0], elem->cell[1], elem->cell[2]);
+	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, \
+	cub3d->screen_height);
+	cub3d->img.addr = (int *)mlx_get_data_addr(cub3d->img.mlx_img, \
+	&cub3d->img.bpp, &cub3d->img.line_len, &cub3d->img.endian);
+	cub3d->img.mlx_img2 = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, \
+	cub3d->screen_height);
+	cub3d->img.addr2 = (int *)mlx_get_data_addr(cub3d->img.mlx_img2, \
+	&cub3d->img.bpp, &cub3d->img.line_len, &cub3d->img.endian);
 }
 
 int	game(t_cub3d *cub3d)
@@ -51,10 +52,7 @@ int	game(t_cub3d *cub3d)
 	if (!create_window(cub3d))
 		return (0);
 	init_texture(cub3d);
-	cub3d->img.mlx_img = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
-	cub3d->img.addr = (int *)mlx_get_data_addr(cub3d->img.mlx_img, &cub3d->img.bpp, &cub3d->img.line_len, &cub3d->img.endian);
-	cub3d->img.mlx_img2 = mlx_new_image(cub3d->game.mlx, cub3d->screen_width, cub3d->screen_height);
-	cub3d->img.addr2 = (int *)mlx_get_data_addr(cub3d->img.mlx_img2, &cub3d->img.bpp, &cub3d->img.line_len, &cub3d->img.endian);
+	init_adress_window(cub3d);
 	def_ray(cub3d);
 	mlx_hook(cub3d->game.win, 33, 1L << 2, close_btn, cub3d);
 	mlx_hook(cub3d->game.win, 2, 1L << 0, move_player, cub3d);
