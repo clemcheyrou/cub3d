@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:02:52 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/22 15:48:26 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/10 16:40:42 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,19 @@ int	height_map(char **file)
 
 int	check_length_map(t_cub3d *cub3d)
 {
-	int	x;
 	int	y;
+	int	x;
 
-	x = 0;
+	y = 0;
 	cub3d->map.map_length = 0;
-	while (cub3d->file[x])
+	while (cub3d->file[y])
 	{
-		y = 0;
-		while (cub3d->file[x][y])
-			y++;
-		if (y > cub3d->map.map_length)
-			cub3d->map.map_length = y;
-		x++;
+		x = 0;
+		while (cub3d->file[y][x])
+			x++;
+		if (x > cub3d->map.map_length)
+			cub3d->map.map_length = x;
+		y++;
 	}
 	return (cub3d->map.map_length);
 }

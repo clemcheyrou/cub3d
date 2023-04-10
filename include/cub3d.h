@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 14:45:42 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:22:19 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,11 +210,13 @@ int		check_length_map(t_cub3d *cub3d);
 char	*ft_strdupdup(t_cub3d *cub3d, char *s);
 
 // ---- cuts
+int		check_len_tab(char **tab);
 int		color_tab5(t_elem *elem, char **tab, int i);
 int		color_tab6(t_elem *elem, char **tab, int i);
 void	cut_malloc_map(char **file, t_cub3d *cub3d);
 
 // ---- free
+void	free_array(char **var);
 void	free_struct(t_cub3d *cub3d);
 void	print_struct(t_cub3d *cub3d);
 

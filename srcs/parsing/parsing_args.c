@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/06 15:48:46 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/10 17:21:57 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,25 @@ int	colors_tab(char *line, t_elem *elem, int type)
 
 	i = 0;
 	tab = ft_split(line, ',');
-	if (!tab || tab[3] != NULL)
+	if (!check_len_tab(tab))
 		return (0);
 	while (tab[i])
 	{
 		if (ft_alldigit(tab[i]))
-			return (ft_putstr_fd(ERR_CLR, 2), 0);
+			return (free_array(tab), free(tab), \
+			ft_putstr_fd(ERR_CLR, 2), 0);
 		if (type == 5)
 			if (!color_tab5(elem, tab, i))
-				return (ft_putstr_fd(ERR_CLR, 2), 0);
+				return (free_array(tab), free(tab), \
+				ft_putstr_fd(ERR_CLR, 2), 0);
 		if (type == 6)
 			if (!color_tab6(elem, tab, i))
-				return (ft_putstr_fd(ERR_CLR, 2), 0);
+				return (free_array(tab), free(tab), \
+				ft_putstr_fd(ERR_CLR, 2), 0);
 		free(tab[i]);
 		i++;
 	}
 	free(tab);
-	if (elem->flag_cell > 3 || elem->flag_floor > 3)
-		return (ft_putstr_fd(ERR_DBL, 2), 0);
 	return (1);
 }
 
@@ -109,5 +110,7 @@ int	parse_color(char *line, t_cub3d *cub3d, int type)
 		return (ft_putstr_fd(ERR_CLR, 2), 0);
 	if (!colors_tab(line, &cub3d->map.elem, type))
 		return (0);
+	if (cub3d->map.elem.flag_cell > 3 || cub3d->map.elem.flag_floor > 3)
+		return (ft_putstr_fd(ERR_DBL, 2), 0);
 	return (cub3d->map.elem_nb++, 1);
 }

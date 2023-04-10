@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:37:04 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 16:31:26 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:54:33 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@ void	move_forward_backward(t_map *map, t_ray *ray, t_cub3d *cub3d)
 		if (map->map[(int)(ray->pos_y + ray->dir_y)][(int)ray->pos_x] == '0' ||
 		map->map[(int)(ray->pos_y + ray->dir_y * 0.1)][(int)ray->pos_x] != '1')
 			ray->pos_y += ray->dir_y * 0.03;
-		if (map->map[(int)(ray->pos_y)][(int)(ray->pos_x + ray->dir_x )] == '0' ||
-		map->map[(int)(ray->pos_y)][(int)(ray->pos_x + ray->dir_x * 0.1)] != '1')
+		if (map->map[(int)(ray->pos_y)][(int)(ray->pos_x + ray->dir_x)] == '0'
+		|| map->map[(int)(ray->pos_y)][(int)(ray->pos_x + ray->dir_x * 0.1)] \
+		!= '1')
 			ray->pos_x += ray->dir_x * 0.03;
 	}
 	if (cub3d->move == 2)
 	{
-		if (map->map[(int)(ray->pos_y - ray->dir_y )][(int)ray->pos_x] == '0' ||
-		map->map[(int)(ray->pos_y - ray->dir_y * 0.1)][(int)ray->pos_x] != '1')
+		if (map->map[(int)(ray->pos_y - ray->dir_y)][(int)ray->pos_x] == '0'
+		|| map->map[(int)(ray->pos_y - ray->dir_y * 0.1)][(int)ray->pos_x] \
+		!= '1')
 			ray->pos_y -= ray->dir_y * 0.1;
-		if (map->map[(int)(ray->pos_y)][(int)(ray->pos_x - ray->dir_x )] == '0' ||
-		map->map[(int)(ray->pos_y)][(int)(ray->pos_x - ray->dir_x * 0.1)] != '1')
+		if (map->map[(int)(ray->pos_y)][(int)(ray->pos_x - ray->dir_x)] == '0'
+		|| map->map[(int)(ray->pos_y)][(int)(ray->pos_x - ray->dir_x * 0.1)] \
+		!= '1')
 			ray->pos_x -= ray->dir_x * 0.1;
 	}
 }
@@ -38,19 +41,19 @@ void	move_left_right(t_map *map, t_ray *ray, t_cub3d *cub3d)
 {
 	if (cub3d->move == 3)
 	{
-		if (map->map[(int)ray->pos_y][(int)(ray->pos_x + ray->dir_y )] == '0' ||
+		if (map->map[(int)ray->pos_y][(int)(ray->pos_x + ray->dir_y)] == '0' ||
 		map->map[(int)ray->pos_y][(int)(ray->pos_x + ray->dir_y * 0.1)] != '1')
 			ray->pos_x += ray->dir_y * 0.03;
-		if (map->map[(int)(ray->pos_y - ray->dir_x )][(int)ray->pos_x] == '0' ||
+		if (map->map[(int)(ray->pos_y - ray->dir_x)][(int)ray->pos_x] == '0' ||
 		map->map[(int)(ray->pos_y - ray->dir_x * 0.1)][(int)ray->pos_x] != '1')
 			ray->pos_y -= ray->dir_x * 0.03;
 	}
 	if (cub3d->move == 4)
 	{
-		if (map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y )] == '0' ||
+		if (map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y)] == '0' ||
 		map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y * 0.1)] != '1')
 			ray->pos_x -= ray->dir_y * 0.03;
-		if (map->map[(int)(ray->pos_y + ray->dir_x )][(int)ray->pos_x] == '0' ||
+		if (map->map[(int)(ray->pos_y + ray->dir_x)][(int)ray->pos_x] == '0' ||
 		map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y * 0.1)] != '1')
 			ray->pos_y += ray->dir_x * 0.03;
 	}
