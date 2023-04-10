@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:17:47 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/10 14:27:43 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/10 16:54:39 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int	game(t_cub3d *cub3d)
 {
 	cub3d->move = 0;
 	cub3d->game.mlx = mlx_init();
-	init_colors(cub3d, &cub3d->map.elem);
 	if (!cub3d->game.mlx)
 		return (0);
 	if (!init_imgs(cub3d, &cub3d->map.elem))
 		return (free_before_exit(cub3d, 0), 0);
 	if (!create_window(cub3d))
 		return (0);
+	init_colors(cub3d, &cub3d->map.elem);
 	init_texture(cub3d);
 	init_adress_window(cub3d);
 	def_ray(cub3d);
