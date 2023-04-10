@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 13:41:13 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:49:47 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,6 @@ int	print_map(t_cub3d *cub3d)
 		j++;
 	}
 	ray_pos(cub3d);
-	//swap_img(cub3d);
+	swap_img(cub3d);
 	return (0);
 }

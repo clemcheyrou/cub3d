@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:39:37 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 13:43:45 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:51:16 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,9 @@ void	dda_algo(t_cub3d *cub3d)
 void	calculate_wall(t_cub3d *cub3d)
 {
 	if (cub3d->ray.side == 0)
-		cub3d->ray.paperwalldist = (cub3d->ray.map_x - cub3d->ray.pos_x + (1 - cub3d->ray.step_x) / 2.0)
-			/ cub3d->ray.raydir_x;
+		cub3d->ray.paperwalldist =(cub3d->ray.sidedist_x - cub3d->ray.deltadist_x);
 	else
-		cub3d->ray.paperwalldist = (cub3d->ray.map_y - cub3d->ray.pos_y + (1 - cub3d->ray.step_y) / 2.0)
-			/ cub3d->ray.raydir_y;
+		cub3d->ray.paperwalldist = (cub3d->ray.sidedist_y - cub3d->ray.deltadist_y);
 	if (cub3d->ray.paperwalldist == 0)
 		cub3d->ray.paperwalldist = 0.01;
 	cub3d->ray.lineheight = (double)(cub3d->screen_height / cub3d->ray.paperwalldist);	
