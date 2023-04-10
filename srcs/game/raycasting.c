@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:39:37 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 14:58:13 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:11:02 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,4 @@ void	ray_pos(t_cub3d *cub3d)
 		draw_wall(cub3d, x, &cub3d->ray, &cub3d->text);
 		x ++;
 	}
-	mlx_put_image_to_window(cub3d->game.mlx, cub3d->game.win, \
-		cub3d->img.mlx_img, 0, 0);
 }

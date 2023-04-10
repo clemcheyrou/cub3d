@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 17:22:19 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/10 16:43:30 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define FILE_EXT		".cub"
 # define MAP_CHAR		"10NSEW"
 # define MAP_PLYR		"NSEW"
-# define IMG_LENGTH		64
+# define IMG_HEIGHT		64
 # define IMG_WIDTH		64
 # define W_K			119
 # define S_K			115
