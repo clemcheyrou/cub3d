@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:36:44 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 13:43:05 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:51:52 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,66 +20,45 @@ void	init_texture(t_cub3d *cub3d)
 	cub3d->texture[3].addr = (int *)mlx_get_data_addr(cub3d->texture[3].mlx_img, &cub3d->texture[3].bpp, &cub3d->texture[3].line_len, &cub3d->texture[3].endian);
 }
 
-void	init_walls(t_cub3d *cub3d)
+void	init_walls(t_ray *ray, t_text *text)
 {
-	if (cub3d->ray.side == 0 && cub3d->ray.raydir_x < 0)
-		cub3d->text.texdir = 0;
-	if (cub3d->ray.side == 0 && cub3d->ray.raydir_x > 0)
-		cub3d->text.texdir = 1;
-	if (cub3d->ray.side == 1 && cub3d->ray.raydir_y < 0)
-		cub3d->text.texdir = 2;
-	if (cub3d->ray.side == 1 && cub3d->ray.raydir_y > 0)
-		cub3d->text.texdir = 3;
-	if (cub3d->ray.side == 0)
-		cub3d->text.wallx = cub3d->ray.pos_y + cub3d->ray.paperwalldist * cub3d->ray.raydir_y;
+	if (ray->side == 0 && ray->raydir_x < 0)
+		text->texdir = 0;
+	if (ray->side == 0 && ray->raydir_x > 0)
+		text->texdir = 1;
+	if (ray->side == 1 && ray->raydir_y < 0)
+		text->texdir = 2;
+	if (ray->side == 1 && ray->raydir_y > 0)
+		text->texdir = 3;
+	if (ray->side == 0)
+		text->wallx = ray->pos_y + ray->paperwalldist * ray->raydir_y;
 	else
-		cub3d->text.wallx = cub3d->ray.pos_x + cub3d->ray.paperwalldist * cub3d->ray.raydir_x;
-	cub3d->text.wallx -= floor(cub3d->text.wallx);
+		text->wallx = ray->pos_x + ray->paperwalldist * ray->raydir_x;
+	text->wallx -= floor(text->wallx);
 }
 
-void	draw_wall(t_cub3d *cub3d, int x0, int start_wall, int end_wall) 
+void	draw_wall(t_cub3d *cub3d, int x0, t_ray *ray, t_text *text)
 {
 	int	j;
 
-	init_walls(cub3d);
-	j = start_wall;
-	cub3d->text.texx =(int)(cub3d->text.wallx * (float)cub3d->texture[cub3d->text.texdir].w);
-	if (cub3d->ray.side == 0 && cub3d->ray.raydir_x > 0)
-		cub3d->text.texx = cub3d->texture[cub3d->text.texdir].w - cub3d->text.texx - 1;
-	if (cub3d->ray.side == 1 && cub3d->ray.raydir_y < 0)
-		cub3d->text.texx = cub3d->texture[cub3d->text.texdir].w - cub3d->text.texx - 1;
-	cub3d->text.step = 1.0 * cub3d->texture[cub3d->text.texdir].h / cub3d->ray.lineheight;
-
-	cub3d->text.texpos = (start_wall - cub3d->screen_height / 2 + cub3d->ray.lineheight / 2) * cub3d->text.step;
-	while (j <= end_wall)
+	init_walls(ray, text);
+	j = ray->drawstart;
+	text->texx = (int)(text->wallx * (float)cub3d->texture[text->texdir].w);
+	if (ray->side == 0 && ray->raydir_x > 0)
+		text->texx = cub3d->texture[text->texdir].w - text->texx - 1;
+	if (ray->side == 1 && ray->raydir_y < 0)
+		text->texx = cub3d->texture[text->texdir].w - text->texx - 1;
+	text->step = 1.0 * cub3d->texture[text->texdir].h / ray->lineheight;
+	text->texpos = (ray->drawstart - cub3d->screen_height / 2 + \
+		ray->lineheight / 2) * text->step;
+	while (j <= ray->drawend)
 	{
-		cub3d->text.texy = (int)cub3d->text.texpos & (cub3d->texture[cub3d->text.texdir].h - 1);
-		cub3d->text.texpos += cub3d->text.step;
+		text->texy = (int)text->texpos & (cub3d->texture[text->texdir].h - 1);
+		text->texpos += text->step;
 		if (j < cub3d->screen_height && x0 < cub3d->screen_width)
-			cub3d->img.addr[j * cub3d->img.line_len / 4 + x0] = cub3d->texture[cub3d->text.texdir].addr[cub3d->text.texy * cub3d->texture[cub3d->text.texdir].line_len / 4 + cub3d->text.texx];
+			cub3d->img.addr[j * cub3d->img.line_len / 4 + x0] = \
+				cub3d->texture[text->texdir].addr[text->texy \
+				* cub3d->texture[text->texdir].line_len / 4 + text->texx];
 		j++;
 	}
-}
-
-void	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall) 
-{
-	int	j;
-
-	j = 0;
-
-	//if (start_wall > cub3d->screen_height)
-	//	return ;
-	/*while (j < start_wall)
-	{
-		cub3d->img.addr[j * cub3d->img.line_len / 4 + x0] = cub3d->img.floor;
-		j++;
-	}*/
-	if (j <= end_wall)
-		draw_wall(cub3d, x0, start_wall, end_wall);
-	/*j = end_wall - 1;
-	while (j < cub3d->screen_height)
-	{
-		cub3d->img.addr[j * cub3d->img.line_len / 4 + x0] = cub3d->img.cell;
-		j++;
-	}*/
 }

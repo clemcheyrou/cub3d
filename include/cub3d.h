@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:20:58 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/07 14:59:20 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:45:42 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ int		game(t_cub3d *cub3d);
 int		print_map(t_cub3d *cub3d);
 void	ray_pos(t_cub3d *cub3d);
 void	def_ray(t_cub3d *cub3d);
-void 	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall); 
+void	draw_wall(t_cub3d *cub3d, int x, t_ray *ray, t_text *text);
 
 // ---- init_imgs
 int		init_imgs(t_cub3d *cub3d, t_elem *elem);
