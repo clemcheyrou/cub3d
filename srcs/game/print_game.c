@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 18:14:44 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:28:21 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,64 +44,6 @@ void	print_background(t_cub3d *cub3d)
 			cub3d->img.addr[j * cub3d->img.line_len / 4 + i] = \
 			cub3d->img.floor;
 		j++;
-	}
-}
-
-void	letter_to_image(t_cub3d *cub3d, int y, int x)
-{
-	int j;
-	int i;
-
-	j = 0;
-	if (cub3d->map.map[y][x] == '1')
-	{
-		while (j < 10)
-		{
-			i = 0;
-			while (i < 10)
-			{
-				cub3d->img.addr[(y * 10) * cub3d->img.line_len / 4 + (x * 10)] = cub3d->img.floor;
-				cub3d->img.addr[(y * 10 + j) * cub3d->img.line_len / 4 + (x * 10)] = cub3d->img.floor;
-				cub3d->img.addr[(y * 10 + j) * cub3d->img.line_len / 4 + (x * 10 + i)] = cub3d->img.floor;
-				cub3d->img.addr[(y * 10) * cub3d->img.line_len / 4 + (x * 10 + i)] = cub3d->img.floor;
-				i++;
-			}
-			j++;
-		}
-	}
-	j = 0;
-	if (cub3d->map.map[y][x] == '0')
-	{
-		while (j < 10)
-		{
-			i = 0;
-			while (i < 10)
-			{
-				cub3d->img.addr[(y * 10) * cub3d->img.line_len / 4 + (x * 10)] = cub3d->img.cell;
-				cub3d->img.addr[(y * 10 + j) * cub3d->img.line_len / 4 + (x * 10)] = cub3d->img.cell;
-				cub3d->img.addr[(y * 10 + j) * cub3d->img.line_len / 4 + (x * 10 + i)] = cub3d->img.cell;
-				cub3d->img.addr[(y * 10) * cub3d->img.line_len / 4 + (x * 10 + i)] = cub3d->img.cell;
-				i++;
-			}
-			j++;
-		}
-	}
-	j = 0;
-	if (y == (int)cub3d->ray.pos_y && x == (int)cub3d->ray.pos_x)
-	{
-		while (j < 10)
-		{
-			i = 0;
-			while (i < 10)
-			{
-				cub3d->img.addr[(y * 10) * cub3d->img.line_len / 4 + (x * 10)] = 0xFF69B4;
-				cub3d->img.addr[(y * 10 + j) * cub3d->img.line_len / 4 + (x * 10)] = 0xFF69B4;
-				cub3d->img.addr[(y * 10 + j) * cub3d->img.line_len / 4 + (x * 10 + i)] = 0xFF69B4;
-				cub3d->img.addr[(y * 10) * cub3d->img.line_len / 4 + (x * 10 + i)] = 0xFF69B4;
-				i++;
-			}
-			j++;
-		}
 	}
 }
 

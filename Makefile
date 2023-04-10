@@ -6,7 +6,7 @@
 #    By: adegain <adegain@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:07:29 by adegain           #+#    #+#              #
-#    Updated: 2023/04/10 14:17:57 by adegain          ###   ########.fr        #
+#    Updated: 2023/04/10 19:39:03 by adegain          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ SRCS:= 	main \
 		/game/move_player \
 		/game/raycasting \
 		/game/draw_game \
-		/game/init_imgs 
-
+		/game/init_imgs \
+		/game/bonus_minimap 
 
 # --------------------
 CC:= gcc
