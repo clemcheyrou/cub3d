@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:36:44 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/07 18:49:14 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:43:05 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	draw(t_cub3d *cub3d, int x0, int start_wall, int end_wall)
 
 	j = 0;
 
-	if (start_wall > cub3d->screen_height)
-		return ;
+	//if (start_wall > cub3d->screen_height)
+	//	return ;
 	/*while (j < start_wall)
 	{
 		cub3d->img.addr[j * cub3d->img.line_len / 4 + x0] = cub3d->img.floor;

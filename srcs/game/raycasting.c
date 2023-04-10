@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:39:37 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/09 20:06:01 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:43:45 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	cam_pos(t_cub3d *cub3d, int x)
 
 	cub3d->ray.map_x = (int)cub3d->ray.pos_x;
 	cub3d->ray.map_y = (int)cub3d->ray.pos_y;
-	cub3d->ray.movespeed = 0.1;
-	cub3d->ray.rotspeed = 0.033 * 1.8;
 }
 
 void	ray_lenght(t_cub3d *cub3d)
@@ -57,11 +55,11 @@ void	ray_lenght(t_cub3d *cub3d)
 void	ray_dist(t_cub3d *cub3d)
 {
 	if (cub3d->ray.raydir_x < 0)
-		cub3d->ray.sidedist_x = (cub3d->ray.pos_x - (double)cub3d->ray.map_x) * cub3d->ray.deltadist_x;
+		cub3d->ray.sidedist_x = (cub3d->ray.pos_x - cub3d->ray.map_x) * cub3d->ray.deltadist_x;
 	else
 		cub3d->ray.sidedist_x = (cub3d->ray.map_x + 1.0 - cub3d->ray.pos_x) * cub3d->ray.deltadist_x;
 	if (cub3d->ray.raydir_y < 0)
-		cub3d->ray.sidedist_y = (cub3d->ray.pos_y - (double)cub3d->ray.map_y) * cub3d->ray.deltadist_y;
+		cub3d->ray.sidedist_y = (cub3d->ray.pos_y - cub3d->ray.map_y) * cub3d->ray.deltadist_y;
 	else
 		cub3d->ray.sidedist_y = (cub3d->ray.map_y + 1.0 - cub3d->ray.pos_y) * cub3d->ray.deltadist_y;
 	if (cub3d->ray.raydir_x < 0)
@@ -84,7 +82,13 @@ void	dda_algo(t_cub3d *cub3d)
 			cub3d->ray.map_x += cub3d->ray.step_x; 
 			cub3d->ray.side = 0 ;
 		} 
-		else if (cub3d->ray.sidedist_x > cub3d->ray.sidedist_y)
+		else
+		{ 
+			cub3d->ray.sidedist_y += cub3d->ray.deltadist_y ; 
+			cub3d->ray.map_y += cub3d->ray.step_y; 
+			cub3d->ray.side = 1 ; 
+		}
+		/*else if (cub3d->ray.sidedist_x > cub3d->ray.sidedist_y)
 		{ 
 			cub3d->ray.sidedist_y += cub3d->ray.deltadist_y ; 
 			cub3d->ray.map_y += cub3d->ray.step_y; 
@@ -97,7 +101,7 @@ void	dda_algo(t_cub3d *cub3d)
 			cub3d->ray.sidedist_y += cub3d->ray.deltadist_y ; 
 			cub3d->ray.map_y += cub3d->ray.step_y; 
 			cub3d->ray.side = 1 ; 
-		}
+		}*/
 		if (cub3d->map.map[cub3d->ray.map_y][cub3d->ray.map_x] == '1')
 			cub3d->ray.hit = 1;
 		else if (cub3d->map.map[cub3d->ray.map_y][cub3d->ray.map_x] == 'X')
@@ -117,18 +121,19 @@ void	calculate_wall(t_cub3d *cub3d)
 		cub3d->ray.paperwalldist = 0.01;
 	cub3d->ray.lineheight = (double)(cub3d->screen_height / cub3d->ray.paperwalldist);	
 	cub3d->ray.drawstart = (cub3d->screen_height / 2) - (cub3d->ray.lineheight / 2);
-	
+	//cub3d->ray.drawstart = -cub3d->ray.lineheight / 2 + cub3d->screen_height / 2; 
 	if (cub3d->ray.drawstart < 0)
 		cub3d->ray.drawstart = 0 ;
 
 	cub3d->ray.drawend = (cub3d->screen_height / 2) + (cub3d->ray.lineheight / 2); 
+	//cub3d->ray.drawend = cub3d->ray.lineheight / 2 + cub3d->screen_height / 2; 
 	if (cub3d->ray.drawend >= cub3d->screen_height)
 		cub3d->ray.drawend = cub3d->screen_height;
 }
 
 void	ray_pos(t_cub3d *cub3d)
 {
-	float	x;
+	int	x;
 	
 	x = 0;
 	cub3d->ray.hit = 0;

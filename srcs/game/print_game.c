@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:31 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/07 18:05:51 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:41:13 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,14 +119,14 @@ int	print_map(t_cub3d *cub3d)
 	{
 		i = -1;
 		while (++i < cub3d->screen_width)
-			cub3d->img.addr[j * cub3d->img.line_len / 4 + i] = cub3d->img.floor;
+			cub3d->img.addr[j * cub3d->img.line_len / 4 + i] = cub3d->img.cell;
 		j++;
 	}
 	while (j < cub3d->screen_height)
 	{
 		i = -1;
 		while (++i < cub3d->screen_width)
-			cub3d->img.addr[j * cub3d->img.line_len / 4 + i] = cub3d->img.cell;
+			cub3d->img.addr[j * cub3d->img.line_len / 4 + i] = cub3d->img.floor;
 		j++;
 	}
 	ray_pos(cub3d);

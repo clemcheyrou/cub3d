@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:37:04 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/09 20:04:45 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:47:11 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	move_left_right(t_map *map, t_ray *ray, t_cub3d *cub3d)
 	{
 		if (map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y )] == '0' ||
 		map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y * 0.1)] != '1')
-			ray->pos_x -= ray->dir_y * 0.1;
+			ray->pos_x -= ray->dir_y * 0.03;
 		if (map->map[(int)(ray->pos_y + ray->dir_x )][(int)ray->pos_x] == '0' ||
 		map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_y * 0.1)] != '1')
 			ray->pos_y += ray->dir_x * 0.03;
