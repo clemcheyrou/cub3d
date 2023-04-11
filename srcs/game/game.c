@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:17:47 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/10 16:54:39 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:12:09 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	game(t_cub3d *cub3d)
 	if (!init_imgs(cub3d, &cub3d->map.elem))
 		return (free_before_exit(cub3d, 0), 0);
 	if (!create_window(cub3d))
-		return (0);
+		return (free_before_exit(cub3d, 0), 0);
 	init_colors(cub3d, &cub3d->map.elem);
 	init_texture(cub3d);
 	init_adress_window(cub3d);

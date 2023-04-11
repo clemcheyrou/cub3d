@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/10 17:21:57 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/11 13:35:06 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ int	colors_tab(char *line, t_elem *elem, int type)
 	while (tab[i])
 	{
 		if (ft_alldigit(tab[i]))
-			return (free_array(tab), free(tab), \
+			return (free(tab[i]), free(tab), \
 			ft_putstr_fd(ERR_CLR, 2), 0);
 		if (type == 5)
 			if (!color_tab5(elem, tab, i))
-				return (free_array(tab), free(tab), \
+				return (free(tab[i]), free(tab), \
 				ft_putstr_fd(ERR_CLR, 2), 0);
 		if (type == 6)
 			if (!color_tab6(elem, tab, i))
-				return (free_array(tab), free(tab), \
+				return (free(tab[i]), free(tab), \
 				ft_putstr_fd(ERR_CLR, 2), 0);
 		free(tab[i]);
 		i++;
