@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/11 16:29:42 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/11 17:44:20 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,3 @@ int	parse_color(char *line, t_cub3d *cub3d, int type)
 	free(cub3d->map.line);
 	return (cub3d->map.elem_nb++, 1);
 }
-
