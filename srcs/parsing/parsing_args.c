@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/11 13:35:06 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/11 16:29:42 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,21 @@ int	parse_imgs(char *line, t_cub3d *cub3d, int type)
 	if (!check_img_param(cub3d->map.line))
 		return (ft_putstr_fd(ERR_FIL, 2), 0);
 	if (type == 1 && cub3d->map.elem.no_img == NULL)
-		return (cub3d->map.elem_nb++, \
-			cub3d->map.elem.no_img = ft_strdup(cub3d->map.line), 1);
+		return (cub3d->map.elem_nb++,
+			cub3d->map.elem.no_img = ft_strdup(cub3d->map.line),
+			free(cub3d->map.line), 1);
 	if (type == 2 && cub3d->map.elem.so_img == NULL)
-		return (cub3d->map.elem_nb++, \
-			cub3d->map.elem.so_img = ft_strdup(cub3d->map.line), 1);
+		return (cub3d->map.elem_nb++,
+			cub3d->map.elem.so_img = ft_strdup(cub3d->map.line),
+			free(cub3d->map.line), 1);
 	if (type == 3 && cub3d->map.elem.we_img == NULL)
-		return (cub3d->map.elem_nb++, \
-			cub3d->map.elem.we_img = ft_strdup(cub3d->map.line), 1);
+		return (cub3d->map.elem_nb++,
+			cub3d->map.elem.we_img = ft_strdup(cub3d->map.line),
+			free(cub3d->map.line), 1);
 	if (type == 4 && cub3d->map.elem.ea_img == NULL)
-		return (cub3d->map.elem_nb++, \
-			cub3d->map.elem.ea_img = ft_strdup(cub3d->map.line), 1);
+		return (cub3d->map.elem_nb++,
+			cub3d->map.elem.ea_img = ft_strdup(cub3d->map.line),
+			free(cub3d->map.line), 1);
 	return (ft_putstr_fd(ERR_DBL, 2), 0);
 }
 
@@ -103,14 +107,16 @@ int	check_color_param(char *line)
 
 int	parse_color(char *line, t_cub3d *cub3d, int type)
 {
-	line = ft_strtrim(line, " ");
-	if (!line)
+	cub3d->map.line = ft_strtrim(line, " ");
+	if (!cub3d->map.line)
 		return (ft_putstr_fd(ERR_DEF, 2), 0);
-	if (!check_color_param(line))
+	if (!check_color_param(cub3d->map.line))
 		return (ft_putstr_fd(ERR_CLR, 2), 0);
-	if (!colors_tab(line, &cub3d->map.elem, type))
+	if (!colors_tab(cub3d->map.line, &cub3d->map.elem, type))
 		return (0);
 	if (cub3d->map.elem.flag_cell > 3 || cub3d->map.elem.flag_floor > 3)
 		return (ft_putstr_fd(ERR_DBL, 2), 0);
+	free(cub3d->map.line);
 	return (cub3d->map.elem_nb++, 1);
 }
+
