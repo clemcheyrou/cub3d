@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 21:18:56 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/11 13:36:11 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:36:24 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,18 @@ int	ft_isdigit(int c)
 
 int	ft_alldigit(char *str)
 {
+	int	i;
+
+	i = 0;
 	if (!str)
 		return (0);
-	while (str && *str)
+	while (str[i])
 	{
-		if (*str < '0' || *str > '9')
+		if (str[i] < '0' || str[i] > '9')
 			return (1);
-		str++;
+		if (i > 3)
+			return (1);
+		i++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:08:25 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/06 15:32:32 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:58:17 by adegain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	malloc_map(char **file, t_cub3d *cub3d)
 	cub3d->map.map_height = height_map(file);
 	cub3d->map.map_length = check_length_map(cub3d);
 	if (!valid_file(file))
-		return (ft_putstr_fd(ERR_MAP, 2), free_struct(cub3d), 0);
+		return (ft_putstr_fd(ERR_MAP, 2), 0);
 	cub3d->map.map = malloc(sizeof(char *) * (cub3d->map.map_height + 1));
 	if (!cub3d->map.map)
 		return (ft_putstr_fd(ERR_MALLOC, 2), 0);
