@@ -1,10 +1,10 @@
-NO ./imgs/wall64-no.xpm
 SO ./imgs/wall64-so.xpm
 WE ./imgs/wall64-we.xpm
-EA ./imgs/wall64-ea.xpm
+NO ./imgs/wall64-no.xpm 
+EA ./imgs/wall64-ea.xpm 
 
-F 253,159,39
-C 153,101,224
+F 253,159,39    
+C 153,101,224  
 
         1111111111111111111111111
         1000000000110000000000001
