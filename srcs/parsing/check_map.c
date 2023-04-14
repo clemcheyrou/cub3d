@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:38:33 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/10 16:55:10 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/14 14:12:38 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ int	check_map(t_cub3d *cub3d)
 		x = 0;
 		while (cub3d->map.map[y][x])
 		{
-			if (cub3d->map.map[y][x] == '0')
+			if (cub3d->map.map[y][x] == '0' || cub3d->map.map[y][x] == 'N'
+			|| cub3d->map.map[y][x] == 'W' || cub3d->map.map[y][x] == 'S'
+			|| cub3d->map.map[y][x] == 'E')
 				if (!check_around(cub3d->map.map, y, x))
 					return (ft_putstr_fd(ERR_MAP, 2), free_struct(cub3d), 0);
 			if (valid_char(cub3d->map.map[y][x], 2))
