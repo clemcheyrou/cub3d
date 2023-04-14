@@ -46,7 +46,7 @@ char	*ft_strtrim(char *s1, char *set)
 	if (len_s1 == 0)
 		return (NULL);
 	if (len_s1 == ft_strlen(s1))
-		return (strdup(s1));
+		return (ft_strdup(s1));
 	new_s = malloc(sizeof(char) * (len_s1 - i + 1));
 	if (!new_s)
 		return (NULL);
