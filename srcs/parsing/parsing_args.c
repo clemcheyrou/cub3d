@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/14 14:10:20 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:09:34 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,15 @@ int	colors_tab(char *line, t_elem *elem, int type)
 	while (tab[i])
 	{
 		if (ft_alldigit(tab[i]))
-			return (free(tab[i]), free(tab), \
+			return (free_array(tab + i), free(tab), \
 			ft_putstr_fd(ERR_CLR, 2), 0);
 		if (type == 5)
 			if (!color_tab5(elem, tab, i))
-				return (free(tab[i]), free(tab), \
+				return (free_array(tab + i), free(tab), \
 				ft_putstr_fd(ERR_CLR, 2), 0);
 		if (type == 6)
 			if (!color_tab6(elem, tab, i))
-				return (free(tab[i]), free(tab), \
+				return (free_array(tab + i), free(tab), \
 				ft_putstr_fd(ERR_CLR, 2), 0);
 		free(tab[i]);
 		i++;
@@ -113,7 +113,7 @@ int	parse_color(char *line, t_cub3d *cub3d, int type)
 	if (!check_color_param(cub3d->map.line))
 		return (ft_putstr_fd(ERR_CLR, 2), free(cub3d->map.line), 0);
 	if (!colors_tab(cub3d->map.line, &cub3d->map.elem, type))
-		return (0);
+		return (free(cub3d->map.line), 0);
 	if (cub3d->map.elem.flag_cell > 3 || cub3d->map.elem.flag_floor > 3)
 		return (ft_putstr_fd(ERR_DBL, 2), free(cub3d->map.line), 0);
 	free(cub3d->map.line);
