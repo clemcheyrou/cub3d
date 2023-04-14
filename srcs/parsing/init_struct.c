@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:02:12 by adegain           #+#    #+#             */
-/*   Updated: 2023/03/13 16:02:36 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:47:06 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	init_elem_struct(t_cub3d *cub3d)
 	cub3d->map.elem.cell[2] = -1;
 	cub3d->map.elem.flag_floor = 0;
 	cub3d->map.elem.flag_cell = 0;
+	cub3d->map.line = NULL;
 }

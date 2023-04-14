@@ -6,7 +6,7 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:06:16 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/11 17:44:20 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:10:20 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	parse_imgs(char *line, t_cub3d *cub3d, int type)
 	if (!cub3d->map.line)
 		return (ft_putstr_fd(ERR_DEF, 2), 0);
 	if (!check_img_param(cub3d->map.line))
-		return (ft_putstr_fd(ERR_FIL, 2), 0);
+		return (ft_putstr_fd(ERR_FIL, 2), free(cub3d->map.line), 0);
 	if (type == 1 && cub3d->map.elem.no_img == NULL)
 		return (cub3d->map.elem_nb++,
 			cub3d->map.elem.no_img = ft_strdup(cub3d->map.line),
@@ -49,7 +49,7 @@ int	parse_imgs(char *line, t_cub3d *cub3d, int type)
 		return (cub3d->map.elem_nb++,
 			cub3d->map.elem.ea_img = ft_strdup(cub3d->map.line),
 			free(cub3d->map.line), 1);
-	return (ft_putstr_fd(ERR_DBL, 2), 0);
+	return (ft_putstr_fd(ERR_DBL, 2), free(cub3d->map.line), 0);
 }
 
 int	colors_tab(char *line, t_elem *elem, int type)
@@ -111,11 +111,11 @@ int	parse_color(char *line, t_cub3d *cub3d, int type)
 	if (!cub3d->map.line)
 		return (ft_putstr_fd(ERR_DEF, 2), 0);
 	if (!check_color_param(cub3d->map.line))
-		return (ft_putstr_fd(ERR_CLR, 2), 0);
+		return (ft_putstr_fd(ERR_CLR, 2), free(cub3d->map.line), 0);
 	if (!colors_tab(cub3d->map.line, &cub3d->map.elem, type))
 		return (0);
 	if (cub3d->map.elem.flag_cell > 3 || cub3d->map.elem.flag_floor > 3)
-		return (ft_putstr_fd(ERR_DBL, 2), 0);
+		return (ft_putstr_fd(ERR_DBL, 2), free(cub3d->map.line), 0);
 	free(cub3d->map.line);
 	return (cub3d->map.elem_nb++, 1);
 }

@@ -6,11 +6,12 @@
 /*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 18:00:39 by ccheyrou          #+#    #+#             */
-/*   Updated: 2023/04/11 16:30:02 by ccheyrou         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:05:57 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	is_set(char s, char const *set)
 {
@@ -42,6 +43,8 @@ char	*ft_strtrim(char *s1, char *set)
 	len_s1 = ft_strlen(s1);
 	while (i < len_s1 && is_set(s1[len_s1 - 1], set))
 		len_s1--;
+	if (len_s1 == 0)
+		return (NULL);
 	if (len_s1 == ft_strlen(s1))
 		return (ft_strdup(s1));
 	new_s = malloc(sizeof(char) * (len_s1 - i + 1));
@@ -52,13 +55,3 @@ char	*ft_strtrim(char *s1, char *set)
 	new_s[j] = '\0';
 	return (new_s);
 }
-/*
-#include <stdio.h>
-
-int	main()
-{
-	char const s1[] = "   xxxtripouillexx ";
-	char const s2[] = " x";
-	
-	printf("%s\n", ft_strtrim(s1, s2));
-}*/

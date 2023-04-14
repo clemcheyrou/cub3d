@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adegain <adegain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ccheyrou <ccheyrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:17:47 by adegain           #+#    #+#             */
-/*   Updated: 2023/04/11 13:12:09 by adegain          ###   ########.fr       */
+/*   Updated: 2023/04/12 18:31:28 by ccheyrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_adress_window(t_cub3d *cub3d)
 
 int	game(t_cub3d *cub3d)
 {
-	cub3d->move = 0;
+	cub3d->mouse_pos = 10000;
 	cub3d->game.mlx = mlx_init();
 	if (!cub3d->game.mlx)
 		return (0);
@@ -54,9 +54,9 @@ int	game(t_cub3d *cub3d)
 	init_texture(cub3d);
 	init_adress_window(cub3d);
 	def_ray(cub3d);
-	mlx_hook(cub3d->game.win, 33, 1L << 2, close_btn, cub3d);
-	mlx_hook(cub3d->game.win, 2, 1L << 0, move_player, cub3d);
 	mlx_loop_hook(cub3d->game.mlx, print_map, cub3d);
+	mlx_hook(cub3d->game.win, 2, 1L << 0, move_player, cub3d);
+	mlx_hook(cub3d->game.win, 33, 1L << 2, close_btn, cub3d);
 	mlx_hook(cub3d->game.win, 3, 1L << 1, release_player, cub3d);
 	mlx_loop(cub3d->game.mlx);
 	return (1);
